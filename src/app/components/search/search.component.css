@@ -1,0 +1,15 @@
+.frontPageCenter {
+  margin: auto;
+  text-align: center;
+}
+
+.frontPageTitle {
+  text-align: center;
+}
+
+.frontPageImage {
+  width: 60%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
