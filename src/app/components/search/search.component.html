@@ -19,14 +19,30 @@
     <title>MusicDex</title>
   </head>
   <body>
-    <div class="frontPageCenter">
-      <img
-        class="frontPageImage"
-        src="../assets/music.svg"
-        alt="Illustration of Person Listening to Music"
-      />
-      <h1 class="fronPageTitle">MusicDex</h1>
+    <!-- Start of Jumbotron -->
+    <div class="jumbotron">
+      <h1 class="frontPageTitle">MusicDex</h1>
+      <p class="frontPageDesc">
+        Welcome to MusicDex! Simply begin by typing the name of an artist below.
+      </p>
+      <hr class="jumboDivider" />
+
+      <div class="searchbar">
+        <input
+          class="form-control"
+          type="text"
+          placeholder="Search for an artist"
+        />
+        <button type="button" class="btn btn-success">Search</button>
+      </div>
     </div>
+    <!-- End of Jumbotron -->
+
+    <img
+      class="frontPageImage"
+      src="../assets/music.svg"
+      alt="Illustration of Person Listening to Music"
+    />
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

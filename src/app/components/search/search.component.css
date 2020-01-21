@@ -1,15 +1,26 @@
-.frontPageCenter {
-  margin: auto;
-  text-align: center;
+.frontPageTitle {
+  font-size: 4em;
 }
 
-.frontPageTitle {
-  text-align: center;
+.frontPageDesc {
+  font-size: 1.4em;
 }
 
 .frontPageImage {
-  width: 60%;
+  width: 50%;
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+.jumbotron {
+  height: 50%;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.searchbar {
+  display: flex;
+  flex-direction: row;
 }
