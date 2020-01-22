@@ -6,5 +6,8 @@ import { Component } from "@angular/core";
   styleUrls: ["./search.component.css"]
 })
 export class SearchComponent {
-  title = "MusicDex";
+  searchString: string;
+  searchMusic() {
+    console.log("Hello!");
+  }
 }

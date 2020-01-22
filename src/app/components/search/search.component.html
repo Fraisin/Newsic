@@ -23,17 +23,22 @@
     <div class="jumbotron">
       <h1 class="frontPageTitle">MusicDex</h1>
       <p class="frontPageDesc">
-        Welcome to MusicDex! Simply begin by typing the name of an artist below.
+        Welcome to
+        <span class="titleInDesc">MusicDex!</span>
+        Simply begin by typing the name of an artist below.
       </p>
       <hr class="jumboDivider" />
 
       <div class="searchbar">
+        <!-- SEARCHBAR -->
         <input
           class="form-control"
           type="text"
+          (keyup)="searchMusic()"
+          [(ngModel)]="searchString"
           placeholder="Search for an artist"
         />
-        <button type="button" class="btn btn-success">Search</button>
+        <button type="button" class="btn btn-warning">Search</button>
       </div>
     </div>
     <!-- End of Jumbotron -->

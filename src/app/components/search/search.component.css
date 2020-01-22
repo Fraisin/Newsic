@@ -13,6 +13,10 @@
   margin-right: auto;
 }
 
+.titleInDesc {
+  color: #f39c12;
+}
+
 .jumbotron {
   height: 50%;
   width: 80%;
