@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Headers, URLSearchParams } from "@angular/http";
+import { Artist } from "../../../Artist";
 import { map } from "rxjs/operators";
 
 @Injectable({
@@ -47,5 +48,16 @@ export class SpotifyService {
       "&offset=0&limit=20&type=artist" +
       "&market=US";
     return this.httpClient.get(this.searchUrl, httpSearch);
+  }
+
+  //method to retrieve the data of an artist given their Spotify ID
+  getArtist(artistID: string, token: string) {
+    const httpSearch = {
+      headers: new HttpHeaders({
+        Authorization: "Bearer " + token
+      })
+    };
+    this.searchUrl = "https://api.spotify.com/v1/artists/" + artistID;
+    return this.httpClient.get<Artist[]>(this.searchUrl, httpSearch);
   }
 }

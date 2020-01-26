@@ -28,3 +28,11 @@
   display: flex;
   flex-direction: row;
 }
+
+.artistGenres > p {
+  display: inline;
+}
+
+.genreBadges {
+  margin-left: 10px;
+}
