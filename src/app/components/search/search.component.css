@@ -1,38 +1,127 @@
 .frontPageTitle {
   font-size: 4em;
 }
-
 .frontPageDesc {
   font-size: 1.4em;
 }
-
 .frontPageImage {
   width: 50%;
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
-
+.noResultImage {
+  width: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 45px;
+}
 .titleInDesc {
   color: #f39c12;
 }
-
 .jumbotron {
   height: 50%;
   width: 80%;
   margin-left: auto;
   margin-right: auto;
 }
-
 .searchbar {
   display: flex;
   flex-direction: row;
 }
-
 .artistGenres > p {
   display: inline;
 }
-
 .genreBadges {
   margin-left: 10px;
+}
+.followers {
+  padding-top: 7.5px;
+}
+.followers > p {
+  display: inline;
+}
+.followerLabel {
+  margin-right: 10px;
+}
+.popularity {
+  margin-top: 5px;
+  text-align: center;
+  float: right;
+  position: absolute;
+  top: 40%;
+  right: 4%;
+  transform: translateY(-50%);
+}
+/* CSS for the donut status bar of an artist's popularity.
+Inspired from peavy's work @ https://codepen.io/peavy/pen/NzYVjw */
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+#donut {
+  display: block;
+  margin: 0px auto;
+  color: #1abc9c;
+  font-size: 20px;
+  text-align: center;
+}
+.donut-size {
+  font-size: 5em;
+  float: right;
+}
+.pie-wrapper {
+  position: relative;
+  width: 1em;
+  height: 1em;
+  margin: 0px auto;
+}
+.pie {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  clip: rect(0, 1em, 1em, 0.5em);
+}
+.half-circle {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  border: 0.1em solid hsl(168, 76%, 42%);
+  border-radius: 50%;
+  clip: rect(0em, 0.5em, 1em, 0em);
+}
+.right-side {
+  transform: rotate(0deg);
+}
+.label {
+  position: absolute;
+  top: 0.52em;
+  right: 0.4em;
+  bottom: 0.4em;
+  left: 0.4em;
+  display: block;
+  background: none;
+  border-radius: 50%;
+  font-size: 0.25em;
+  line-height: 2.6em;
+  text-align: center;
+  cursor: default;
+  z-index: 2;
+}
+.smaller {
+  padding-bottom: 20px;
+  font-size: 0.45em;
+  vertical-align: super;
+}
+.shadow {
+  width: 100%;
+  height: 100%;
+  border: 0.1em solid;
+  border-radius: 50%;
 }

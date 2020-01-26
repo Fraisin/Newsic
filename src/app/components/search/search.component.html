@@ -36,11 +36,11 @@
           [formControl]="searchString"
           placeholder="Search for an artist"
         />
-        <button type="button" class="btn btn-warning">Search</button>
       </div>
     </div>
     <!-- End of Jumbotron -->
 
+    <!-- if the searchString is empty or just whitespace, display the front image -->
     <div *ngIf="emptySearch">
       <img
         class="frontPageImage"
@@ -49,26 +49,62 @@
       />
     </div>
 
-    <div *ngIf="!emptySearch && searchResults">
+    <div *ngIf="!emptySearch">
       <h3 class="text-warning">Search Results:</h3>
       <br />
-      <div *ngIf="!searchResults.length > 0">
+      <!-- if no artists over 1000 followers with the search result, display no search results -->
+      <div *ngIf="noSearchResults(searchResults)">
         Sorry, we couldn't find an artist with that name.
+        <img
+          class="noResultImage"
+          src="../assets/search.svg"
+          alt="Illustration of Person Searching for Something"
+        />
       </div>
-      <div *ngFor="let res of searchResults">
-        <div *ngIf="res.followers.total > 1000" class="row">
+      <!-- loop through each artist and display their information in a well -->
+      <div *ngFor="let res of searchResults; index as i">
+        <div *ngIf="res.followers.total > minFollowerCount" class="row">
           <div class="col-md-12">
+            <!-- START OF ARTIST BLOCK -->
             <div class="artistBlock well">
               <h4>
                 <a href="/artist/{{ res.id }}">{{ res.name }}</a>
               </h4>
+              <!-- GENRES -->
               <div class="artistGenres">
-                <p class="text-warning">Genres:</p>
+                <p class="text-warning genresText">Genres:</p>
                 <span class="genreBadges" *ngFor="let genre of res.genres">
                   {{ genre }}
                 </span>
               </div>
+              <!-- FOLLOWERS -->
+              <div class="followers">
+                <p class="text-warning followerLabel">Followers:</p>
+                <span>
+                  {{ res.followers.total.toLocaleString() }}
+                </span>
+              </div>
+              <!-- POPULARITY -->
+              <div class="popularity">
+                <p class="text-warning">Popularity</p>
+                <div id="{{ 'popularityChart' + i }}" class="donut-size">
+                  <div class="pie-wrapper">
+                    <span class="label">
+                      <span class="num">{{ res.popularity }}</span>
+                    </span>
+                    {{
+                      updateDonutChart("#popularityChart" + i, res.popularity)
+                    }}
+                    <div class="pie">
+                      <div class="left-side half-circle"></div>
+                      <div class="right-side half-circle"></div>
+                    </div>
+                    <div class="shadow"></div>
+                  </div>
+                </div>
+              </div>
             </div>
+            <!-- END OF ARTIST BLOCK -->
           </div>
         </div>
       </div>
