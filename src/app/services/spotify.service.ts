@@ -27,7 +27,6 @@ export class SpotifyService {
     let params: URLSearchParams = new URLSearchParams();
     params.set("grant_type", "client_credentials");
     let body = params.toString();
-
     return this.httpClient.post(
       "https://accounts.spotify.com/api/token",
       body,
@@ -35,7 +34,7 @@ export class SpotifyService {
     );
   };
 
-  //method to search for artists on the front page
+  //method to search for artists with the front page searchbar
   searchForArtists(searchString: string, token: string) {
     const httpSearch = {
       headers: new HttpHeaders({
@@ -47,7 +46,6 @@ export class SpotifyService {
       searchString +
       "&offset=0&limit=20&type=artist" +
       "&market=US";
-
     return this.httpClient.get(this.searchUrl, httpSearch);
   }
 }

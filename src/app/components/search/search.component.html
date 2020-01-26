@@ -12,7 +12,6 @@
     <link
       rel="stylesheet"
       href="https://bootswatch.com/3/darkly/bootstrap.min.css"
-      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
       crossorigin="anonymous"
     />
 
@@ -34,8 +33,7 @@
         <input
           class="form-control"
           type="text"
-          (keyup)="searchMusic()"
-          [(ngModel)]="searchString"
+          [formControl]="searchString"
           placeholder="Search for an artist"
         />
         <button type="button" class="btn btn-warning">Search</button>
@@ -43,11 +41,27 @@
     </div>
     <!-- End of Jumbotron -->
 
-    <img
-      class="frontPageImage"
-      src="../assets/music.svg"
-      alt="Illustration of Person Listening to Music"
-    />
+    <div>
+      <img
+        class="frontPageImage"
+        src="../assets/music.svg"
+        alt="Illustration of Person Listening to Music"
+      />
+    </div>
+
+    <div *ngIf="searchResults">
+      <div *ngFor="let res of searchResults">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="search-res well">
+              <h4>{{ res.name }}</h4>
+              <p class="text-warning">Genres:</p>
+              <span *ngFor="let genre of res.genres"> {{ genre }} </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
