@@ -41,7 +41,7 @@
     </div>
     <!-- End of Jumbotron -->
 
-    <div>
+    <div *ngIf="emptySearch">
       <img
         class="frontPageImage"
         src="../assets/music.svg"
@@ -49,9 +49,14 @@
       />
     </div>
 
-    <div *ngIf="searchResults">
+    <div *ngIf="!emptySearch && searchResults">
+      <h3 class="text-warning">Search Results:</h3>
+      <br />
+      <div *ngIf="!searchResults.length > 0">
+        Sorry, we couldn't find an artist with that name.
+      </div>
       <div *ngFor="let res of searchResults">
-        <div class="row">
+        <div *ngIf="res.followers.total > 1000" class="row">
           <div class="col-md-12">
             <div class="artistBlock well">
               <h4>

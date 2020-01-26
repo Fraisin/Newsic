@@ -12,12 +12,18 @@ import { Artist } from "../../../../Artist";
 export class SearchComponent {
   searchString: FormControl = new FormControl();
   searchResults: Artist[];
+  emptySearch: boolean = true;
   constructor(private SpotifyService: SpotifyService) {}
   ngOnInit() {
     this.searchString.valueChanges.subscribe(searchString =>
       this.SpotifyService.getToken().subscribe(data => {
         //if the search string is empty or is only whitespace, do not make a request
-        if (searchString === "" || !/\S/.test(searchString)) return;
+        if (searchString === "" || !/\S/.test(searchString)) {
+          this.emptySearch = true;
+          return;
+        } else {
+          this.emptySearch = false;
+        }
         this.SpotifyService.searchForArtists(
           searchString,
           data["access_token"]
