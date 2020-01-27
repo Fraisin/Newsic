@@ -50,7 +50,7 @@
     </div>
 
     <div *ngIf="!emptySearch">
-      <h3 class="text-warning">Search Results:</h3>
+      <h3>Search Results:</h3>
       <br />
       <!-- if no artists over 1000 followers with the search result, display no search results -->
       <div *ngIf="noSearchResults(searchResults)">
@@ -73,8 +73,14 @@
               <!-- GENRES -->
               <div class="artistGenres">
                 <p class="text-warning genresText">Genres:</p>
-                <span class="genreBadges" *ngFor="let genre of res.genres">
-                  {{ genre }}
+                <span *ngIf="res.genres.length == 0" class="noGenreMessage"
+                  >No genres were found for this artist.</span
+                >
+                <span
+                  class="genreBadges"
+                  *ngFor="let genre of cutGenres(res.genres); index as i"
+                >
+                  <span class="{{ 'badge badge' + i }}">{{ genre }}</span>
                 </span>
               </div>
               <!-- FOLLOWERS -->

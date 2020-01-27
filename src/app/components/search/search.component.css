@@ -54,6 +54,28 @@
   right: 4%;
   transform: translateY(-50%);
 }
+.noGenreMessage {
+  margin-left: 10px;
+}
+/* badges for the genres */
+.badge0 {
+  background-color: #663399;
+}
+.badge1 {
+  background-color: #007bff;
+}
+.badge2 {
+  background-color: #e74c3c;
+}
+.badge3 {
+  background-color: #f39c12;
+}
+.badge4 {
+  background-color: #28a745;
+}
+.badge5 {
+  background-color: #17a2b8;
+}
 /* CSS for the donut status bar of an artist's popularity.
 Inspired from peavy's work @ https://codepen.io/peavy/pen/NzYVjw */
 *,
@@ -64,7 +86,7 @@ Inspired from peavy's work @ https://codepen.io/peavy/pen/NzYVjw */
 #donut {
   display: block;
   margin: 0px auto;
-  color: #1abc9c;
+  color: #009871;
   font-size: 20px;
   text-align: center;
 }
