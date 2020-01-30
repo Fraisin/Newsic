@@ -1,0 +1,29 @@
+.artistName {
+  color: whitesmoke;
+  font-size: 80px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.artist-songs {
+  margin-top: 50px;
+  height: 320px;
+}
+.artistPhoto {
+  float: left;
+  box-shadow: 0 13px 26px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.25);
+}
+.popularSongJumbo {
+  height: 320px;
+  float: right;
+  width: 70%;
+  position: relative;
+}
+.popularLabel {
+  position: absolute;
+  top: 10px;
+  left: 30px;
+}
+.popularLabelText {
+  color: #f5d5ba;
+}

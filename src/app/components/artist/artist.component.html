@@ -1,7 +1,16 @@
 <div *ngIf="artist">
-  <div>
-    <h2>{{ artist.name }}</h2>
-    <h2>Popularity: {{ artist.popularity }}</h2>
-    <h2>Followers: {{ artist.followers.total }}</h2>
+  <h1 class="artistName">{{ artist.name }}</h1>
+  <div class="artist-songs">
+    <img
+      class="artistPhoto"
+      src="{{ artist.images[1].url }}"
+      alt="Illustration of Person Searching for Something"
+    />
+    <div class="jumbotron popularSongJumbo">
+      <div class="popularLabel">
+        <h3 class="popularLabelText">Popular Songs</h3>
+        <hr class="my-4" />
+      </div>
+    </div>
   </div>
 </div>
