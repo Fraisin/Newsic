@@ -1,63 +1,10 @@
-.frontPageTitle {
-  font-size: 4em;
-}
-.frontPageDesc {
-  font-size: 1.4em;
-}
-.frontPageImage {
-  width: 50%;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-.noResultImage {
-  width: 50%;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 45px;
-}
-.titleInDesc {
-  color: #f39c12;
-}
-.jumbotron {
-  height: 50%;
-  width: 80%;
-  margin-left: auto;
-  margin-right: auto;
-}
-.searchbar {
-  display: flex;
-  flex-direction: row;
+.artistBlock {
+  position: relative;
 }
 .artistGenres > p {
   display: inline;
 }
-.genreBadges {
-  margin-left: 10px;
-}
-.followers {
-  padding-top: 7.5px;
-}
-.followers > p {
-  display: inline;
-}
-.followerLabel {
-  margin-right: 10px;
-}
-.popularity {
-  margin-top: 5px;
-  text-align: center;
-  float: right;
-  position: absolute;
-  top: 40%;
-  right: 4%;
-  transform: translateY(-50%);
-}
-.noGenreMessage {
-  margin-left: 10px;
-}
-/* badges for the genres */
+/* Badge colours for the genres */
 .badge0 {
   background-color: #663399;
 }
@@ -76,6 +23,61 @@
 .badge5 {
   background-color: #17a2b8;
 }
+.followers {
+  padding-top: 7.5px;
+}
+.followers > p {
+  display: inline;
+}
+.followerLabel {
+  margin-right: 10px;
+}
+.frontPageImage {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.genreBadges {
+  margin-left: 10px;
+  overflow: auto;
+}
+.jumbotron {
+  height: 50%;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.noGenreMessage {
+  margin-left: 10px;
+}
+.noResultImage {
+  width: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+.popularity {
+  text-align: center;
+  position: absolute;
+  display: inline-block;
+  margin: auto;
+  top: 50%;
+  min-width: 10%;
+  transform: translateY(-50%);
+}
+.searchbar {
+  display: flex;
+  flex-direction: row;
+}
+.searchHeading {
+  color: #f39c12;
+}
+
+.titleInDesc {
+  color: #f39c12;
+}
 /* CSS for the donut status bar of an artist's popularity.
 Inspired from peavy's work @ https://codepen.io/peavy/pen/NzYVjw */
 *,
@@ -92,7 +94,7 @@ Inspired from peavy's work @ https://codepen.io/peavy/pen/NzYVjw */
 }
 .donut-size {
   font-size: 5em;
-  float: right;
+  display: inline-block;
 }
 .pie-wrapper {
   position: relative;
@@ -146,4 +148,71 @@ Inspired from peavy's work @ https://codepen.io/peavy/pen/NzYVjw */
   height: 100%;
   border: 0.1em solid;
   border-radius: 50%;
+}
+
+/* Mobile Styles */
+@media only screen and (max-width: 419px) {
+  .artistGenres {
+    width: 72%;
+  }
+  .frontPageDesc {
+    font-size: 1em;
+  }
+  .frontPageTitle {
+    font-size: 2em;
+  }
+  .frontPageImage {
+    width: 50%;
+  }
+  .popularity {
+    right: 3%;
+  }
+  .searchHeading {
+    font-size: 1.2em;
+  }
+}
+
+/* Tablet Styles */
+@media only screen and (min-width: 420px) and (max-width: 960px) {
+  .artistGenres {
+    width: 82%;
+  }
+  .frontPageDesc {
+    font-size: 1.2em;
+  }
+  .frontPageImage {
+    width: 50%;
+  }
+  .frontPageTitle {
+    font-size: 3em;
+  }
+  .popularity {
+    right: 2%;
+  }
+  .searchHeading {
+    font-size: 1.4em;
+  }
+}
+
+/* Desktop Styles */
+@media only screen and (min-width: 961px) {
+  .artistGenres {
+    width: 85%;
+  }
+  .frontPageDesc {
+    font-size: 1.4em;
+  }
+
+  .frontPageImage {
+    width: 55%;
+  }
+  .frontPageTitle {
+    font-size: 4em;
+  }
+  .popularity {
+    right: 1%;
+  }
+  .searchHeading {
+    font-size: 1.6em;
+  }
 }

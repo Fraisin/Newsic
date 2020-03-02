@@ -15,6 +15,7 @@ export class SearchComponent {
   searchResults: Artist[];
   emptySearch: boolean = true;
   minFollowerCount: number = 1000; //minimum number of followers needed to be displayed
+  maxGenres: number = 6; //the maximum number of genres to display for each artist
   constructor(private SpotifyService: SpotifyService) {}
   ngOnInit() {
     this.searchString.valueChanges.subscribe(searchString =>
@@ -48,8 +49,8 @@ export class SearchComponent {
   }
   //method to take in an array of genres and cut it to length 6 if necessary
   cutGenres(genres: any[]) {
-    if (genres.length <= 6) return genres;
-    return genres.slice(0, 6);
+    if (genres.length <= this.maxGenres) return genres;
+    return genres.slice(0, this.maxGenres);
   }
   //Method to dynamically change the donut status bar for an artist's popularity
   //Inspired from peavy's work @ https://codepen.io/peavy/pen/NzYVjw
@@ -75,3 +76,5 @@ export class SearchComponent {
     $(chartID + " .left-side").css("transform", "rotate(" + deg + "deg)");
   }
 }
+console.log("The height of our window is " + $(window).height());
+console.log("The width of our window is " + $(window).width());
