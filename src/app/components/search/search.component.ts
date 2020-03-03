@@ -76,5 +76,3 @@ export class SearchComponent {
     $(chartID + " .left-side").css("transform", "rotate(" + deg + "deg)");
   }
 }
-console.log("The height of our window is " + $(window).height());
-console.log("The width of our window is " + $(window).width());

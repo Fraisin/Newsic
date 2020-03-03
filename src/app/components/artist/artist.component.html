@@ -1,16 +1,56 @@
 <div *ngIf="artist">
   <h1 class="artistName">{{ artist.name }}</h1>
-  <div class="artist-songs">
+  <div class="artistContainer">
     <img
       class="artistPhoto"
       src="{{ artist.images[1].url }}"
       alt="Illustration of Artist"
     />
     <div class="jumbotron popularSongJumbo">
-      <div class="popularLabel">
-        <h3 class="popularLabelText">Popular Songs</h3>
-        <hr class="my-4" />
+      <div *ngFor="let track of topTracks; index as i">
+        <div class="barWrapper">
+          <span class="songText">{{ track.name }}</span>
+          <div class="progress">
+            <div class="progress-bar" id="{{ 'progress-bar' + i }}">
+              {{ displayTrack("#progress-bar" + i, track.popularity) }}
+            </div>
+          </div>
+        </div>
       </div>
+    </div>
+  </div>
+  <div id="albumLabel">
+    <h2 id="albumHeading">Albums</h2>
+    <img id="albumImage" src="../assets/album.svg" alt="Flat Icon of Album" />
+  </div>
+  <div id="albumsContainer">
+    <div *ngFor="let album of albums">
+      <a href="#">
+        <div
+          class="flip-container"
+          ontouchstart="this.classList.toggle('hover');"
+        >
+          <div class="flipper">
+            <div class="front">
+              <img
+                class="albumCover"
+                src="{{ album.images[1].url }}"
+                alt="Album Cover"
+              />
+            </div>
+            <div class="back">
+              <div id="backContainer">
+                <p id="albumName">{{ album.name }}</p>
+                <img
+                  class="albumCover"
+                  src="{{ album.images[1].url }}"
+                  alt="Album Cover"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
     </div>
   </div>
 </div>

@@ -1,60 +1,45 @@
-.artist-songs {
-  margin-top: 50px;
-  height: 320px;
+#albumsContainer {
+  margin-top: 2.5%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
-.artistPhoto {
-  float: left;
-  box-shadow: 0 13px 26px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.25);
+.albumCover {
+  width: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 7.5%;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 0 10px 10px rgba(0, 0, 0, 0.5);
 }
-.popularSongJumbo {
-  height: 320px;
+#albumImage {
+  width: 25%;
+  margin-left: 5%;
   float: right;
-  width: 70%;
-  position: relative;
 }
-.popularLabel {
+#albumHeading {
+  float: left;
+  margin: auto;
+}
+#albumName {
+  color: white;
   position: absolute;
-  top: 10px;
-  left: 30px;
 }
-.popularLabelText {
-  color: #f5d5ba;
+#albumLabel {
+  margin-top: 5%;
+  display: flex;
+  flex-direction: row;
+  width: 15%;
 }
-
-/* Mobile Styles */
-@media only screen and (max-width: 400px) {
-  .artistName {
-    color: red;
-    font-size: 80px;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-  }
+.artistContainer {
+  margin-top: 5%;
+  height: 320px;
+  display: flex;
+  flex-direction: row;
+  margin-left: auto;
+  margin-right: auto;
 }
-
-/* Tablet Styles */
-@media only screen and (min-width: 401px) and (max-width: 960px) {
-  .artistName {
-    color: pink;
-    font-size: 80px;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-  }
-}
-
-/* Desktop Styles */
-@media only screen and (min-width: 961px) {
-  .artistName {
-    color: green;
-    font-size: 80px;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-  }
-}
-
-/*
 .artistName {
   color: whitesmoke;
   font-size: 80px;
@@ -62,4 +47,87 @@
   margin-right: auto;
   text-align: center;
 }
-*/
+.artistPhoto {
+  float: left;
+  box-shadow: 0 13px 26px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.25);
+}
+.popularSongJumbo {
+  margin-left: 5%;
+  width: 80%;
+  height: 100%;
+}
+.progress {
+  border-radius: 0;
+  overflow: visible;
+}
+.progress-bar {
+  background: rgb(23, 44, 60);
+  -webkit-transition: width 2s ease-in-out;
+  transition: width 2s ease-in-out;
+}
+#progress-bar0 {
+  background-color: #663399;
+}
+#progress-bar1 {
+  background-color: #007bff;
+}
+#progress-bar2 {
+  background-color: #e74c3c;
+}
+#progress-bar3 {
+  background-color: #f39c12;
+}
+#progress-bar4 {
+  background-color: #28a745;
+}
+/* CSS for album flipping animation, inspired by https://codepen.io/montillon/pen/xExpPB */
+.flip-container {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+.flip-container:hover .back {
+  transform: rotateY(0deg);
+}
+.flip-container:hover .front {
+  transform: rotateY(180deg);
+}
+.flip-container,
+.front,
+.back #backContainer {
+  width: 320px;
+  height: 320px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 7.5%;
+}
+.flipper {
+  transform-style: preserve-3d;
+}
+.front,
+.back {
+  transition: 0.8s;
+  transform-style: preserve-3d;
+  position: absolute;
+}
+.front {
+  z-index: 2;
+  transform: rotateY(0deg);
+}
+.back {
+  transform: rotateY(-180deg);
+  line-height: 1.4em;
+  filter: brightness(20%);
+}
+.vertical.flip-container #backContainer {
+  position: relative;
+}
+.vertical .back {
+  transform: rotateX(180deg);
+}
+.vertical.flip-container:hover .back {
+  transform: rotateX(0deg);
+}
+.vertical.flip-container:hover .front {
+  transform: rotateX(180deg);
+}
