@@ -59,6 +59,7 @@ export class ArtistComponent implements OnInit {
   displayTrack(barID: string, barWidth: number) {
     $(barID).width(barWidth + "%");
   }
+
   // Method that takes in an array of albums and removes duplicates.
   removeDuplicateAlbums(albums: any[]) {
     var filteredArray = [];
