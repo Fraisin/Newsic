@@ -1,0 +1,71 @@
+<div *ngIf="album">
+  <div id="albumContainer">
+    <div id="albumHeadingContainer">
+      <h1 class="albumName">{{ album.name }}</h1>
+    </div>
+    <br />
+    <img
+      class="albumCover"
+      src="{{ album.images[0].url }}"
+      alt="Album Cover Art"
+    />
+  </div>
+  <div class="label">
+    <h2 class="labelHeading">Information</h2>
+    <img class="labelImage" src="../assets/info.svg" alt="Info Symbol" />
+  </div>
+  <div class="infoBlock well">
+    <div class="popularity">
+      <p class="text-warning">Popularity</p>
+      <div id="popularityChart" class="donut-size">
+        <div class="pie-wrapper">
+          <span class="popularityLabel">
+            <span class="num">{{ album.popularity }}</span>
+          </span>
+          {{ updateDonutChart("#popularityChart", album.popularity) }}
+          <div class="pie">
+            <div class="left-side half-circle"></div>
+            <div class="right-side half-circle"></div>
+          </div>
+          <div class="shadow"></div>
+        </div>
+      </div>
+    </div>
+    <div class="infoTextColLeft">
+      <div class="infoTextRow">
+        <h4 class="infoTextLabel">Released By:</h4>
+        <h4 class="infoTextValue">
+          {{ album.artists[0].name }}
+        </h4>
+      </div>
+      <div class="infoTextRow">
+        <h4 class="infoTextLabel">Released On:</h4>
+        <h4 class="infoTextValue">{{ album.release_date }}</h4>
+      </div>
+      <div class="infoTextRow">
+        <h4 class="infoTextLabel">Duration:</h4>
+        <h4 class="infoTextValue">{{ album.total_tracks }}</h4>
+      </div>
+    </div>
+    <div class="infoTextColRight">
+      <div class="infoTextRow">
+        <h4 class="infoTextLabel">Number of Tracks:</h4>
+        <h4 class="infoTextValue">{{ album.total_tracks }}</h4>
+      </div>
+      <div class="infoTextRow">
+        <h4 class="infoTextLabel">Label:</h4>
+        <h4 class="infoTextValue">{{ album.label }}</h4>
+      </div>
+      <div class="infoTextRow">
+        <h4 class="infoTextLabel">Copyright:</h4>
+        <h6 class="infoTextValue">{{ album.copyrights[0].text }}</h6>
+      </div>
+    </div>
+  </div>
+  <div class="label">
+    <h2>Tracks</h2>
+    <img class="labelImage" src="../assets/note.svg" alt="Music Note" />
+  </div>
+  <div class="artistBlock well"></div>
+  <div class="artistBlock well"></div>
+</div>

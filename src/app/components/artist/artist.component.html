@@ -25,7 +25,7 @@
   </div>
   <div id="albumsContainer">
     <div *ngFor="let album of albums">
-      <a href="#">
+      <a href="album/{{ album.id }}">
         <div
           class="flip-container"
           ontouchstart="this.classList.toggle('hover');"
@@ -66,7 +66,7 @@
       <div *ngFor="let relatedArtist of relatedArtists; index as i">
         <ng-template carouselSlide>
           <a href="/artist/{{ relatedArtist.id }}">
-            <div class="panel panel-success">
+            <div class="panel panel-success zoomOnHover">
               <div class="panel-heading">
                 <h3 class="panel-title">{{ relatedArtist.name }}</h3>
               </div>
@@ -77,7 +77,7 @@
                   alt="Photo for Related Artist"
                 />
                 <div id="similarArtistFollowersContainer">
-                  <h5 class="text-warning">Followers:</h5>
+                  <h5 class="teal">Followers:</h5>
                   <h2 id="similarArtistFollowersNumber">
                     {{ relatedArtist.followers.total.toLocaleString() }}
                   </h2>

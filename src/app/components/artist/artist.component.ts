@@ -26,7 +26,7 @@ export class ArtistComponent implements OnInit {
     touchDrag: false,
     pullDrag: false,
     autoplay: true,
-    autoplayTimeout: 2000,
+    autoplayTimeout: 3000,
     autoplayHoverPause: true,
     dots: false,
     margin: 10,

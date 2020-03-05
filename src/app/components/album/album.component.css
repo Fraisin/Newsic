@@ -1,0 +1,148 @@
+#albumContainer {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.albumCover {
+  margin-top: 2%;
+  width: 50%;
+  object-fit: cover;
+}
+#albumHeadingContainer {
+  width: 80%;
+}
+.albumName {
+  color: whitesmoke;
+  font-size: 60px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.labelImage {
+  margin-left: 5%;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 15%;
+}
+.label {
+  margin-top: 5%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 25%;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+#donut {
+  display: block;
+  margin: 0px auto;
+  color: #009871;
+  font-size: 20px;
+  text-align: center;
+}
+.donut-size {
+  font-size: 5em;
+  display: inline-block;
+}
+.pie-wrapper {
+  position: relative;
+  width: 1em;
+  height: 1em;
+  margin: 0px auto;
+}
+.pie {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  clip: rect(0, 1em, 1em, 0.5em);
+}
+.half-circle {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  border: 0.1em solid hsl(168, 76%, 42%);
+  border-radius: 50%;
+  clip: rect(0em, 0.5em, 1em, 0em);
+}
+.infoBlock {
+  display: flex;
+  flex-direction: row;
+}
+.infoTextColLeft {
+  margin-left: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 32%;
+}
+.infoTextColRight {
+  margin-left: 5%;
+  display: flex;
+  flex-direction: column;
+  width: 27%;
+  float: right;
+}
+.infoTextLabel {
+  margin-top: auto;
+  margin-bottom: auto;
+  white-space: nowrap;
+  color: #d2fdcd;
+}
+.infoTextValue {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 2%;
+}
+.infoTextRow {
+  display: flex;
+  flex-direction: row;
+  margin-top: 4%;
+  margin-bottom: 4%;
+  align-items: center;
+}
+.right-side {
+  transform: rotate(0deg);
+}
+.popularity {
+  margin-left: 2%;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.popularityLabel {
+  position: absolute;
+  top: 0.6em;
+  right: 0.4em;
+  bottom: 0.4em;
+  left: 0.4em;
+  display: block;
+  background: none;
+  border-radius: 50%;
+  font-size: 0.25em;
+  line-height: 2.6em;
+  text-align: center;
+  cursor: default;
+  z-index: 2;
+}
+.smaller {
+  padding-bottom: 20px;
+  font-size: 0.45em;
+  vertical-align: super;
+}
+.shadow {
+  width: 100%;
+  height: 100%;
+  border: 0.1em solid;
+  border-radius: 50%;
+}
