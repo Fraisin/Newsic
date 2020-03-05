@@ -9,6 +9,8 @@ import { NavbarComponent } from "./components/navbar/navbar.component";
 import { AboutComponent } from "./components/about/about.component";
 import { ArtistComponent } from "./components/artist/artist.component";
 import { HttpClientModule } from "@angular/common/http";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { CarouselModule } from "ngx-owl-carousel-o";
 import * as $ from "jquery";
 
 @NgModule({
@@ -25,7 +27,9 @@ import * as $ from "jquery";
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    CarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]

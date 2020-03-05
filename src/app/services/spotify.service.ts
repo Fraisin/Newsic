@@ -88,4 +88,16 @@ export class SpotifyService {
       "/albums?&country=us&album_type=album";
     https: return this.httpClient.get(this.searchUrl, httpSearch);
   }
+
+  //retrieves the related artists of the artist
+  getRelatedArtists(artistID: string, token: string) {
+    const httpSearch = {
+      headers: new HttpHeaders({
+        Authorization: "Bearer " + token
+      })
+    };
+    this.searchUrl =
+      "https://api.spotify.com/v1/artists/" + artistID + "/related-artists";
+    https: return this.httpClient.get(this.searchUrl, httpSearch);
+  }
 }
