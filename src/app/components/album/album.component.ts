@@ -16,9 +16,11 @@ import * as $ from "jquery";
 export class AlbumComponent implements OnInit {
   id: string;
   artistID: string;
-  artistAPILink: string;
   artistPhoto: string;
   album: Album[];
+  tracks: any;
+  trackIDs = new Array();
+
   constructor(
     private SpotifyService: SpotifyService,
     private route: ActivatedRoute
@@ -30,7 +32,6 @@ export class AlbumComponent implements OnInit {
         this.SpotifyService.getAlbum(id, data["access_token"]).subscribe(
           album => {
             this.album = album;
-            this.artistAPILink = album["artists"][0]["href"];
             // Get the artist ID of this album's artist.
             this.artistID = album["artists"][0]["id"];
             {
@@ -45,6 +46,28 @@ export class AlbumComponent implements OnInit {
         );
       });
     });
+    // Get the album's tracks
+    this.route.params.pipe(map(params => params["id"])).subscribe(id => {
+      this.SpotifyService.getToken().subscribe(data => {
+        this.SpotifyService.getAlbumTracks(id, data["access_token"]).subscribe(
+          data => {
+            this.tracks = data["items"];
+            for (var i in this.tracks) {
+              this.trackIDs.push(this.tracks[i]["id"]);
+            }
+            for (var i in this.trackIDs) {
+              console.log("THE ID IS " + this.trackIDs[i]);
+            }
+          }
+        );
+      });
+    });
+  }
+  // Convert the millisecond duration into the traditional mm:ss form.
+  msToSongTime(ms: any) {
+    var minutes = Math.floor(ms / 60000);
+    var seconds = ((ms % 60000) / 1000).toFixed(0);
+    return minutes + ":" + (Number(seconds) < 10 ? "0" : "") + seconds;
   }
   updateDonutChart(chartID: any, percent: number) {
     percent = Math.round(percent);

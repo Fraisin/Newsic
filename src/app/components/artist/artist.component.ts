@@ -77,7 +77,6 @@ export class ArtistComponent implements OnInit {
         );
       });
     });
-
     // Get the artist's albums.
     this.route.params.pipe(map(params => params["id"])).subscribe(id => {
       this.SpotifyService.getToken().subscribe(data => {

@@ -13,6 +13,13 @@
   object-fit: cover;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.25);
 }
+.albumCoverInTrackBlock {
+  width: 15%;
+  min-width: 150px;
+  min-height: 150px;
+  object-fit: cover;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.25);
+}
 #albumHeadingContainer {
   width: 80%;
 }
@@ -116,6 +123,24 @@
   cursor: default;
   z-index: 2;
 }
+.teal {
+  color: #bff5e7;
+}
+.trackBlock {
+  display: flex;
+  flex-direction: row;
+}
+
+.trackInfoContainer {
+  display: flex;
+  margin-left: 2%;
+  width: 70%;
+  flex-direction: column;
+  margin-top: -2%;
+}
+.durationAndArtists {
+  margin-top: -2%;
+}
 /* CSS for the donut status bar of an album's popularity.
 Inspired from peavy's work @ https://codepen.io/peavy/pen/NzYVjw */
 *,
@@ -171,4 +196,120 @@ Inspired from peavy's work @ https://codepen.io/peavy/pen/NzYVjw */
   height: 100%;
   border: 0.1em solid;
   border-radius: 50%;
+}
+
+/* CSS for the track accordion.
+Inspired from @ https://codepen.io/abergin/pen/ihlDf*/
+.transition,
+#accordionParagraph,
+ul li i:before,
+ul li i:after {
+  transition: all 0.25s ease-in-out;
+}
+
+.flipIn,
+#trackName,
+ul li {
+  animation: flipdown 0.5s ease both;
+}
+
+.no-select {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+ul {
+  list-style: none;
+  perspective: 900;
+  padding: 0;
+  margin: 0;
+}
+ul li {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  padding-bottom: 4px;
+  padding-top: 18px;
+  border-top: 1px solid #dce7eb;
+}
+ul li:nth-of-type(1) {
+  animation-delay: 0.5s;
+}
+ul li:nth-of-type(2) {
+  animation-delay: 0.75s;
+}
+ul li:nth-of-type(3) {
+  animation-delay: 1s;
+}
+ul li:last-of-type {
+  padding-bottom: 0;
+}
+ul li i {
+  position: absolute;
+  transform: translate(-6px, 0);
+  margin-top: 16px;
+  right: 2%;
+}
+ul li i:before,
+ul li i:after {
+  content: "";
+  position: absolute;
+  background-color: #ff6873;
+  width: 3px;
+  height: 9px;
+}
+ul li i:before {
+  transform: translate(-2px, 0) rotate(45deg);
+}
+ul li i:after {
+  transform: translate(2px, 0) rotate(-45deg);
+}
+ul li input[type="checkbox"] {
+  position: absolute;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0;
+}
+ul li input[type="checkbox"]:checked ~ p {
+  margin-top: 0;
+  max-height: 0;
+  opacity: 0;
+  transform: translate(0, 50%);
+}
+ul li input[type="checkbox"]:checked ~ i:before {
+  transform: translate(2px, 0) rotate(45deg);
+}
+ul li input[type="checkbox"]:checked ~ i:after {
+  transform: translate(-2px, 0) rotate(-45deg);
+}
+
+@keyframes flipdown {
+  0% {
+    opacity: 0;
+    transform-origin: top center;
+    transform: rotateX(-90deg);
+  }
+  5% {
+    opacity: 1;
+  }
+  80% {
+    transform: rotateX(8deg);
+  }
+  83% {
+    transform: rotateX(6deg);
+  }
+  92% {
+    transform: rotateX(-3deg);
+  }
+  100% {
+    transform-origin: top center;
+    transform: rotateX(0deg);
+  }
 }
