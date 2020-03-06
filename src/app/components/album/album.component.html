@@ -54,12 +54,24 @@
       </div>
       <div class="infoTextRow">
         <h4 class="infoTextLabel">Label:</h4>
-        <h4 class="infoTextValue">{{ album.label }}</h4>
+        <h5 class="labelTextValue">{{ album.label }}</h5>
       </div>
       <div class="infoTextRow">
         <h4 class="infoTextLabel">Copyright:</h4>
-        <h6 class="infoTextValue">{{ album.copyrights[0].text }}</h6>
+        <div class="copyrightContainer">
+          <h6 class="copyrightTextValue">{{ album.copyrights[0].text }}</h6>
+        </div>
       </div>
+    </div>
+    <div id="artistPhotoContainer">
+      <a href="artist/{{ artistID }}">
+        <img
+          id="artistPhoto"
+          class="albumCover"
+          src="{{ artistPhoto }}"
+          alt="Photo of This Album's Artist"
+        />
+      </a>
     </div>
   </div>
   <div class="label">

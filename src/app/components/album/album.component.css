@@ -11,9 +11,22 @@
   margin-top: 2%;
   width: 50%;
   object-fit: cover;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.25);
 }
 #albumHeadingContainer {
   width: 80%;
+}
+#artistPhoto {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+#artistPhotoContainer {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  margin-left: 5%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.25);
 }
 .albumName {
   color: whitesmoke;
@@ -22,20 +35,89 @@
   margin-right: auto;
   text-align: center;
 }
+.copyrightContainer {
+  margin-left: 2%;
+  width: 100%;
+  height: 33px;
+  overflow: scroll;
+}
+.infoBlock {
+  display: flex;
+  flex-direction: row;
+}
+.infoTextColLeft {
+  margin-left: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 32%;
+}
+.infoTextColRight {
+  margin-left: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 27%;
+  float: right;
+}
+.infoTextLabel {
+  white-space: nowrap;
+  color: #d2fdcd;
+  margin-top: 0;
+}
+.infoTextValue {
+  margin-left: 2%;
+  margin-top: 0%;
+}
+.copyrightTextValue {
+  margin-left: 2%;
+  margin-top: 2.5%;
+}
+.labelTextValue {
+  margin-left: 2%;
+  margin-top: 1%;
+}
+.infoTextRow {
+  display: flex;
+  flex-direction: row;
+  margin-top: 4%;
+  margin-bottom: 4%;
+  justify-content: flex-start;
+}
+.label {
+  margin-top: 5%;
+  display: flex;
+  flex-direction: row;
+  width: 25%;
+}
 .labelImage {
   margin-left: 5%;
   margin-top: auto;
   margin-bottom: auto;
   width: 15%;
 }
-.label {
-  margin-top: 5%;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  width: 25%;
+.popularity {
+  margin-left: 2%;
+  margin-top: auto;
+  margin-bottom: auto;
 }
-
+.popularityLabel {
+  position: absolute;
+  top: 0.6em;
+  right: 0.4em;
+  bottom: 0.4em;
+  left: 0.4em;
+  display: block;
+  background: none;
+  border-radius: 50%;
+  font-size: 0.25em;
+  line-height: 2.6em;
+  text-align: center;
+  cursor: default;
+  z-index: 2;
+}
+/* CSS for the donut status bar of an album's popularity.
+Inspired from peavy's work @ https://codepen.io/peavy/pen/NzYVjw */
 *,
 *:before,
 *:after {
@@ -76,64 +158,8 @@
   border-radius: 50%;
   clip: rect(0em, 0.5em, 1em, 0em);
 }
-.infoBlock {
-  display: flex;
-  flex-direction: row;
-}
-.infoTextColLeft {
-  margin-left: 5%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  width: 32%;
-}
-.infoTextColRight {
-  margin-left: 5%;
-  display: flex;
-  flex-direction: column;
-  width: 27%;
-  float: right;
-}
-.infoTextLabel {
-  margin-top: auto;
-  margin-bottom: auto;
-  white-space: nowrap;
-  color: #d2fdcd;
-}
-.infoTextValue {
-  margin-top: auto;
-  margin-bottom: auto;
-  margin-left: 2%;
-}
-.infoTextRow {
-  display: flex;
-  flex-direction: row;
-  margin-top: 4%;
-  margin-bottom: 4%;
-  align-items: center;
-}
 .right-side {
   transform: rotate(0deg);
-}
-.popularity {
-  margin-left: 2%;
-  margin-top: auto;
-  margin-bottom: auto;
-}
-.popularityLabel {
-  position: absolute;
-  top: 0.6em;
-  right: 0.4em;
-  bottom: 0.4em;
-  left: 0.4em;
-  display: block;
-  background: none;
-  border-radius: 50%;
-  font-size: 0.25em;
-  line-height: 2.6em;
-  text-align: center;
-  cursor: default;
-  z-index: 2;
 }
 .smaller {
   padding-bottom: 20px;

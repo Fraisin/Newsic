@@ -62,6 +62,17 @@ export class SpotifyService {
     return this.httpClient.get<Artist[]>(this.searchUrl, httpSearch);
   }
 
+  //method to get an artist directly from an APIlink
+  getArtistDirectly(APIlink: string, token: string) {
+    const httpSearch = {
+      headers: new HttpHeaders({
+        Authorization: "Bearer " + token
+      })
+    };
+    this.searchUrl = APIlink;
+    return this.httpClient.get<Artist[]>(APIlink, httpSearch);
+  }
+
   //retrieves the data of an album given its Spotify ID
   getAlbum(albumID: string, token: string) {
     const httpSearch = {

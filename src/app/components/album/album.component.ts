@@ -15,6 +15,9 @@ import * as $ from "jquery";
 })
 export class AlbumComponent implements OnInit {
   id: string;
+  artistID: string;
+  artistAPILink: string;
+  artistPhoto: string;
   album: Album[];
   constructor(
     private SpotifyService: SpotifyService,
@@ -27,6 +30,17 @@ export class AlbumComponent implements OnInit {
         this.SpotifyService.getAlbum(id, data["access_token"]).subscribe(
           album => {
             this.album = album;
+            this.artistAPILink = album["artists"][0]["href"];
+            // Get the artist ID of this album's artist.
+            this.artistID = album["artists"][0]["id"];
+            {
+              this.SpotifyService.getArtist(
+                this.artistID,
+                data["access_token"]
+              ).subscribe(artist => {
+                this.artistPhoto = artist["images"][0]["url"];
+              });
+            }
           }
         );
       });
