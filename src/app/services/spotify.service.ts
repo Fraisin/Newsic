@@ -23,7 +23,6 @@ export class SpotifyService {
       "Content-Type": "application/x-www-form-urlencoded"
     })
   };
-
   //method to get the Spotify API Access Token
   getToken = () => {
     let params: URLSearchParams = new URLSearchParams();
@@ -35,7 +34,6 @@ export class SpotifyService {
       this.httpOptions
     );
   };
-
   //retrieves artists given a searchString from the front page searchbar
   searchForArtists(searchString: string, token: string) {
     const httpSearch = {
@@ -50,7 +48,6 @@ export class SpotifyService {
       "&market=US";
     return this.httpClient.get(this.searchUrl, httpSearch);
   }
-
   //retrieves the data of an artist given their Spotify ID
   getArtist(artistID: string, token: string) {
     const httpSearch = {
@@ -61,7 +58,6 @@ export class SpotifyService {
     this.searchUrl = "https://api.spotify.com/v1/artists/" + artistID;
     return this.httpClient.get<Artist[]>(this.searchUrl, httpSearch);
   }
-
   //retrieves the data of an album given its Spotify ID
   getAlbum(albumID: string, token: string) {
     const httpSearch = {
@@ -72,7 +68,6 @@ export class SpotifyService {
     this.searchUrl = "https://api.spotify.com/v1/albums/" + albumID;
     return this.httpClient.get<Album[]>(this.searchUrl, httpSearch);
   }
-
   //retrieves an artist's most 'popular' songs
   getTopTracks(artistID: string, token: string) {
     const httpSearch = {
@@ -86,7 +81,6 @@ export class SpotifyService {
       "/top-tracks?country=us";
     return this.httpClient.get(this.searchUrl, httpSearch);
   }
-
   //retrieves the artist's albums (excluding singles & compilations)
   getAlbumsOnly(artistID: string, token: string) {
     const httpSearch = {
@@ -100,7 +94,6 @@ export class SpotifyService {
       "/albums?&country=us&album_type=album";
     https: return this.httpClient.get(this.searchUrl, httpSearch);
   }
-
   //retrieves the related artists of the artist
   getRelatedArtists(artistID: string, token: string) {
     const httpSearch = {
@@ -112,7 +105,6 @@ export class SpotifyService {
       "https://api.spotify.com/v1/artists/" + artistID + "/related-artists";
     https: return this.httpClient.get(this.searchUrl, httpSearch);
   }
-
   //gets the tracks of an album given its ID
   getAlbumTracks(albumID: string, token: string) {
     const httpSearch = {

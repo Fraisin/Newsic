@@ -35,15 +35,12 @@
   width: 15%;
 }
 .artistContainer {
-  margin-top: 5%;
-  height: 320px;
   display: flex;
   flex-direction: row;
   margin-left: auto;
   margin-right: auto;
 }
 .artistName {
-  color: whitesmoke;
   font-size: 80px;
   margin-left: auto;
   margin-right: auto;
@@ -51,6 +48,7 @@
 }
 .artistPhoto {
   float: left;
+  object-fit: cover;
   box-shadow: 0 13px 26px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.25);
 }
 #backContainer {
@@ -71,9 +69,10 @@
   box-shadow: 0 12px 20px rgba(0, 0, 0, 0.5), 0 10px 10px rgba(0, 0, 0, 0.5);
 }
 .popularSongJumbo {
-  margin-left: 5%;
-  width: 80%;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: space-evenly;
 }
 .progress {
   border-radius: 0;
@@ -228,4 +227,57 @@
   -moz-transform: scale(1.1);
   transition: all 200ms ease-in;
   transform: scale(1.1);
+}
+/* Mobile Styles */
+@media only screen and (max-width: 419px) {
+  .artistName {
+    color: green;
+  }
+}
+/* Tablet Styles */
+@media only screen and (min-width: 420px) and (max-width: 960px) {
+  .artistName {
+    color: red;
+  }
+  .artistPhoto {
+    max-width: 250px;
+    max-height: 250px;
+  }
+  .artistContainer {
+    margin-top: 5%;
+    height: 250px;
+  }
+  .popularSongJumbo {
+    margin-left: 2.5%;
+    width: 80%;
+    height: 100%;
+    padding-top: 25px;
+  }
+  .barWrapper {
+    height: 30px;
+    margin-top: 5%;
+  }
+  .progress-bar {
+    width: 75%;
+  }
+}
+/* Desktop Styles */
+@media only screen and (min-width: 961px) {
+  .artistContainer {
+    margin-top: 5%;
+    height: 320px;
+  }
+  .artistName {
+    color: whitesmoke;
+  }
+  .artistPhoto {
+    max-width: 350px;
+    max-height: 350px;
+  }
+  .popularSongJumbo {
+    margin-left: 5%;
+    padding-top: 70px;
+    width: 80%;
+    height: 100%;
+  }
 }
