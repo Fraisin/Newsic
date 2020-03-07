@@ -126,13 +126,33 @@ export class SpotifyService {
   }
   //gets a track given its ID
   getTrack(trackID: string, token: string) {
-    console.log("RECEIVED THE ID AND IT IS " + trackID);
     const httpSearch = {
       headers: new HttpHeaders({
         Authorization: "Bearer " + token
       })
     };
     this.searchUrl = "https://api.spotify.com/v1/tracks/" + trackID;
+    https: return this.httpClient.get(this.searchUrl, httpSearch);
+  }
+  // gets all the basic information (artist, popularity, etc.) of a list of tracks
+  getTracks(tracksString: string, token: string) {
+    const httpSearch = {
+      headers: new HttpHeaders({
+        Authorization: "Bearer " + token
+      })
+    };
+    this.searchUrl = "https://api.spotify.com/v1/tracks/?ids=" + tracksString;
+    https: return this.httpClient.get(this.searchUrl, httpSearch);
+  }
+  // gets all the audio features of a list of tracks
+  getTracksFeatures(tracksString: string, token: string) {
+    const httpSearch = {
+      headers: new HttpHeaders({
+        Authorization: "Bearer " + token
+      })
+    };
+    this.searchUrl =
+      "https://api.spotify.com/v1/audio-features/?ids=" + tracksString;
     https: return this.httpClient.get(this.searchUrl, httpSearch);
   }
 }
