@@ -35,6 +35,10 @@
 }
 .audioFeatureCircle {
   margin-bottom: 15%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
 }
 .copyrightContainer {
@@ -129,10 +133,14 @@
 .trackDuration {
   margin-top: -0.5%;
 }
+#trackContainer {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
 .trackInfoContainer {
   display: flex;
   flex-direction: column;
-  margin-left: 2%;
   width: 70%;
   margin-top: auto;
   margin-bottom: auto;
@@ -387,13 +395,12 @@ ul li input[type="checkbox"]:checked ~ i:after {
 }
 /* Mobile Styles */
 @media only screen and (max-width: 549px) {
-  .albumName {
-    color: green;
-    font-size: 40px;
+  .albumCoverInTrackBlock {
+    width: 75px;
+    height: 75px;
   }
-  #artistPhoto {
-    width: 100px;
-    height: 100px;
+  .albumName {
+    font-size: 40px;
   }
   table td span {
     font-size: 0.3em;
@@ -407,6 +414,18 @@ ul li input[type="checkbox"]:checked ~ i:after {
   }
   td > h5 {
     font-size: 0.6em;
+  }
+  .trackInfoContainer {
+    margin-left: 5%;
+  }
+  .trackInfoWrapper {
+    height: 75px;
+  }
+  .trackInfoWrapper > h2 {
+    font-size: 1.25em;
+  }
+  .trackInfoWrapper > h3 {
+    font-size: 0.75em;
   }
   .tableWrapper {
     margin-left: auto;
@@ -426,11 +445,7 @@ ul li input[type="checkbox"]:checked ~ i:after {
     height: 100px;
   }
   .albumName {
-    color: red;
     font-size: 50px;
-  }
-  .audioFeatureCircle {
-    width: 50%;
   }
   table td span {
     font-size: 0.5em;
@@ -444,6 +459,9 @@ ul li input[type="checkbox"]:checked ~ i:after {
   }
   td > h5 {
     font-size: 0.8em;
+  }
+  .trackInfoContainer {
+    margin-left: 3%;
   }
   .trackInfoWrapper {
     height: 100px;
@@ -465,7 +483,6 @@ ul li input[type="checkbox"]:checked ~ i:after {
     height: 200px;
   }
   .albumName {
-    color: whitesmoke;
     font-size: 60px;
   }
   table td span {
@@ -480,6 +497,9 @@ ul li input[type="checkbox"]:checked ~ i:after {
   }
   td > h5 {
     font-size: 1em;
+  }
+  .trackInfoContainer {
+    margin-left: 2%;
   }
   .trackInfoWrapper {
     height: 200px;
