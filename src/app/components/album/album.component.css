@@ -163,13 +163,18 @@ table td span {
 table td {
   border: 1px solid;
   margin: 0 -1px -1px 0;
-  padding-top: 5%;
+  padding: 2.5% 5% 2.5% 5%;
   position: relative;
   width: 35%;
-  max-height: 100px;
-  padding-left: 5%;
-  padding-right: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   overflow: scroll;
+}
+td > h3,
+h4,
+h5 {
+  vertical-align: middle;
 }
 #artistCell {
   width: 50%;
@@ -228,7 +233,6 @@ Inspired from peavy's work @ https://codepen.io/peavy/pen/NzYVjw */
   box-sizing: border-box;
 }
 .donut-size {
-  font-size: 5em;
   display: inline-block;
 }
 .pie-wrapper {
@@ -393,6 +397,12 @@ ul li input[type="checkbox"]:checked ~ i:after {
   .albumName {
     font-size: 40px;
   }
+  .donut-size {
+    font-size: 3em;
+  }
+  .featureHeading {
+    font-size: 0.55em;
+  }
   table td span {
     font-size: 0.3em;
     padding: 2px;
@@ -437,6 +447,13 @@ ul li input[type="checkbox"]:checked ~ i:after {
   }
   .albumName {
     font-size: 50px;
+    color: red;
+  }
+  .donut-size {
+    font-size: 4em;
+  }
+  .featureHeading {
+    font-size: 0.8em;
   }
   table td span {
     font-size: 0.5em;
@@ -475,6 +492,12 @@ ul li input[type="checkbox"]:checked ~ i:after {
   }
   .albumName {
     font-size: 60px;
+  }
+  .donut-size {
+    font-size: 5em;
+  }
+  .featureHeading {
+    font-size: 1em;
   }
   table td span {
     font-size: 0.75em;

@@ -19,6 +19,7 @@ export class AlbumComponent implements OnInit {
   artistID: string;
   artistPhoto: string;
   album: Album[];
+  albumDuration: string;
   tracks: any;
   trackIDs = new Array();
   allTracksInfo: Object[] = [];
@@ -78,9 +79,17 @@ export class AlbumComponent implements OnInit {
           tracks => {
             this.tracks = tracks["items"];
             //Push each track id into an array so we can use it to fetch multiple tracks at once.
+            //At the same time, sum up the duration of each track to get the album duration.
+            var albumDuration = 0;
             for (var i in this.tracks) {
               this.trackIDs.push(this.tracks[i]["id"]);
+              albumDuration =
+                albumDuration + Number(this.tracks[i]["duration_ms"]);
             }
+            console.log(albumDuration);
+            this.albumDuration = this.msToSongTime(
+              albumDuration
+            ).toLocaleString();
             {
               //Get basic information about the tracks (artist, popularity, etc.)
               this.SpotifyService.getTracks(
