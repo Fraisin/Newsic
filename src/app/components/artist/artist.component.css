@@ -1,15 +1,15 @@
 #albumsContainer {
-  margin-top: 2.5%;
+  margin-top: 4%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
 .albumCover {
-  width: 100%;
   display: block;
   margin-left: auto;
   margin-right: auto;
+  width: 100%;
   margin-bottom: 7.5%;
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 0 10px 10px rgba(0, 0, 0, 0.5);
 }
@@ -25,7 +25,6 @@
 #albumName {
   color: white;
   position: absolute;
-  font-size: 2em;
   line-height: 1em;
 }
 #albumLabel {
@@ -41,7 +40,6 @@
   margin-right: auto;
 }
 .artistName {
-  font-size: 80px;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
@@ -61,18 +59,22 @@
   margin-bottom: 5%;
   height: 100%;
 }
+.followersLabel {
+  color: #bff5e7;
+}
 .panel {
   margin-top: 10%;
   margin-bottom: 10%;
-  min-height: 360px;
   width: 90%;
   box-shadow: 0 12px 20px rgba(0, 0, 0, 0.5), 0 10px 10px rgba(0, 0, 0, 0.5);
 }
 .popularSongJumbo {
   display: flex;
   flex-direction: column;
-  align-content: center;
+  align-content: space-evenly;
   justify-content: space-evenly;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .progress {
   border-radius: 0;
@@ -98,9 +100,14 @@
 #progress-bar4 {
   background-color: #28a745;
 }
+#relatedArtistContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 #similarArtistHeading {
   float: left;
-  margin: auto;
 }
 #similarArtistFollowersContainer {
   margin-top: 5%;
@@ -113,31 +120,21 @@
   margin-top: -4%;
   color: white;
 }
-#similarArtistImage {
-  width: 20%;
-  margin-left: 5%;
-  float: right;
-}
 #similarArtistLabel {
   margin-top: 5%;
   display: flex;
   flex-direction: row;
-  width: 25%;
 }
 #similarArtistPhoto {
-  max-width: 200px;
-  max-height: 200px;
   object-fit: cover;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5), 0 10px 10px rgba(0, 0, 0, 0.5);
 }
-.teal {
-  color: #bff5e7;
-}
-#relatedArtistContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.songText {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+  max-width: calc(90%);
 }
 /* CSS for album flipping animation, inspired by https://codepen.io/montillon/pen/xExpPB */
 .flip-container {
@@ -153,11 +150,8 @@
 .flip-container,
 .front,
 .back {
-  width: 320px;
-  height: 320px;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 7.5%;
 }
 .flipper {
   transform-style: preserve-3d;
@@ -229,22 +223,39 @@
   transform: scale(1.1);
 }
 /* Mobile Styles */
-@media only screen and (max-width: 419px) {
-  .artistName {
-    color: green;
+@media only screen and (max-width: 469px) {
+  #albumHeading {
+    font-size: 1.5em;
   }
-}
-/* Tablet Styles */
-@media only screen and (min-width: 420px) and (max-width: 960px) {
-  .artistName {
-    color: red;
+  #albumImage {
+    margin-left: 15%;
+    width: 50%;
   }
-  .artistPhoto {
-    max-width: 250px;
-    max-height: 250px;
+  #albumName {
+    font-size: 1em;
   }
   .artistContainer {
     margin-top: 5%;
+    height: 150px;
+  }
+  .artistName {
+    font-size: 40px;
+  }
+  .artistPhoto {
+    max-width: 150px;
+    max-height: 150px;
+  }
+  .barWrapper {
+    height: 25px;
+  }
+  .flip-container,
+  .front,
+  .back {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10%;
+  }
+  .panel {
     height: 250px;
   }
   .popularSongJumbo {
@@ -253,31 +264,138 @@
     height: 100%;
     padding-top: 25px;
   }
-  .barWrapper {
-    height: 30px;
-    margin-top: 5%;
+  .progress {
+    height: 20%;
   }
-  .progress-bar {
-    width: 75%;
+  #similarArtistFollowersNumber {
+    font-size: 1em;
+  }
+  #similarArtistHeading {
+    font-size: 1.5em;
+  }
+  #similarArtistImage {
+    margin-left: 2.5%;
+    width: 10%;
+  }
+  #similarArtistLabel {
+    width: 100%;
+  }
+  .similarArtistName {
+    font-size: 1em;
+  }
+  #similarArtistPhoto {
+    max-width: 100px;
+    max-height: 100px;
+  }
+  .songText {
+    font-size: 0.5em;
+  }
+  .trackNameWrapper {
+    text-overflow: ellipsis;
+  }
+}
+/* Tablet Styles */
+@media only screen and (min-width: 470px) and (max-width: 960px) {
+  #albumName {
+    font-size: 1em;
+  }
+  .artistContainer {
+    margin-top: 5%;
+    height: 250px;
+  }
+  .artistName {
+    font-size: 60px;
+  }
+  .artistPhoto {
+    max-width: 250px;
+    max-height: 250px;
+  }
+  .barWrapper {
+    height: 25px;
+    margin-top: 10px;
+  }
+  .flip-container,
+  .front,
+  .back {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 10%;
+  }
+  .panel {
+    height: 300px;
+  }
+  .popularSongJumbo {
+    margin-left: 2.5%;
+    width: 80%;
+    height: 100%;
+    padding-top: 25px;
+  }
+  .progress {
+    height: 40%;
+  }
+  #similarArtistFollowersNumber {
+    font-size: 1.5em;
+  }
+  #similarArtistHeading {
+    margin-left: 3%;
+  }
+  #similarArtistImage {
+    margin-left: 5%;
+    width: 15%;
+  }
+  #similarArtistLabel {
+    width: 60%;
+  }
+  #similarArtistPhoto {
+    max-width: 150px;
+    max-height: 150px;
   }
 }
 /* Desktop Styles */
 @media only screen and (min-width: 961px) {
+  #albumName {
+    font-size: 2em;
+  }
   .artistContainer {
     margin-top: 5%;
     height: 320px;
   }
   .artistName {
+    font-size: 80px;
     color: whitesmoke;
   }
   .artistPhoto {
     max-width: 350px;
     max-height: 350px;
   }
+  .flip-container,
+  .front,
+  .back {
+    width: 320px;
+    height: 320px;
+    margin-bottom: 7.5%;
+  }
+  .panel {
+    min-height: 360px;
+  }
   .popularSongJumbo {
     margin-left: 5%;
     padding-top: 70px;
     width: 80%;
     height: 100%;
+  }
+  #similarArtistHeading {
+    margin-left: 5%;
+  }
+  #similarArtistImage {
+    margin-left: 5%;
+    width: 20%;
+  }
+  #similarArtistLabel {
+    width: 25%;
+  }
+  #similarArtistPhoto {
+    max-width: 200px;
+    max-height: 200px;
   }
 }

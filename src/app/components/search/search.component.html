@@ -25,7 +25,6 @@
         Simply begin by typing the name of an artist below.
       </p>
       <hr class="jumboDivider" />
-
       <div class="searchbar">
         <!-- SEARCHBAR -->
         <input
@@ -37,7 +36,6 @@
       </div>
     </div>
     <!-- End of Jumbotron -->
-
     <!-- if the searchString is empty or just whitespace, display the front image -->
     <div *ngIf="emptySearch">
       <img
@@ -46,7 +44,6 @@
         alt="Illustration of Person Listening to Music"
       />
     </div>
-
     <div *ngIf="!emptySearch">
       <h3 class="searchHeading">Search Results:</h3>
       <br />

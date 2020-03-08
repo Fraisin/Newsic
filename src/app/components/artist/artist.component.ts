@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, HostListener } from "@angular/core";
 import { SpotifyService } from "../../services/spotify.service";
 import { ActivatedRoute } from "@angular/router";
 import { Artist } from "../../../../Artist";
@@ -28,6 +28,7 @@ export class ArtistComponent implements OnInit {
     autoplay: true,
     autoplayTimeout: 3000,
     autoplayHoverPause: true,
+    responsiveRefreshRate: 100,
     dots: false,
     margin: 10,
     navSpeed: 700,
@@ -37,15 +38,15 @@ export class ArtistComponent implements OnInit {
     ],
     responsive: {
       0: {
-        items: 1
-      },
-      400: {
         items: 2
       },
-      740: {
+      420: {
         items: 3
       },
-      940: {
+      740: {
+        items: 4
+      },
+      960: {
         items: 4
       }
     },
@@ -103,7 +104,6 @@ export class ArtistComponent implements OnInit {
   displayTrack(barID: string, barWidth: number) {
     $(barID).width(barWidth + "%");
   }
-
   // Method that takes in an array of albums and removes duplicates.
   removeDuplicateAlbums(albums: any[]) {
     var filteredArray = [];
