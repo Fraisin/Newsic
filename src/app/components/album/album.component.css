@@ -103,17 +103,21 @@
   margin-bottom: 4%;
   justify-content: flex-start;
 }
-.label {
+.labelWrapper {
   margin-top: 5%;
   display: flex;
   flex-direction: row;
-  width: 25%;
+  justify-content: flex-start;
+  align-content: center;
+  align-items: center;
+}
+.labelHeading {
+  float: left;
 }
 .labelImage {
-  margin-left: 5%;
-  margin-top: auto;
-  margin-bottom: auto;
-  width: 15%;
+  position: relative;
+  margin-left: 2%;
+  float: right;
 }
 .featureHeading {
   margin-left: auto;
@@ -402,6 +406,13 @@ ul li input[type="checkbox"]:checked ~ i:after {
   .featureHeading {
     font-size: 0.55em;
   }
+  .labelHeading {
+    font-size: 1.5em;
+  }
+  .labelImage {
+    width: 30px;
+    height: 30px;
+  }
   table td span {
     font-size: 0.3em;
     padding: 2px;
@@ -453,6 +464,13 @@ ul li input[type="checkbox"]:checked ~ i:after {
   .featureHeading {
     font-size: 0.8em;
   }
+  .labelHeading {
+    font-size: 2em;
+  }
+  .labelImage {
+    width: 40px;
+    height: 40px;
+  }
   table td span {
     font-size: 0.5em;
     padding: 2px;
@@ -496,6 +514,13 @@ ul li input[type="checkbox"]:checked ~ i:after {
   }
   .featureHeading {
     font-size: 1em;
+  }
+  .labelHeading {
+    font-size: 3em;
+  }
+  .labelImage {
+    width: 50px;
+    height: 50px;
   }
   table td span {
     font-size: 0.75em;

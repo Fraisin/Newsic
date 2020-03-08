@@ -13,7 +13,7 @@
       ><h3 id="viewArtist">View Artist's Page</h3></a
     >
   </div>
-  <div class="label">
+  <div class="labelWrapper">
     <h2 class="labelHeading">Information</h2>
     <img class="labelImage" src="../assets/info.svg" alt="Info Symbol" />
   </div>
@@ -71,7 +71,7 @@
       </table>
     </div>
   </div>
-  <div class="label">
+  <div class="labelWrapper">
     <h2 class="labelHeading">Tracks</h2>
     <img class="labelImage" src="../assets/note.svg" alt="Music Note" />
   </div>
@@ -108,7 +108,8 @@
                     {{
                       updateDonutChart(
                         "#popularityChart" + i,
-                        allTracksInfo[i]?.popularity, "popularity"
+                        allTracksInfo[i]?.popularity,
+                        "popularity"
                       )
                     }}
                     <div class="pie">
@@ -155,12 +156,8 @@
                         )
                       }}
                       <div class="pie">
-                        <div
-                          class="left-side half-circle"
-                        ></div>
-                        <div
-                          class="right-side half-circle"
-                        ></div>
+                        <div class="left-side half-circle"></div>
+                        <div class="right-side half-circle"></div>
                       </div>
                       <div class="shadow"></div>
                     </div>

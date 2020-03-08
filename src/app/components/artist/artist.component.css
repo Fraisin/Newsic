@@ -1,5 +1,5 @@
 #albumsContainer {
-  margin-top: 4%;
+  margin-top: 2%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -13,25 +13,10 @@
   margin-bottom: 7.5%;
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 0 10px 10px rgba(0, 0, 0, 0.5);
 }
-#albumImage {
-  width: 25%;
-  margin-left: 5%;
-  float: right;
-}
-#albumHeading {
-  float: left;
-  margin: auto;
-}
 #albumName {
   color: white;
   position: absolute;
   line-height: 1em;
-}
-#albumLabel {
-  margin-top: 5%;
-  display: flex;
-  flex-direction: row;
-  width: 15%;
 }
 .artistContainer {
   display: flex;
@@ -61,6 +46,22 @@
 }
 .followersLabel {
   color: #bff5e7;
+}
+.labelWrapper {
+  margin-top: 5%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-content: center;
+  align-items: center;
+}
+.labelHeading {
+  float: left;
+}
+.labelImage {
+  position: relative;
+  margin-left: 2%;
+  float: right;
 }
 .panel {
   margin-top: 10%;
@@ -255,6 +256,13 @@
     height: 100px;
     margin-bottom: 10%;
   }
+  .labelHeading {
+    font-size: 1.5em;
+  }
+  .labelImage {
+    width: 30px;
+    height: 30px;
+  }
   .panel {
     height: 250px;
   }
@@ -269,16 +277,6 @@
   }
   #similarArtistFollowersNumber {
     font-size: 1em;
-  }
-  #similarArtistHeading {
-    font-size: 1.5em;
-  }
-  #similarArtistImage {
-    margin-left: 2.5%;
-    width: 10%;
-  }
-  #similarArtistLabel {
-    width: 100%;
   }
   .similarArtistName {
     font-size: 1em;
@@ -320,6 +318,13 @@
     width: 200px;
     height: 200px;
     margin-bottom: 10%;
+  }
+  .labelHeading {
+    font-size: 2em;
+  }
+  .labelImage {
+    width: 40px;
+    height: 40px;
   }
   .panel {
     height: 300px;
@@ -374,6 +379,13 @@
     width: 320px;
     height: 320px;
     margin-bottom: 7.5%;
+  }
+  .labelHeading {
+    font-size: 3em;
+  }
+  .labelImage {
+    width: 50px;
+    height: 50px;
   }
   .panel {
     min-height: 360px;

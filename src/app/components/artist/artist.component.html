@@ -21,9 +21,13 @@
     </div>
   </div>
   <!-- ALBUMS -->
-  <div id="albumLabel">
-    <h2 id="albumHeading">Albums</h2>
-    <img id="albumImage" src="../assets/album.svg" alt="Flat Icon of Album" />
+  <div class="labelWrapper">
+    <h2 class="labelHeading">Albums</h2>
+    <img
+      class="labelImage"
+      src="../assets/album.svg"
+      alt="Flat Icon of Album"
+    />
   </div>
   <div id="albumsContainer">
     <div *ngFor="let album of albums">
@@ -56,10 +60,10 @@
     </div>
   </div>
   <!-- SIMILAR ARTISTS -->
-  <div id="similarArtistLabel">
-    <h2 id="similarArtistHeading">Similar Artists</h2>
+  <div class="labelWrapper">
+    <h2 class="labelHeading">Similar Artists</h2>
     <img
-      id="similarArtistImage"
+      class="labelImage"
       src="../assets/artist.svg"
       alt="Flat Icon for Similar Artist"
     />

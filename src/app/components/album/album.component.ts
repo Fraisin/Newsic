@@ -146,7 +146,6 @@ export class AlbumComponent implements OnInit {
     } else if (percent < 0) {
       percent = 0;
     }
-    console.log("received a percent from " + chartID + "it is " + percent);
     var deg = Math.round(360 * (percent / 100));
     if (percent > 50) {
       $(chartID + " .pie").css("clip", "rect(auto, auto, auto, auto)");
