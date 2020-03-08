@@ -9,13 +9,16 @@
       src="{{ album.images[0].url }}"
       alt="Album Cover Art"
     />
+    <a href="artist/{{ artistID }}"
+      ><h3 id="viewArtist">View Artist's Page</h3></a
+    >
   </div>
   <div class="label">
     <h2 class="labelHeading">Information</h2>
     <img class="labelImage" src="../assets/info.svg" alt="Info Symbol" />
   </div>
   <div class="infoBlock well">
-    <div class="popularity">
+    <div class="popularity hideMobile">
       <p class="text-warning">Popularity</p>
       <div id="popularityChart" class="donut-size">
         <div class="pie-wrapper">
@@ -31,47 +34,39 @@
         </div>
       </div>
     </div>
-    <div class="infoTextColLeft">
-      <div class="infoTextRow">
-        <h4 class="infoTextLabel">Released By:</h4>
-        <h4 class="infoTextValue">
-          {{ album.artists[0].name }}
-        </h4>
-      </div>
-      <div class="infoTextRow">
-        <h4 class="infoTextLabel">Released On:</h4>
-        <h4 class="infoTextValue">{{ album.release_date }}</h4>
-      </div>
-      <div class="infoTextRow">
-        <h4 class="infoTextLabel">Duration:</h4>
-        <h4 class="infoTextValue">{{ album.total_tracks }}</h4>
-      </div>
-    </div>
-    <div class="infoTextColRight">
-      <div class="infoTextRow">
-        <h4 class="infoTextLabel">Number of Tracks:</h4>
-        <h4 class="infoTextValue">{{ album.total_tracks }}</h4>
-      </div>
-      <div class="infoTextRow">
-        <h4 class="infoTextLabel">Label:</h4>
-        <h5 class="labelTextValue">{{ album.label }}</h5>
-      </div>
-      <div class="infoTextRow">
-        <h4 class="infoTextLabel">Copyright:</h4>
-        <div class="copyrightContainer">
-          <h6 class="copyrightTextValue">{{ album.copyrights[0].text }}</h6>
-        </div>
-      </div>
-    </div>
-    <div id="artistPhotoContainer">
-      <a href="artist/{{ artistID }}">
-        <img
-          id="artistPhoto"
-          class="albumCover"
-          src="{{ artistPhoto }}"
-          alt="Photo of This Album's Artist"
-        />
-      </a>
+    <div class="tableWrapper">
+      <table>
+        <tbody>
+          <tr>
+            <td id="artistCell">
+              <span>Released By</span>
+              <h3>{{ album.artists[0].name }}</h3>
+            </td>
+            <td>
+              <span>Released On</span>
+              <h3>{{ album.release_date }}</h3>
+            </td>
+            <td>
+              <span>Duration</span>
+              <h3>00:00</h3>
+            </td>
+          </tr>
+          <tr>
+            <td id="numOfTracksCell">
+              <span># of Tracks</span>
+              <h3>{{ album.total_tracks }}</h3>
+            </td>
+            <td>
+              <span>Label</span>
+              <h4>{{ album.label }}</h4>
+            </td>
+            <td id="copyrightCell">
+              <span>Copyright</span>
+              <h5>{{ album.copyrights[0].text }}</h5>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
   <div class="label">
@@ -92,8 +87,8 @@
                 alt="Album Cover Art"
               />
               <div class="trackInfoContainer">
-                <h2 class="trackName">{{ track.name }}</h2>
-                <div class="durationAndArtists">
+                <div class="trackInfoWrapper">
+                  <h2 class="trackName">{{ track.name }}</h2>
                   <h3 class="trackDuration">
                     {{ msToSongTime(track.duration_ms) }}
                   </h3>

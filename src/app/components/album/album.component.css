@@ -14,30 +14,15 @@
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.25);
 }
 .albumCoverInTrackBlock {
-  width: 15%;
-  min-width: 150px;
-  min-height: 150px;
+  margin-top: auto;
+  margin-bottom: auto;
   object-fit: cover;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.25);
 }
 #albumHeadingContainer {
   width: 80%;
 }
-#artistPhoto {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-}
-#artistPhotoContainer {
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
-  margin-left: 5%;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.25);
-}
 .albumName {
-  color: whitesmoke;
-  font-size: 60px;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
@@ -141,18 +126,24 @@
   display: flex;
   flex-direction: row;
 }
+.trackDuration {
+  margin-top: -0.5%;
+}
 .trackInfoContainer {
   display: flex;
+  flex-direction: column;
   margin-left: 2%;
   width: 70%;
-  flex-direction: column;
-  margin-top: -2%;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 .trackName {
+  margin-top: 0;
   color: #9ae6d2;
 }
-.durationAndArtists {
-  margin-top: -2%;
+.trackInfoWrapper {
+  display: flex;
+  flex-direction: column;
 }
 .defaultPopularityColour {
   border: 0.1em solid #009871;
@@ -174,6 +165,60 @@
 }
 .circle5 {
   border: 0.1em solid #17a2b8;
+}
+.tableWrapper {
+  width: 150%;
+  margin-left: 4%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+table {
+  border-collapse: collapse;
+  text-align: center;
+  width: 100%;
+}
+table tr {
+  border-bottom: 1px solid;
+  border-bottom: 0;
+  display: flex;
+  flex-direction: row;
+}
+table td span {
+  background: #eee;
+  color: black;
+  display: block;
+  font-weight: bold;
+  position: absolute;
+  text-transform: uppercase;
+  top: 0;
+  left: 0;
+}
+table td {
+  border: 1px solid;
+  margin: 0 -1px -1px 0;
+  padding-top: 5%;
+  position: relative;
+  width: 35%;
+  max-height: 100px;
+  padding-left: 5%;
+  padding-right: 5%;
+  overflow: scroll;
+}
+#numOfTracksCell {
+  width: 25%;
+}
+#artistCell {
+  width: 50%;
+}
+#copyrightCell {
+  width: 45%;
+}
+table thead {
+  left: -9999px;
+  position: absolute;
+  visibility: hidden;
 }
 /* CSS for the donut status bar of an album's popularity.
 Inspired from peavy's work @ https://codepen.io/peavy/pen/NzYVjw */
@@ -223,7 +268,6 @@ Inspired from peavy's work @ https://codepen.io/peavy/pen/NzYVjw */
   border: 0.1em solid;
   border-radius: 50%;
 }
-
 /* CSS for the track accordion.
 Inspired from @ https://codepen.io/abergin/pen/ihlDf*/
 .transition,
@@ -232,18 +276,15 @@ ul li i:before,
 ul li i:after {
   transition: all 0.25s ease-in-out;
 }
-
 #accordionParagraph {
   display: flex;
   flex-direction: row;
 }
-
 .flipIn,
 #trackName,
 ul li {
   animation: flipdown 0.5s ease both;
 }
-
 .no-select {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   -webkit-touch-callout: none;
@@ -253,7 +294,6 @@ ul li {
   -ms-user-select: none;
   user-select: none;
 }
-
 ul {
   list-style: none;
   perspective: 900;
@@ -343,5 +383,108 @@ ul li input[type="checkbox"]:checked ~ i:after {
   100% {
     transform-origin: top center;
     transform: rotateX(0deg);
+  }
+}
+/* Mobile Styles */
+@media only screen and (max-width: 549px) {
+  .albumName {
+    color: green;
+    font-size: 40px;
+  }
+  #artistPhoto {
+    width: 100px;
+    height: 100px;
+  }
+  table td span {
+    font-size: 0.3em;
+    padding: 2px;
+  }
+  td > h3 {
+    font-size: 0.8em;
+  }
+  td > h4 {
+    font-size: 0.7em;
+  }
+  td > h5 {
+    font-size: 0.6em;
+  }
+  .tableWrapper {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .popularity {
+    display: none;
+  }
+  #viewArtist {
+    font-size: 1em;
+  }
+}
+/* Tablet Styles */
+@media only screen and (min-width: 550px) and (max-width: 974px) {
+  .albumCoverInTrackBlock {
+    width: 100px;
+    height: 100px;
+  }
+  .albumName {
+    color: red;
+    font-size: 50px;
+  }
+  .audioFeatureCircle {
+    width: 50%;
+  }
+  table td span {
+    font-size: 0.5em;
+    padding: 2px;
+  }
+  td > h3 {
+    font-size: 1em;
+  }
+  td > h4 {
+    font-size: 0.9em;
+  }
+  td > h5 {
+    font-size: 0.8em;
+  }
+  .trackInfoWrapper {
+    height: 100px;
+  }
+  .trackInfoWrapper > h2 {
+    font-size: 1.5em;
+  }
+  .trackInfoWrapper > h3 {
+    font-size: 1em;
+  }
+  #viewArtist {
+    font-size: 1.5em;
+  }
+}
+/* Desktop Styles */
+@media only screen and (min-width: 975px) {
+  .albumCoverInTrackBlock {
+    width: 200px;
+    height: 200px;
+  }
+  .albumName {
+    color: whitesmoke;
+    font-size: 60px;
+  }
+  table td span {
+    font-size: 0.75em;
+    padding: 5px;
+  }
+  td > h3 {
+    font-size: 1.2em;
+  }
+  td > h4 {
+    font-size: 1.1em;
+  }
+  td > h5 {
+    font-size: 1em;
+  }
+  .trackInfoWrapper {
+    height: 200px;
+  }
+  #viewArtist {
+    font-size: 2em;
   }
 }

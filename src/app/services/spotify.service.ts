@@ -126,7 +126,7 @@ export class SpotifyService {
     this.searchUrl = "https://api.spotify.com/v1/tracks/" + trackID;
     https: return this.httpClient.get(this.searchUrl, httpSearch);
   }
-  // gets all the basic information (artist, popularity, etc.) of a list of tracks
+  //gets all the basic information (artist, popularity, etc.) of a list of tracks
   getTracks(tracksString: string, token: string) {
     const httpSearch = {
       headers: new HttpHeaders({
@@ -136,7 +136,7 @@ export class SpotifyService {
     this.searchUrl = "https://api.spotify.com/v1/tracks/?ids=" + tracksString;
     https: return this.httpClient.get(this.searchUrl, httpSearch);
   }
-  // gets all the audio features of a list of tracks
+  //gets all the audio features of a list of tracks
   getTracksFeatures(tracksString: string, token: string) {
     const httpSearch = {
       headers: new HttpHeaders({

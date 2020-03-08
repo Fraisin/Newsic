@@ -100,7 +100,6 @@ export class AlbumComponent implements OnInit {
                       delete audioFeatureObject[keyToDelete];
                     }
                   }
-                  console.log(this.allTracksAudioFeatures);
                 });
               });
             }
@@ -109,12 +108,10 @@ export class AlbumComponent implements OnInit {
       });
     });
   }
-
   // Capitalizes the first letter of a given string
   capitalizeFirstLetter(s: string) {
     return s.charAt(0).toUpperCase() + s.slice(1);
   }
-
   // Takes in an array of trackIDs and appends them to a string to pass to the service method
   getTracksString(trackIDs: any[]) {
     var tracksString = ""; // comma separated list of all the trackIDs
@@ -126,7 +123,6 @@ export class AlbumComponent implements OnInit {
     }
     return tracksString;
   }
-
   // Convert the millisecond duration into the traditional mm:ss form.
   msToSongTime(ms: any) {
     var minutes = Math.floor(ms / 60000);
