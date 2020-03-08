@@ -25,7 +25,9 @@
           <span class="popularityLabel">
             <span class="num">{{ album.popularity }}</span>
           </span>
-          {{ updateDonutChart("#popularityChart", album.popularity) }}
+          {{
+            updateDonutChart("#popularityChart", album.popularity, "popularity")
+          }}
           <div class="pie">
             <div class="left-side half-circle defaultPopularityColour"></div>
             <div class="right-side half-circle defaultPopularityColour"></div>
@@ -106,7 +108,7 @@
                     {{
                       updateDonutChart(
                         "#popularityChart" + i,
-                        allTracksInfo[i]?.popularity
+                        allTracksInfo[i]?.popularity, "popularity"
                       )
                     }}
                     <div class="pie">
@@ -136,7 +138,7 @@
                     {{ audioInfo.key }}
                   </p>
                   <div
-                    id="{{ 'audioFeatureChart' + audioInfo.key + i }}"
+                    id="{{ 'audioFeatureChart' + i + j }}"
                     class="donut-size"
                   >
                     <div class="pie-wrapper">
@@ -147,16 +149,17 @@
                       </span>
                       {{
                         updateDonutChart(
-                          "#audioFeatureChart" + audioInfo.key + i,
-                          audioInfo.value * 100
+                          "#audioFeatureChart" + i + j,
+                          audioInfo.value * 100,
+                          "audioFeature"
                         )
                       }}
                       <div class="pie">
                         <div
-                          class="left-side half-circle {{ 'circle' + j }}"
+                          class="left-side half-circle"
                         ></div>
                         <div
-                          class="right-side half-circle {{ 'circle' + j }}"
+                          class="right-side half-circle"
                         ></div>
                       </div>
                       <div class="shadow"></div>

@@ -130,13 +130,23 @@ export class AlbumComponent implements OnInit {
     var seconds = ((ms % 60000) / 1000).toFixed(0);
     return minutes + ":" + (Number(seconds) < 10 ? "0" : "") + seconds;
   }
-  updateDonutChart(chartID: any, percent: number) {
+  updateDonutChart(chartID: any, percent: number, type: string) {
+    //Fix to the audio feature circles not displaying correctly in production
+    if (type === "audioFeature") {
+      $(chartID + " .right-side").addClass(
+        "circle" + chartID.slice(chartID.length - 1)
+      );
+      $(chartID + " .left-side").addClass(
+        "circle" + chartID.slice(chartID.length - 1)
+      );
+    }
     percent = Math.round(percent);
     if (percent > 100) {
       percent = 100;
     } else if (percent < 0) {
       percent = 0;
     }
+    console.log("received a percent from " + chartID + "it is " + percent);
     var deg = Math.round(360 * (percent / 100));
     if (percent > 50) {
       $(chartID + " .pie").css("clip", "rect(auto, auto, auto, auto)");
