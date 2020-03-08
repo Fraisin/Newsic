@@ -1,9 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Headers, URLSearchParams } from "@angular/http";
-import { Artist } from "../../../Artist";
-import { map } from "rxjs/operators";
-import { Album } from "Album";
 
 @Injectable({
   providedIn: "root"
@@ -56,7 +53,7 @@ export class SpotifyService {
       })
     };
     this.searchUrl = "https://api.spotify.com/v1/artists/" + artistID;
-    return this.httpClient.get<Artist[]>(this.searchUrl, httpSearch);
+    return this.httpClient.get(this.searchUrl, httpSearch);
   }
   //retrieves the data of an album given its Spotify ID
   getAlbum(albumID: string, token: string) {
@@ -66,7 +63,7 @@ export class SpotifyService {
       })
     };
     this.searchUrl = "https://api.spotify.com/v1/albums/" + albumID;
-    return this.httpClient.get<Album[]>(this.searchUrl, httpSearch);
+    return this.httpClient.get(this.searchUrl, httpSearch);
   }
   //retrieves an artist's most 'popular' songs
   getTopTracks(artistID: string, token: string) {

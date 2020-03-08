@@ -1,10 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { SpotifyService } from "../../services/spotify.service";
 import { ActivatedRoute } from "@angular/router";
-import { Artist } from "../../../../Artist";
-import { Album } from "../../../../Album";
 import { map } from "rxjs/operators";
-import { OwlOptions } from "ngx-owl-carousel-o";
 import * as $ from "jquery";
 import * as _ from "lodash";
 
@@ -18,12 +15,12 @@ export class AlbumComponent implements OnInit {
   id: string;
   artistID: string;
   artistPhoto: string;
-  album: Album[];
+  album: any;
   albumDuration: string;
   tracks: any;
   trackIDs = new Array();
-  allTracksInfo: Object[] = [];
-  allTracksAudioFeatures: Object[] = [];
+  allTracksInfo: any[] = [];
+  allTracksAudioFeatures: any[] = [];
   featureHeadings = [
     "Danceability",
     "Energy",
@@ -86,7 +83,6 @@ export class AlbumComponent implements OnInit {
               albumDuration =
                 albumDuration + Number(this.tracks[i]["duration_ms"]);
             }
-            console.log(albumDuration);
             this.albumDuration = this.msToSongTime(
               albumDuration
             ).toLocaleString();

@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { SpotifyService } from "../../services/spotify.service";
 import { FormControl } from "@angular/forms";
-import { Artist } from "../../../../Artist";
 import * as $ from "jquery";
 
 @Component({
@@ -12,7 +11,7 @@ import * as $ from "jquery";
 })
 export class SearchComponent {
   searchString: FormControl = new FormControl();
-  searchResults: Artist[];
+  searchResults: any;
   emptySearch: boolean = true;
   minFollowerCount: number = 1000; //minimum number of followers needed to be displayed
   maxGenres: number = 6; //the maximum number of genres to display for each artist

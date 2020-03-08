@@ -1,8 +1,6 @@
 import { Component, OnInit, HostListener } from "@angular/core";
 import { SpotifyService } from "../../services/spotify.service";
 import { ActivatedRoute } from "@angular/router";
-import { Artist } from "../../../../Artist";
-import { Album } from "../../../../Album";
 import { map } from "rxjs/operators";
 import { OwlOptions } from "ngx-owl-carousel-o";
 import * as $ from "jquery";
@@ -15,8 +13,8 @@ import * as $ from "jquery";
 })
 export class ArtistComponent implements OnInit {
   id: string;
-  artist: Artist[];
-  albums: Album[];
+  artist: any;
+  albums: any;
   topTracks: any;
   relatedArtists: any;
   //settings for the owl carousel for similar artists

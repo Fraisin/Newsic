@@ -169,7 +169,6 @@ table td {
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: scroll;
 }
 td > h3,
 h4,
@@ -447,7 +446,6 @@ ul li input[type="checkbox"]:checked ~ i:after {
   }
   .albumName {
     font-size: 50px;
-    color: red;
   }
   .donut-size {
     font-size: 4em;
