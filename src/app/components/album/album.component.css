@@ -41,11 +41,32 @@
   align-items: center;
   text-align: center;
 }
+.circle0 {
+  border: 0.1em solid #663399;
+}
+.circle1 {
+  border: 0.1em solid #007bff;
+}
+.circle2 {
+  border: 0.1em solid#e74c3c;
+}
+.circle3 {
+  border: 0.1em solid #f39c12;
+}
+.circle4 {
+  border: 0.1em solid #28a745;
+}
+.circle5 {
+  border: 0.1em solid #17a2b8;
+}
 .copyrightContainer {
   margin-left: 2%;
   width: 100%;
   height: 33px;
   overflow: scroll;
+}
+.defaultPopularityColour {
+  border: 0.1em solid #009871;
 }
 .infoBlock {
   display: flex;
@@ -74,14 +95,6 @@
 .infoTextValue {
   margin-left: 2%;
   margin-top: 0%;
-}
-.copyrightTextValue {
-  margin-left: 2%;
-  margin-top: 2.5%;
-}
-.labelTextValue {
-  margin-left: 2%;
-  margin-top: 1%;
 }
 .infoTextRow {
   display: flex;
@@ -126,62 +139,6 @@
   cursor: default;
   z-index: 2;
 }
-.trackBlock {
-  display: flex;
-  flex-direction: row;
-}
-.trackDuration {
-  margin-top: -0.5%;
-}
-#trackContainer {
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-}
-.trackInfoContainer {
-  display: flex;
-  flex-direction: column;
-  width: 70%;
-  margin-top: auto;
-  margin-bottom: auto;
-}
-.trackName {
-  margin-top: 0;
-  color: #9ae6d2;
-}
-.trackInfoWrapper {
-  display: flex;
-  flex-direction: column;
-}
-.defaultPopularityColour {
-  border: 0.1em solid #009871;
-}
-.circle0 {
-  border: 0.1em solid #663399;
-}
-.circle1 {
-  border: 0.1em solid #007bff;
-}
-.circle2 {
-  border: 0.1em solid#e74c3c;
-}
-.circle3 {
-  border: 0.1em solid #f39c12;
-}
-.circle4 {
-  border: 0.1em solid #28a745;
-}
-.circle5 {
-  border: 0.1em solid #17a2b8;
-}
-.tableWrapper {
-  width: 150%;
-  margin-left: 4%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-}
 table {
   border-collapse: collapse;
   text-align: center;
@@ -214,19 +171,54 @@ table td {
   padding-right: 5%;
   overflow: scroll;
 }
-#numOfTracksCell {
-  width: 25%;
-}
 #artistCell {
   width: 50%;
 }
 #copyrightCell {
   width: 45%;
 }
+#numOfTracksCell {
+  width: 25%;
+}
 table thead {
   left: -9999px;
   position: absolute;
   visibility: hidden;
+}
+.tableWrapper {
+  width: 150%;
+  margin-left: 4%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.trackBlock {
+  display: flex;
+  flex-direction: row;
+}
+#trackContainer {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+.trackDuration {
+  margin-top: -0.5%;
+}
+.trackInfoContainer {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.trackInfoWrapper {
+  display: flex;
+  flex-direction: column;
+}
+.trackName {
+  margin-top: 0;
+  color: #9ae6d2;
 }
 /* CSS for the donut status bar of an album's popularity.
 Inspired from peavy's work @ https://codepen.io/peavy/pen/NzYVjw */
@@ -369,7 +361,6 @@ ul li input[type="checkbox"]:checked ~ i:before {
 ul li input[type="checkbox"]:checked ~ i:after {
   transform: translate(-2px, 0) rotate(-45deg);
 }
-
 @keyframes flipdown {
   0% {
     opacity: 0;
@@ -415,6 +406,10 @@ ul li input[type="checkbox"]:checked ~ i:after {
   td > h5 {
     font-size: 0.6em;
   }
+  .tableWrapper {
+    margin-left: auto;
+    margin-right: auto;
+  }
   .trackInfoContainer {
     margin-left: 5%;
   }
@@ -426,10 +421,6 @@ ul li input[type="checkbox"]:checked ~ i:after {
   }
   .trackInfoWrapper > h3 {
     font-size: 0.75em;
-  }
-  .tableWrapper {
-    margin-left: auto;
-    margin-right: auto;
   }
   .popularity {
     display: none;

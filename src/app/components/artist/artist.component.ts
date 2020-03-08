@@ -19,7 +19,7 @@ export class ArtistComponent implements OnInit {
   albums: Album[];
   topTracks: any;
   relatedArtists: any;
-  // Settings for the owl carousel for similar artists.
+  //settings for the owl carousel for similar artists
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
@@ -58,7 +58,7 @@ export class ArtistComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // Get the artist.
+    //Get the artist.
     this.route.params.pipe(map(params => params["id"])).subscribe(id => {
       this.SpotifyService.getToken().subscribe(data => {
         this.SpotifyService.getArtist(id, data["access_token"]).subscribe(
@@ -68,7 +68,7 @@ export class ArtistComponent implements OnInit {
         );
       });
     });
-    // Get the artist's top 5 tracks.
+    //Get the artist's top 5 tracks.
     this.route.params.pipe(map(params => params["id"])).subscribe(id => {
       this.SpotifyService.getToken().subscribe(data => {
         this.SpotifyService.getTopTracks(id, data["access_token"]).subscribe(
@@ -78,7 +78,7 @@ export class ArtistComponent implements OnInit {
         );
       });
     });
-    // Get the artist's albums.
+    //Get the artist's albums.
     this.route.params.pipe(map(params => params["id"])).subscribe(id => {
       this.SpotifyService.getToken().subscribe(data => {
         this.SpotifyService.getAlbumsOnly(id, data["access_token"]).subscribe(
@@ -88,7 +88,7 @@ export class ArtistComponent implements OnInit {
         );
       });
     });
-    // Get the artist's related artists.
+    //Get the artist's related artists.
     this.route.params.pipe(map(params => params["id"])).subscribe(id => {
       this.SpotifyService.getToken().subscribe(data => {
         this.SpotifyService.getRelatedArtists(
@@ -100,11 +100,11 @@ export class ArtistComponent implements OnInit {
       });
     });
   }
-  // Increases the width of the progress bar for barID to the correct popularity value.
+  //Increases the width of the progress bar for barID to the correct popularity value.
   displayTrack(barID: string, barWidth: number) {
     $(barID).width(barWidth + "%");
   }
-  // Method that takes in an array of albums and removes duplicates.
+  //Method that takes in an array of albums and removes duplicates.
   removeDuplicateAlbums(albums: any[]) {
     var filteredArray = [];
     var lookupObject = {};

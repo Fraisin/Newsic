@@ -20,7 +20,7 @@ export class SearchComponent {
   ngOnInit() {
     this.searchString.valueChanges.subscribe(searchString =>
       this.SpotifyService.getToken().subscribe(data => {
-        //if the search string is empty or is only whitespace, do not make a request
+        //If the search string is empty or is only whitespace, do not make a request.
         if (searchString === "" || !/\S/.test(searchString)) {
           this.emptySearch = true;
           return;
@@ -36,8 +36,8 @@ export class SearchComponent {
       })
     );
   }
-  //this is a boolean function that determines if there are any
-  //artists with over the minFollowerCount given the search string
+  //This is a boolean function that determines if there are any
+  //artists with over the minFollowerCount given the search string.
   noSearchResults(searchResults: any[]) {
     if (searchResults === undefined || searchResults.length == 0) return true;
     for (let res of searchResults) {
@@ -47,12 +47,12 @@ export class SearchComponent {
     }
     return true;
   }
-  //method to take in an array of genres and cut it to length 6 if necessary
+  //Method to take in an array of genres and cut it to length 6 if necessary.
   cutGenres(genres: any[]) {
     if (genres.length <= this.maxGenres) return genres;
     return genres.slice(0, this.maxGenres);
   }
-  //Method to dynamically change the donut status bar for an artist's popularity
+  //Method to dynamically change the donut status bar for an artist's popularity.
   //Inspired from peavy's work @ https://codepen.io/peavy/pen/NzYVjw
   updateDonutChart(chartID: any, percent: number) {
     percent = Math.round(percent);

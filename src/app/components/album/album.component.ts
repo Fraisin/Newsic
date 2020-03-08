@@ -51,13 +51,13 @@ export class AlbumComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
   ngOnInit() {
-    // Get the album.
+    //Get the album.
     this.route.params.pipe(map(params => params["id"])).subscribe(id => {
       this.SpotifyService.getToken().subscribe(data => {
         this.SpotifyService.getAlbum(id, data["access_token"]).subscribe(
           album => {
             this.album = album;
-            // Get the artist ID of this album's artist.
+            //Get the artist ID of this album's artist.
             this.artistID = album["artists"][0]["id"];
             {
               this.SpotifyService.getArtist(
@@ -71,30 +71,30 @@ export class AlbumComponent implements OnInit {
         );
       });
     });
-    // Get the album's tracks
+    //Get the album's tracks.
     this.route.params.pipe(map(params => params["id"])).subscribe(id => {
       this.SpotifyService.getToken().subscribe(data => {
         this.SpotifyService.getAlbumTracks(id, data["access_token"]).subscribe(
           tracks => {
             this.tracks = tracks["items"];
-            // push each track id into an array so we can use it to fetch multiple tracks at once
+            //Push each track id into an array so we can use it to fetch multiple tracks at once.
             for (var i in this.tracks) {
               this.trackIDs.push(this.tracks[i]["id"]);
             }
             {
-              // Get basic information about the tracks (artist, popularity, etc.)
+              //Get basic information about the tracks (artist, popularity, etc.)
               this.SpotifyService.getTracks(
                 this.getTracksString(this.trackIDs),
                 data["access_token"]
               ).subscribe(trackinfo => {
                 this.allTracksInfo = trackinfo["tracks"];
-                // Get audio features (danceability, energy, etc.)
+                //Get audio features (danceability, energy, etc.)
                 this.SpotifyService.getTracksFeatures(
                   this.getTracksString(this.trackIDs),
                   data["access_token"]
                 ).subscribe(trackfeatures => {
                   this.allTracksAudioFeatures = trackfeatures["audio_features"];
-                  // Delete unwanted properties of the object.
+                  //Delete unwanted properties of the object.
                   for (var audioFeatureObject of this.allTracksAudioFeatures) {
                     for (var keyToDelete of this.keysToDelete) {
                       delete audioFeatureObject[keyToDelete];
@@ -108,22 +108,18 @@ export class AlbumComponent implements OnInit {
       });
     });
   }
-  // Capitalizes the first letter of a given string
-  capitalizeFirstLetter(s: string) {
-    return s.charAt(0).toUpperCase() + s.slice(1);
-  }
-  // Takes in an array of trackIDs and appends them to a string to pass to the service method
+  //Takes in an array of trackIDs and appends them to a string to pass to the service method.
   getTracksString(trackIDs: any[]) {
-    var tracksString = ""; // comma separated list of all the trackIDs
+    var tracksString = ""; //comma separated list of all the trackIDs
     var numOfTracks = trackIDs.length;
     for (var i = 0; i < numOfTracks; i++) {
-      // don't append a comma if it's the last element
+      //Don't append a comma if it's the last element.
       if (i == numOfTracks - 1) tracksString = tracksString + trackIDs[i];
       else tracksString = tracksString + trackIDs[i] + ",";
     }
     return tracksString;
   }
-  // Convert the millisecond duration into the traditional mm:ss form.
+  //Convert the millisecond duration into the traditional mm:ss form.
   msToSongTime(ms: any) {
     var minutes = Math.floor(ms / 60000);
     var seconds = ((ms % 60000) / 1000).toFixed(0);
