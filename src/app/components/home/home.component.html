@@ -23,6 +23,7 @@
     >Genre</a
   >
 </div>
+<!-- DISPLAYING GENRE SEARCHBAR -->
 <div *ngIf="showGenreSearch">
   <div class="well genreWell">
     <h6>Please select a genre below.</h6>
@@ -47,6 +48,7 @@
 <!-- Container that holds the items the user adds to their 'mix' -->
 <div class="mixContainer">
   <div *ngFor="let entity of userMix">
+    <!-- IF USER ADDS AN ARTIST -->
     <div *ngIf="entity.type == 'artist'">
       <div class="panel panel-success entityCard">
         <div class="panel-heading">
@@ -59,11 +61,14 @@
             alt="Genre Flat Image"
           />
           <div class="entityNameContainer">
-            <h4>{{ entity.name }}</h4>
+            <h4>
+              {{ entity.name }}
+            </h4>
           </div>
         </div>
       </div>
     </div>
+    <!-- IF USER ADDS A TRACK -->
     <div *ngIf="entity.type == 'track'">
       <div class="panel panel-warning entityCard">
         <div class="panel-heading">
@@ -81,6 +86,7 @@
         </div>
       </div>
     </div>
+    <!-- IF USER ADDS A GENRE -->
     <div *ngIf="entity.type == 'genre'">
       <div class="panel panel-danger entityCard">
         <div class="panel-heading">

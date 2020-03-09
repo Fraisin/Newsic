@@ -1,7 +1,7 @@
 <div *ngIf="album">
   <div id="albumContainer">
-    <div id="albumHeadingContainer">
-      <h1 class="albumName">{{ album.name }}</h1>
+    <div class="albumHeadingContainer">
+      <h1>{{ album.name }}</h1>
     </div>
     <br />
     <img
@@ -60,7 +60,9 @@
             </td>
             <td>
               <span>Label</span>
-              <h4>{{ album.label }}</h4>
+              <h5>
+                {{ album.label }}
+              </h5>
             </td>
             <td id="copyrightCell">
               <span>Copyright</span>
@@ -90,7 +92,7 @@
               />
               <div class="trackInfoContainer">
                 <div class="trackInfoWrapper">
-                  <h2 class="trackName">{{ track.name }}</h2>
+                  <h2 class="#trackName">{{ track.name }}</h2>
                   <h3 class="trackDuration">
                     {{ msToSongTime(track.duration_ms) }}
                   </h3>

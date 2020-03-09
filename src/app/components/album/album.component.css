@@ -19,8 +19,14 @@
   object-fit: cover;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.25);
 }
-#albumHeadingContainer {
-  width: 80%;
+.albumHeadingContainer {
+  text-align: center;
+  overflow: scroll;
+  overflow-wrap: break-word;
+  background-color: #2a2a2a;
+  padding-left: 5%;
+  padding-right: 5%;
+  width: 100%;
 }
 .albumName {
   margin-left: auto;
@@ -217,14 +223,13 @@ table thead {
   display: flex;
   flex-direction: column;
   width: 70%;
-  margin-top: auto;
-  margin-bottom: auto;
 }
 .trackInfoWrapper {
   display: flex;
   flex-direction: column;
+  overflow: auto;
 }
-.trackName {
+.trackInfoWrapper > h2 {
   margin-top: 0;
   color: #9ae6d2;
 }
@@ -397,8 +402,8 @@ ul li input[type="checkbox"]:checked ~ i:after {
     width: 75px;
     height: 75px;
   }
-  .albumName {
-    font-size: 40px;
+  .albumHeadingContainer > h1 {
+    font-size: 30px;
   }
   .donut-size {
     font-size: 3em;
@@ -437,7 +442,7 @@ ul li input[type="checkbox"]:checked ~ i:after {
     height: 75px;
   }
   .trackInfoWrapper > h2 {
-    font-size: 1.25em;
+    font-size: 1em;
   }
   .trackInfoWrapper > h3 {
     font-size: 0.75em;
@@ -455,7 +460,7 @@ ul li input[type="checkbox"]:checked ~ i:after {
     width: 100px;
     height: 100px;
   }
-  .albumName {
+  .albumHeadingContainer > h1 {
     font-size: 50px;
   }
   .donut-size {
@@ -506,7 +511,7 @@ ul li input[type="checkbox"]:checked ~ i:after {
     width: 200px;
     height: 200px;
   }
-  .albumName {
+  .albumHeadingContainer > h1 {
     font-size: 60px;
   }
   .donut-size {
