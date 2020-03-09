@@ -144,4 +144,15 @@ export class SpotifyService {
       "https://api.spotify.com/v1/audio-features/?ids=" + tracksString;
     https: return this.httpClient.get(this.searchUrl, httpSearch);
   }
+  //gets the current available genres
+  getAllGenres(token: string) {
+    const httpSearch = {
+      headers: new HttpHeaders({
+        Authorization: "Bearer " + token
+      })
+    };
+    this.searchUrl =
+      "https://api.spotify.com/v1/recommendations/available-genre-seeds";
+    https: return this.httpClient.get(this.searchUrl, httpSearch);
+  }
 }
