@@ -44,11 +44,11 @@
               <span>Released By</span>
               <h3>{{ album.artists[0].name }}</h3>
             </td>
-            <td>
+            <td id="releasedOnCell">
               <span>Released On</span>
               <h3>{{ album.release_date }}</h3>
             </td>
-            <td>
+            <td id="durationCell">
               <span>Duration</span>
               <h3>{{ albumDuration }}</h3>
             </td>
@@ -58,7 +58,7 @@
               <span># of Tracks</span>
               <h3>{{ album.total_tracks }}</h3>
             </td>
-            <td>
+            <td id="labelCell">
               <span>Label</span>
               <h5>
                 {{ album.label }}

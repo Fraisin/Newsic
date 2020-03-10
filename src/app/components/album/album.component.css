@@ -67,7 +67,6 @@
   margin-left: 2%;
   width: 100%;
   height: 33px;
-  overflow: scroll;
 }
 .defaultPopularityColour {
   border: 0.1em solid #009871;
@@ -191,6 +190,10 @@ h5 {
 }
 #numOfTracksCell {
   width: 25%;
+}
+#labelCell,
+#copyrightCell {
+  overflow-wrap: anywhere;
 }
 table thead {
   left: -9999px;
