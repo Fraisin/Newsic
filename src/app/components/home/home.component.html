@@ -68,6 +68,7 @@
       flip them to the front!
     </p>
   </div>
+  <a class="btn btn-danger btn-sm" (click)="deleteAllEntities()">Clear All</a>
 </div>
 <!-- Container that holds the items the user adds to their 'mix' -->
 <div class="mixContainer">
@@ -169,7 +170,7 @@
         ontouchstart="this.classList.toggle('hover');"
       >
         <div class="flipper">
-          <div class="panel panel-danger entityCard front">
+          <div class="panel panel-info entityCard front">
             <div class="panel-heading">
               <h3 class="panel-title">Genre</h3>
             </div>
@@ -186,7 +187,7 @@
               </div>
             </div>
           </div>
-          <div class="panel panel-danger entityCard back">
+          <div class="panel panel-info entityCard back">
             <div class="panel-heading">
               <h3 class="panel-title">Genre</h3>
             </div>

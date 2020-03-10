@@ -108,7 +108,11 @@ export class HomeComponent {
     this.userMix = this.userMix.filter(entity => entity.id != id);
     this.saveArrayInStorage();
   }
-  deleteGenre(genreID: string) {}
+  //Clears the entire user mix array if they press the 'Clear All' button.
+  deleteAllEntities() {
+    this.userMix.length = 0;
+    this.saveArrayInStorage();
+  }
   //Saves the user mix array in the local storage so it remains upon refresh.
   saveArrayInStorage() {
     this.storage.set("userMix", this.userMix).subscribe(() => {});
