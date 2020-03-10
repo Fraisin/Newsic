@@ -4,8 +4,9 @@
   align-items: center;
   text-align: center;
   margin-bottom: 5%;
-  height: 25%;
+  height: 20%;
   width: 100%;
+  background-color: #009871;
 }
 #albumsContainer {
   margin-top: 2%;
@@ -35,11 +36,9 @@
 }
 .artistHeadingContainer {
   text-align: center;
-  overflow: auto;
   overflow-wrap: break-word;
   background-color: #2a2a2a;
-  padding-left: 5%;
-  padding-right: 5%;
+  padding: 5%;
   width: 100%;
 }
 .artistHeadingContainer > h1 {
@@ -59,6 +58,7 @@
 .btnPhotoWrapper {
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 #carouselArtists {
   margin-bottom: 5%;
@@ -88,6 +88,16 @@
   margin-bottom: 10%;
   width: 90%;
   box-shadow: 0 12px 20px rgba(0, 0, 0, 0.5), 0 10px 10px rgba(0, 0, 0, 0.5);
+}
+.popularHeadingWrapper {
+  height: 20%;
+  background-color: #2a2a2a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 5%;
+  padding-right: 5%;
+  width: 100%;
 }
 .popularSongJumbo {
   display: flex;
@@ -245,8 +255,8 @@
 }
 /* Mobile Styles */
 @media only screen and (max-width: 469px) {
-  .albums {
-    margin-top: 18%;
+  .addBtn > h4 {
+    font-size: 0.6em;
   }
   #albumHeading {
     font-size: 1.5em;
@@ -260,15 +270,14 @@
   }
   .artistContainer {
     margin-top: 5%;
-    height: 150px;
+    height: 220px;
   }
   .artistHeadingContainer > h1 {
     font-size: 40px;
   }
   .artistPhoto {
-    margin-bottom: 10%;
-    max-width: 150px;
-    max-height: 150px;
+    width: 150px;
+    height: 150px;
   }
   .barWrapper {
     height: 25px;
@@ -292,6 +301,12 @@
   }
   .panel {
     height: 250px;
+  }
+  .popularHeadingWrapper {
+    margin-bottom: 2.5%;
+  }
+  .popularHeadingWrapper > h5 {
+    font-size: 0.6em;
   }
   .popularSongJumbo {
     margin-left: 2.5%;
@@ -321,22 +336,22 @@
 }
 /* Tablet Styles */
 @media only screen and (min-width: 470px) and (max-width: 960px) {
-  .albums {
-    margin-top: 16%;
+  .addBtn > h4 {
+    font-size: 1.4em;
   }
   #albumName {
     font-size: 1em;
   }
   .artistContainer {
     margin-top: 5%;
-    height: 250px;
+    height: 370px;
   }
   .artistHeadingContainer > h1 {
     font-size: 60px;
   }
   .artistPhoto {
-    max-width: 250px;
-    max-height: 250px;
+    width: 250px;
+    height: 250px;
   }
   .barWrapper {
     height: 25px;
@@ -358,6 +373,12 @@
   }
   .panel {
     height: 300px;
+  }
+  .popularHeadingWrapper {
+    margin-bottom: 2.5%;
+  }
+  .popularHeadingWrapper > h5 {
+    font-size: 1.2em;
   }
   .popularSongJumbo {
     margin-left: 2.5%;
@@ -388,22 +409,22 @@
 }
 /* Desktop Styles */
 @media only screen and (min-width: 961px) {
-  .albums {
-    margin-top: 15%;
+  .addBtn > h4 {
+    font-size: 2em;
   }
   #albumName {
     font-size: 2em;
   }
   .artistContainer {
     margin-top: 5%;
-    height: 320px;
+    height: 515px;
   }
   .artistHeadingContainer > h1 {
     font-size: 80px;
   }
   .artistPhoto {
-    max-width: 350px;
-    max-height: 350px;
+    width: 350px;
+    height: 350px;
   }
   .flip-container,
   .front,
@@ -421,6 +442,12 @@
   }
   .panel {
     min-height: 360px;
+  }
+  .popularHeadingWrapper {
+    margin-bottom: 5%;
+  }
+  .popularHeadingWrapper > h5 {
+    font-size: 1.6em;
   }
   .popularSongJumbo {
     margin-left: 5%;

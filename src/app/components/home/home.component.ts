@@ -65,22 +65,6 @@ export class HomeComponent {
       });
     });
   }
-  //Function that takes in an artist ID and returns an array of two strings,
-  //first one being a link to their photo and second being their name
-  getArtistInfo(artistID: string) {
-    this.route.params.pipe(map(params => params["id"])).subscribe(id => {
-      this.SpotifyService.getToken().subscribe(data => {
-        this.SpotifyService.getAllGenres(data["access_token"]).subscribe(
-          data => {
-            console.log(data);
-          }
-        );
-      });
-    });
-  }
-  //Function that takes in a track  ID and returns an array of two strings,
-  //first one being a link to its album cover and second being its name
-
   //Takes in a genreName and adds a corresponding genre object to the array
   addGenre(genreName: string) {
     if (genreName) {

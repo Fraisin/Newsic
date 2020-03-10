@@ -6,7 +6,11 @@
   </div>
   <div class="artistContainer">
     <div class="btnPhotoWrapper">
-      <a href="#" class="btn btn-default btn-lg btn-block addBtn">Add to Mix</a>
+      <a
+        class="btn btn-default btn-lg btn-block addBtn"
+        (click)="addToUserMix()"
+        ><h4>Add to Mix</h4></a
+      >
       <img
         class="artistPhoto"
         src="{{ artist.images[0].url }}"
@@ -15,6 +19,9 @@
     </div>
     <!-- POPULAR SONGS -->
     <div class="jumbotron popularSongJumbo">
+      <div class="popularHeadingWrapper">
+        <h5>Popular Songs</h5>
+      </div>
       <div *ngFor="let track of topTracks; index as i">
         <div class="barWrapper">
           <span class="songText">{{ track.name }}</span>
@@ -28,15 +35,13 @@
     </div>
   </div>
   <!-- ALBUMS -->
-  <div class="albums">
-    <div class="labelWrapper">
-      <h2 class="labelHeading">Albums</h2>
-      <img
-        class="labelImage"
-        src="../assets/album.svg"
-        alt="Flat Icon of Album"
-      />
-    </div>
+  <div class="labelWrapper">
+    <h2 class="labelHeading">Albums</h2>
+    <img
+      class="labelImage"
+      src="../assets/album.svg"
+      alt="Flat Icon of Album"
+    />
   </div>
   <div id="albumsContainer">
     <div *ngFor="let album of albums">

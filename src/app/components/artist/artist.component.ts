@@ -13,6 +13,8 @@ import * as $ from "jquery";
 })
 export class ArtistComponent implements OnInit {
   id: string;
+  name: string;
+  linkToImage: string;
   artist: any;
   albums: any;
   topTracks: any;
@@ -113,5 +115,14 @@ export class ArtistComponent implements OnInit {
       filteredArray.push(lookupObject[i]);
     }
     return filteredArray;
+  }
+  //Adds this artist to the user mix so it's displayed on the homepage.
+  addToUserMix() {
+    var artistID = this.artist["id"];
+    var artistName = this.artist["name"];
+    var linkToImage = this.artist["images"][0]["url"];
+    console.log(artistID);
+    console.log(artistName);
+    console.log(linkToImage);
   }
 }
