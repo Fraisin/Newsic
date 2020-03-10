@@ -1,9 +1,9 @@
-import { Component, OnInit, HostListener } from "@angular/core";
+import { Component, Input, OnInit, HostListener } from "@angular/core";
 import { SpotifyService } from "../../services/spotify.service";
 import { ActivatedRoute } from "@angular/router";
 import { map } from "rxjs/operators";
-import { OwlOptions } from "ngx-owl-carousel-o";
-import * as $ from "jquery";
+import { StorageMap } from "@ngx-pwa/local-storage";
+import { SimpleChanges } from "@angular/core";
 
 @Component({
   selector: "home",
@@ -13,10 +13,10 @@ import * as $ from "jquery";
 })
 export class HomeComponent {
   showGenreSearch: boolean = false;
-  singleSelect: any = [];
+  singleSelect: any;
   // this array represents the 'mix' of a user.
   // it consists of genres or the IDs of artists and songs they would like to add
-  userMix: any[] = [
+  @Input() userMix: any[] = [
     {
       type: "artist",
       id: "3TVXtAsR1Inumwj472S9r4",
@@ -30,22 +30,28 @@ export class HomeComponent {
       image: "blegh",
       name: "Some Song"
     },
-    { type: "genre", id: "indie" },
-    { type: "genre", id: "country" }
+    { type: "genre", id: "indie" }
   ];
   config = {
     displayKey: "name", // if objects array passed which key to be displayed defaults to description
     search: true,
     limitTo: 150,
-    height: "125px"
+    height: "200px"
   };
   options: any = [];
-
   constructor(
     private SpotifyService: SpotifyService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private storage: StorageMap
   ) {}
   ngOnInit() {
+    this.storage.delete("userMix").subscribe(() => {});
+    this.storage.get("userMix").subscribe(userItems => {
+      // if there is existing data, set our local array to it
+      if (userItems) {
+        this.userMix = <any[]>userItems;
+      }
+    });
     //Get the artist's top 5 tracks.
     this.route.params.pipe(map(params => params["id"])).subscribe(id => {
       this.SpotifyService.getToken().subscribe(data => {
@@ -70,9 +76,22 @@ export class HomeComponent {
       });
     });
   }
-
   //Function that takes in a track  ID and returns an array of two strings,
   //first one being a link to its album cover and second being its name
+
+  //Takes in a genreName and adds a corresponding genre object to the array
+  addGenre(genreName: string) {
+    if (genreName) {
+      var genreObject = {
+        type: "genre",
+        id: genreName
+      };
+      this.hideGenreSearchbar();
+      this.userMix.push(genreObject);
+      // Save the genre in the local storage.
+      this.storage.set("userMix", this.userMix).subscribe(() => {});
+    }
+  }
   hideGenreSearchbar() {
     this.showGenreSearch = false;
   }

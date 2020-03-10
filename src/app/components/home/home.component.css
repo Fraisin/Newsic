@@ -97,3 +97,90 @@
     color: green;
   }
 }
+
+/* CSS for album flipping animation, inspired by https://codepen.io/montillon/pen/xExpPB */
+.flip-container {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+.flip-container:hover .back {
+  transform: rotateY(0deg);
+}
+.flip-container:hover .front {
+  transform: rotateY(180deg);
+}
+.flip-container,
+.front,
+.back {
+  margin-left: auto;
+  margin-right: auto;
+}
+.flipper {
+  transform-style: preserve-3d;
+}
+.front,
+.back {
+  transition: 0.8s;
+  transform-style: preserve-3d;
+  position: absolute;
+  top: 0;
+  left: 0;
+  backface-visibility: hidden;
+}
+.front {
+  z-index: 2;
+  transform: rotateY(0deg);
+}
+.back {
+  transform: rotateY(-180deg);
+  line-height: 1.4em;
+  position: relative;
+}
+.back::before {
+  content: "";
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.8);
+}
+.vertical.flip-container #backContainer {
+  position: relative;
+}
+.vertical .back {
+  transform: rotateX(180deg);
+}
+.vertical.flip-container:hover .back {
+  transform: rotateX(0deg);
+}
+.vertical.flip-container:hover .front {
+  transform: rotateX(180deg);
+}
+/* CSS for zooming on Hover, inspired by https://codepen.io/wifeo/pen/qzwkb*/
+.zoomOnHover {
+  display: inline-block;
+  border: 0;
+  position: relative;
+  -webkit-transition: all 200ms ease-in;
+  -webkit-transform: scale(1);
+  -ms-transition: all 200ms ease-in;
+  -ms-transform: scale(1);
+  -moz-transition: all 200ms ease-in;
+  -moz-transform: scale(1);
+  transition: all 200ms ease-in;
+  transform: scale(1);
+}
+.zoomOnHover:hover {
+  box-shadow: 0px 0px 150px #000000;
+  z-index: 2;
+  -webkit-transition: all 200ms ease-in;
+  -webkit-transform: scale(1.1);
+  -ms-transition: all 200ms ease-in;
+  -ms-transform: scale(1.1);
+  -moz-transition: all 200ms ease-in;
+  -moz-transform: scale(1.1);
+  transition: all 200ms ease-in;
+  transform: scale(1.1);
+}

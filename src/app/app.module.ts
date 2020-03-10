@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { CarouselModule } from "ngx-owl-carousel-o";
 import { SelectDropDownModule } from "ngx-select-dropdown";
 import * as $ from "jquery";
+import { StorageModule } from '@ngx-pwa/local-storage';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import * as $ from "jquery";
     HttpClientModule,
     BrowserAnimationsModule,
     CarouselModule,
-    SelectDropDownModule
+    SelectDropDownModule,
+    StorageModule.forRoot({ IDBNoWrap: true })
   ],
   providers: [],
   bootstrap: [AppComponent]

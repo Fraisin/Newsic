@@ -17,12 +17,24 @@
     your choices, press the big button and start listening!
   </h6>
 </div>
-<div class="btn-group btn-group-justified">
-  <a href="search" class="btn btn-default artistSongButton">Artist/Song</a>
-  <a class="btn btn-default genreButton" (click)="toggleGenreSearchbar()"
-    >Genre</a
-  >
-</div>
+<ng-container *ngIf="userMix.length >= 5; then showMax; else showButtons">
+</ng-container>
+<ng-template #showMax>
+  <div class="well">
+    <h6>
+      You have added the maximum number of elements. Clear your mix or delete
+      some items if you'd like to re-add!
+    </h6>
+  </div>
+</ng-template>
+<ng-template #showButtons>
+  <div class="btn-group btn-group-justified">
+    <a href="search" class="btn btn-default artistSongButton">Artist/Song</a>
+    <a class="btn btn-default genreButton" (click)="toggleGenreSearchbar()"
+      >Genre</a
+    >
+  </div>
+</ng-template>
 <!-- DISPLAYING GENRE SEARCHBAR -->
 <div *ngIf="showGenreSearch">
   <div class="well genreWell">
@@ -35,7 +47,11 @@
       [options]="options"
     ></ngx-select-dropdown>
     <div class="btn-group genreBtns">
-      <a class="btn btn-primary btn-sm addGenreBtn">Add Genre</a>
+      <a
+        class="btn btn-primary btn-sm addGenreBtn"
+        (click)="addGenre(singleSelect)"
+        >Add Genre</a
+      >
       <a
         class="btn btn-default btn-sm"
         id="cancel"
