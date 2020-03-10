@@ -1,3 +1,12 @@
+.addBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 5%;
+  height: 25%;
+  width: 100%;
+}
 #albumsContainer {
   margin-top: 2%;
   display: flex;
@@ -46,6 +55,10 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+.btnPhotoWrapper {
+  display: flex;
+  flex-direction: column;
 }
 #carouselArtists {
   margin-bottom: 5%;
@@ -232,6 +245,9 @@
 }
 /* Mobile Styles */
 @media only screen and (max-width: 469px) {
+  .albums {
+    margin-top: 18%;
+  }
   #albumHeading {
     font-size: 1.5em;
   }
@@ -250,11 +266,15 @@
     font-size: 40px;
   }
   .artistPhoto {
+    margin-bottom: 10%;
     max-width: 150px;
     max-height: 150px;
   }
   .barWrapper {
     height: 25px;
+  }
+  .btnPhotoWrapper {
+    max-width: 150px;
   }
   .flip-container,
   .front,
@@ -301,6 +321,9 @@
 }
 /* Tablet Styles */
 @media only screen and (min-width: 470px) and (max-width: 960px) {
+  .albums {
+    margin-top: 16%;
+  }
   #albumName {
     font-size: 1em;
   }
@@ -365,6 +388,9 @@
 }
 /* Desktop Styles */
 @media only screen and (min-width: 961px) {
+  .albums {
+    margin-top: 15%;
+  }
   #albumName {
     font-size: 2em;
   }
