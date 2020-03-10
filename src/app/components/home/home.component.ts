@@ -5,6 +5,21 @@ import { map } from "rxjs/operators";
 import { StorageMap } from "@ngx-pwa/local-storage";
 import { SimpleChanges } from "@angular/core";
 
+/*
+    {
+      type: "artist",
+      id: "3TVXtAsR1Inumwj472S9r4",
+      image: "test",
+      name: "Drake"
+    },
+    { type: "genre", name: "hip-hop", id: "231jjfl2k" },
+    {
+      type: "track",
+      id: "0V1PzAbvRjbsbY2WklR65c",
+      image: "blegh",
+      name: "Some Song"
+    }
+    */
 @Component({
   selector: "home",
   templateUrl: "home.component.html",
@@ -16,27 +31,14 @@ export class HomeComponent {
   singleSelect: any;
   // this array represents the 'mix' of a user.
   // it consists of genres or the IDs of artists and songs they would like to add
-  @Input() userMix: any[] = [
-    {
-      type: "artist",
-      id: "3TVXtAsR1Inumwj472S9r4",
-      image: "test",
-      name: "Drake"
-    },
-    { type: "genre", id: "hip-hop" },
-    {
-      type: "track",
-      id: "0V1PzAbvRjbsbY2WklR65c",
-      image: "blegh",
-      name: "Some Song"
-    },
-    { type: "genre", id: "indie" }
-  ];
+  userMix: any[] = [];
   config = {
-    displayKey: "name", // if objects array passed which key to be displayed defaults to description
     search: true,
     limitTo: 150,
-    height: "200px"
+    height: "200px",
+    placeholder: "Select",
+    noResultsFound: "No genres found.",
+    clearOnSelection: true
   };
   options: any = [];
   constructor(
@@ -45,7 +47,7 @@ export class HomeComponent {
     private storage: StorageMap
   ) {}
   ngOnInit() {
-    this.storage.delete("userMix").subscribe(() => {});
+    //this.storage.delete("userMix").subscribe(() => {});
     this.storage.get("userMix").subscribe(userItems => {
       // if there is existing data, set our local array to it
       if (userItems) {
@@ -82,14 +84,17 @@ export class HomeComponent {
   //Takes in a genreName and adds a corresponding genre object to the array
   addGenre(genreName: string) {
     if (genreName) {
+      var randomID = Math.random()
+        .toString(36)
+        .slice(2);
       var genreObject = {
         type: "genre",
-        id: genreName
+        name: genreName,
+        id: randomID
       };
       this.hideGenreSearchbar();
       this.userMix.push(genreObject);
-      // Save the genre in the local storage.
-      this.storage.set("userMix", this.userMix).subscribe(() => {});
+      this.saveArrayInStorage();
     }
   }
   hideGenreSearchbar() {
@@ -97,5 +102,15 @@ export class HomeComponent {
   }
   toggleGenreSearchbar() {
     this.showGenreSearch = this.showGenreSearch ? false : true;
+  }
+  //Takes an id, locates the corresponding object in the user mix array and deletes it
+  deleteEntity(type: string, id: string) {
+    this.userMix = this.userMix.filter(entity => entity.id != id);
+    this.saveArrayInStorage();
+  }
+  deleteGenre(genreID: string) {}
+  //Saves the user mix array in the local storage so it remains upon refresh.
+  saveArrayInStorage() {
+    this.storage.set("userMix", this.userMix).subscribe(() => {});
   }
 }

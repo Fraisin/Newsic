@@ -1,6 +1,12 @@
 .artistSongButton {
   background-color: #009871;
 }
+.deleteImage {
+  position: absolute;
+}
+.entityCard {
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 0 10px 10px rgba(0, 0, 0, 0.5);
+}
 .entityContainer {
   height: 80%;
   margin-top: auto;
@@ -10,11 +16,15 @@
   justify-content: space-evenly;
   align-items: center;
 }
-.entityNameContainer {
+.entityNameContainer,
+.entityNameContainerBack {
   text-align: center;
   overflow: scroll;
   overflow-wrap: break-word;
   background-color: #2a2a2a;
+}
+.entityNameContainerBack {
+  position: absolute;
 }
 .genreButton {
   background-color: #016148;
@@ -50,13 +60,18 @@
     width: 150px;
     height: 250px;
   }
-  .entityNameContainer {
+  .entityNameContainer,
+  .entityNameContainerBack {
     width: 125px;
     padding-left: 10px;
     padding-right: 10px;
   }
-  .entityNameContainer > h4 {
+  .entityNameContainer > h4,
+  .entityNameContainerBack > h4 {
     font-size: 1em;
+  }
+  .entityNameContainerBack {
+    bottom: 20%;
   }
   .instructionWell {
     margin-top: -5%;
@@ -74,10 +89,20 @@
   .genreWell {
     margin-top: 5%;
   }
+  .mobileWell {
+    margin-top: 5%;
+  }
+  .mobileWell > p {
+    font-size: 0.8em;
+  }
   .panelGenreImage,
-  .panelImage {
+  .panelImage,
+  .deleteImage {
     width: 75px;
     height: 75px;
+  }
+  .deleteImage {
+    top: 30%;
   }
   .panelImage {
     margin-bottom: 7.5%;
@@ -89,12 +114,18 @@
   .siteName {
     color: red;
   }
+  .mobileOnly {
+    display: none;
+  }
 }
 
 /* Desktop Styles */
 @media only screen and (min-width: 961px) {
   .siteName {
     color: green;
+  }
+  .mobileOnly {
+    display: none;
   }
 }
 
@@ -157,30 +188,4 @@
 }
 .vertical.flip-container:hover .front {
   transform: rotateX(180deg);
-}
-/* CSS for zooming on Hover, inspired by https://codepen.io/wifeo/pen/qzwkb*/
-.zoomOnHover {
-  display: inline-block;
-  border: 0;
-  position: relative;
-  -webkit-transition: all 200ms ease-in;
-  -webkit-transform: scale(1);
-  -ms-transition: all 200ms ease-in;
-  -ms-transform: scale(1);
-  -moz-transition: all 200ms ease-in;
-  -moz-transform: scale(1);
-  transition: all 200ms ease-in;
-  transform: scale(1);
-}
-.zoomOnHover:hover {
-  box-shadow: 0px 0px 150px #000000;
-  z-index: 2;
-  -webkit-transition: all 200ms ease-in;
-  -webkit-transform: scale(1.1);
-  -ms-transition: all 200ms ease-in;
-  -ms-transform: scale(1.1);
-  -moz-transition: all 200ms ease-in;
-  -moz-transform: scale(1.1);
-  transition: all 200ms ease-in;
-  transform: scale(1.1);
 }

@@ -61,68 +61,155 @@
     </div>
   </div>
 </div>
+<div *ngIf="userMix.length > 0">
+  <div class="well mobileWell mobileOnly">
+    <p>
+      Hi there mobile user! Simply tap here or anywhere outside of the panels to
+      flip them to the front!
+    </p>
+  </div>
+</div>
 <!-- Container that holds the items the user adds to their 'mix' -->
 <div class="mixContainer">
   <div *ngFor="let entity of userMix">
     <!-- IF USER ADDS AN ARTIST -->
     <div *ngIf="entity.type == 'artist'">
-      <div class="panel panel-success entityCard">
-        <div class="panel-heading">
-          <h3 class="panel-title">Artist</h3>
-        </div>
-        <div class="panel-body entityContainer">
-          <img
-            class="panelImage"
-            src="../assets/genre.png"
-            alt="Genre Flat Image"
-          />
-          <div class="entityNameContainer">
-            <h4>
-              {{ entity.name }}
-            </h4>
+      <div
+        class="flip-container"
+        ontouchstart="this.classList.toggle('hover');"
+      >
+        <div class="flipper">
+          <div class="panel panel-success entityCard front">
+            <div class="panel-heading">
+              <h3 class="panel-title">Artist</h3>
+            </div>
+            <div class="panel-body entityContainer">
+              <img
+                class="panelImage"
+                src="../assets/genre.png"
+                alt="Artist Image"
+              />
+              <div class="entityNameContainer">
+                <h4>
+                  {{ entity.name }}
+                </h4>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-success entityCard back">
+            <div class="panel-heading">
+              <h3 class="panel-title">Artist</h3>
+            </div>
+            <div class="panel-body entityContainer">
+              <input
+                type="image"
+                class="deleteImage"
+                src="../assets/delete.png"
+                alt="Artist Image"
+                (click)="deleteEntity('artist', entity.id)"
+              />
+              <div class="entityNameContainerBack">
+                <h4>
+                  {{ entity.name }}
+                </h4>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
     <!-- IF USER ADDS A TRACK -->
     <div *ngIf="entity.type == 'track'">
-      <div class="panel panel-warning entityCard">
-        <div class="panel-heading">
-          <h3 class="panel-title">Track</h3>
-        </div>
-        <div class="panel-body entityContainer">
-          <img
-            class="panelImage"
-            src="../assets/genre.png"
-            alt="Genre Flat Image"
-          />
-          <div class="entityNameContainer">
-            <h4>{{ entity.name }}</h4>
+      <div
+        class="flip-container"
+        ontouchstart="this.classList.toggle('hover');"
+      >
+        <div class="flipper">
+          <div class="panel panel-warning entityCard front">
+            <div class="panel-heading">
+              <h3 class="panel-title">Track</h3>
+            </div>
+            <div class="panel-body entityContainer">
+              <img
+                class="panelImage"
+                src="../assets/genre.png"
+                alt="Track Image"
+              />
+              <div class="entityNameContainer">
+                <h4>
+                  {{ entity.name }}
+                </h4>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-warning entityCard back">
+            <div class="panel-heading">
+              <h3 class="panel-title">Track</h3>
+            </div>
+            <div class="panel-body entityContainer">
+              <img
+                class="deleteImage"
+                src="../assets/delete.png"
+                alt="Track Image"
+              />
+              <div class="entityNameContainerBack">
+                <h4>
+                  {{ entity.name }}
+                </h4>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
     <!-- IF USER ADDS A GENRE -->
     <div *ngIf="entity.type == 'genre'">
-      <div class="panel panel-danger entityCard">
-        <div class="panel-heading">
-          <h3 class="panel-title">Genre</h3>
-        </div>
-        <div class="panel-body entityContainer">
-          <img
-            class="panelGenreImage"
-            src="../assets/genre.png"
-            alt="Genre Flat Image"
-          />
-          <div class="entityNameContainer">
-            <h4>{{ entity.id }}</h4>
+      <div
+        class="flip-container"
+        ontouchstart="this.classList.toggle('hover');"
+      >
+        <div class="flipper">
+          <div class="panel panel-danger entityCard front">
+            <div class="panel-heading">
+              <h3 class="panel-title">Genre</h3>
+            </div>
+            <div class="panel-body entityContainer">
+              <img
+                class="panelGenreImage"
+                src="../assets/genre.png"
+                alt="Flat Genre Image"
+              />
+              <div class="entityNameContainer">
+                <h4>
+                  {{ entity.name }}
+                </h4>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-danger entityCard back">
+            <div class="panel-heading">
+              <h3 class="panel-title">Genre</h3>
+            </div>
+            <div class="panel-body entityContainer">
+              <img
+                class="deleteImage"
+                src="../assets/delete.png"
+                alt="Flat Genre Image"
+                (click)="deleteEntity('genre', entity.id)"
+              />
+              <div class="entityNameContainerBack">
+                <h4>
+                  {{ entity.name }}
+                </h4>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <!-- BIG BUTTON AT THE BOTTOM THAT CREATES PLAYLIST -->
+  <a href="#" class="btn btn-success btn-lg btn-block generateButton"
+    >MAKE ME A MIX!</a
+  >
 </div>
-<!-- BIG BUTTON AT THE BOTTOM THAT CREATES PLAYLIST -->
-<a href="#" class="btn btn-success btn-lg btn-block generateButton"
-  >MAKE ME A MIX!</a
->
