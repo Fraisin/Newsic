@@ -15,7 +15,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { CarouselModule } from "ngx-owl-carousel-o";
 import { SelectDropDownModule } from "ngx-select-dropdown";
 import * as $ from "jquery";
-import { StorageModule } from '@ngx-pwa/local-storage';
+import { StorageModule } from "@ngx-pwa/local-storage";
+import { UserMixService } from "./services/userMix.service";
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { StorageModule } from '@ngx-pwa/local-storage';
     SelectDropDownModule,
     StorageModule.forRoot({ IDBNoWrap: true })
   ],
-  providers: [],
+  providers: [UserMixService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

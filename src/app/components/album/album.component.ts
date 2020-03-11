@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { SpotifyService } from "../../services/spotify.service";
+import { UserMixService } from "../../services/userMix.service";
 import { ActivatedRoute } from "@angular/router";
 import { map } from "rxjs/operators";
 import * as $ from "jquery";
@@ -46,9 +47,12 @@ export class AlbumComponent implements OnInit {
   ];
   constructor(
     private SpotifyService: SpotifyService,
+    private UserMixService: UserMixService,
     private route: ActivatedRoute
   ) {}
   ngOnInit() {
+    //Loads the user mix array so that it doesn't clear upon router change.
+    this.UserMixService.loadUserMix();
     //Get the album.
     this.route.params.pipe(map(params => params["id"])).subscribe(id => {
       this.SpotifyService.getToken().subscribe(data => {
@@ -123,6 +127,11 @@ export class AlbumComponent implements OnInit {
       else tracksString = tracksString + trackIDs[i] + ",";
     }
     return tracksString;
+  }
+  //Adds this track to the user mix so it's displayed on the homepage.
+  addTrackToUserMix() {
+    //console.log(trackID);
+    console.log("hello world");
   }
   //Convert the millisecond duration into the traditional mm:ss form.
   msToSongTime(ms: any) {

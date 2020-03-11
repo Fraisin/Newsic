@@ -1,9 +1,8 @@
 import { Component, Input, OnInit, HostListener } from "@angular/core";
 import { SpotifyService } from "../../services/spotify.service";
+import { UserMixService } from "../../services/userMix.service";
 import { ActivatedRoute } from "@angular/router";
 import { map } from "rxjs/operators";
-import { StorageMap } from "@ngx-pwa/local-storage";
-import { SimpleChanges } from "@angular/core";
 
 /*
     {
@@ -29,9 +28,7 @@ import { SimpleChanges } from "@angular/core";
 export class HomeComponent {
   showGenreSearch: boolean = false;
   singleSelect: any;
-  // this array represents the 'mix' of a user.
-  // it consists of genres or the IDs of artists and songs they would like to add
-  userMix: any[] = [];
+  //config for the dropdown select search
   config = {
     search: true,
     limitTo: 150,
@@ -40,20 +37,16 @@ export class HomeComponent {
     noResultsFound: "No genres found.",
     clearOnSelection: true
   };
+  //options for the select search
   options: any = [];
   constructor(
     private SpotifyService: SpotifyService,
-    private route: ActivatedRoute,
-    private storage: StorageMap
+    private UserMixService: UserMixService,
+    private route: ActivatedRoute
   ) {}
   ngOnInit() {
-    //this.storage.delete("userMix").subscribe(() => {});
-    this.storage.get("userMix").subscribe(userItems => {
-      // if there is existing data, set our local array to it
-      if (userItems) {
-        this.userMix = <any[]>userItems;
-      }
-    });
+    //Load the global array if it has existing data.
+    this.UserMixService.loadUserMix();
     //Get the artist's top 5 tracks.
     this.route.params.pipe(map(params => params["id"])).subscribe(id => {
       this.SpotifyService.getToken().subscribe(data => {
@@ -64,6 +57,10 @@ export class HomeComponent {
         );
       });
     });
+  }
+  //Gets the global usermix array
+  getMixArray() {
+    return this.UserMixService.userMix;
   }
   //Takes in a genreName and adds a corresponding genre object to the array
   addGenre(genreName: string) {
@@ -77,28 +74,27 @@ export class HomeComponent {
         id: randomID
       };
       this.hideGenreSearchbar();
-      this.userMix.push(genreObject);
-      this.saveArrayInStorage();
+      this.UserMixService.addObjectToArray(genreObject);
     }
+  }
+  //Takes an id, locates the corresponding object in the user mix array and deletes it
+  deleteEntity(type: string, id: string) {
+    this.UserMixService.deleteEntity(type, id);
+  }
+  //Clears the entire user mix array if they press the 'Clear All' button.
+  deleteAllEntities() {
+    this.UserMixService.deleteAllEntities();
+  }
+  arrayEmpty() {
+    return this.UserMixService.arrayIsEmpty();
+  }
+  arrayFull() {
+    return this.UserMixService.arrayIsFull();
   }
   hideGenreSearchbar() {
     this.showGenreSearch = false;
   }
   toggleGenreSearchbar() {
     this.showGenreSearch = this.showGenreSearch ? false : true;
-  }
-  //Takes an id, locates the corresponding object in the user mix array and deletes it
-  deleteEntity(type: string, id: string) {
-    this.userMix = this.userMix.filter(entity => entity.id != id);
-    this.saveArrayInStorage();
-  }
-  //Clears the entire user mix array if they press the 'Clear All' button.
-  deleteAllEntities() {
-    this.userMix.length = 0;
-    this.saveArrayInStorage();
-  }
-  //Saves the user mix array in the local storage so it remains upon refresh.
-  saveArrayInStorage() {
-    this.storage.set("userMix", this.userMix).subscribe(() => {});
   }
 }

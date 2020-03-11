@@ -1,3 +1,15 @@
+.addBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 2.5%;
+  margin-bottom: 2.5%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+  background-color: #009871;
+}
 #albumContainer {
   width: 80%;
   display: flex;
@@ -399,6 +411,12 @@ ul li input[type="checkbox"]:checked ~ i:after {
 }
 /* Mobile Styles */
 @media only screen and (max-width: 549px) {
+  .addBtn {
+    height: 45px;
+  }
+  .addBtn > h4 {
+    font-size: 0.6em;
+  }
   .albumCoverInTrackBlock {
     width: 75px;
     height: 75px;
@@ -457,6 +475,12 @@ ul li input[type="checkbox"]:checked ~ i:after {
 }
 /* Tablet Styles */
 @media only screen and (min-width: 550px) and (max-width: 974px) {
+  .addBtn {
+    height: 60px;
+  }
+  .addBtn > h4 {
+    font-size: 1em;
+  }
   .albumCoverInTrackBlock {
     width: 100px;
     height: 100px;
@@ -508,6 +532,12 @@ ul li input[type="checkbox"]:checked ~ i:after {
 }
 /* Desktop Styles */
 @media only screen and (min-width: 975px) {
+  .addBtn {
+    height: 80px;
+  }
+  .addBtn > h4 {
+    font-size: 2em;
+  }
   .albumCoverInTrackBlock {
     width: 200px;
     height: 200px;

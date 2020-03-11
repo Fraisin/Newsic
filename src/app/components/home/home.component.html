@@ -12,12 +12,8 @@
     Simply begin by pressing one of the buttons below to add an artist, song or
     genre to your music 'mixture'.
   </h6>
-  <h6>
-    Your mixture can have a maximum of 5 items. Once you feel satisfied with
-    your choices, press the big button and start listening!
-  </h6>
 </div>
-<ng-container *ngIf="userMix.length >= 5; then showMax; else showButtons">
+<ng-container *ngIf="arrayFull(); then showMax; else showButtons">
 </ng-container>
 <ng-template #showMax>
   <div class="well">
@@ -61,18 +57,30 @@
     </div>
   </div>
 </div>
-<div *ngIf="userMix.length > 0">
+<div *ngIf="arrayEmpty()">
+  <div class="well emptyWell">
+    <h6>
+      Your mix is currently empty. Add up to a maximum of 5 items and get
+      listening!
+    </h6>
+  </div>
+</div>
+<div *ngIf="!arrayEmpty()">
+  <!--
   <div class="well mobileWell mobileOnly">
     <p>
       Hi there mobile user! Simply tap here or anywhere outside of the panels to
       flip them to the front!
     </p>
   </div>
-  <a class="btn btn-danger btn-sm" (click)="deleteAllEntities()">Clear All</a>
+  -->
+  <a class="btn btn-danger btn-sm clearAll" (click)="deleteAllEntities()"
+    >Clear All</a
+  >
 </div>
 <!-- Container that holds the items the user adds to their 'mix' -->
 <div class="mixContainer">
-  <div *ngFor="let entity of userMix">
+  <div *ngFor="let entity of getMixArray()">
     <!-- IF USER ADDS AN ARTIST -->
     <div *ngIf="entity.type == 'artist'">
       <div
@@ -80,14 +88,14 @@
         ontouchstart="this.classList.toggle('hover');"
       >
         <div class="flipper">
-          <div class="panel panel-success entityCard front">
+          <div class="panel panel-warning entityCard front">
             <div class="panel-heading">
               <h3 class="panel-title">Artist</h3>
             </div>
             <div class="panel-body entityContainer">
               <img
                 class="panelImage"
-                src="../assets/genre.png"
+                src="{{ entity.image }}"
                 alt="Artist Image"
               />
               <div class="entityNameContainer">
@@ -97,7 +105,7 @@
               </div>
             </div>
           </div>
-          <div class="panel panel-success entityCard back">
+          <div class="panel panel-warning entityCard back">
             <div class="panel-heading">
               <h3 class="panel-title">Artist</h3>
             </div>
@@ -126,7 +134,7 @@
         ontouchstart="this.classList.toggle('hover');"
       >
         <div class="flipper">
-          <div class="panel panel-warning entityCard front">
+          <div class="panel panel-danger entityCard front">
             <div class="panel-heading">
               <h3 class="panel-title">Track</h3>
             </div>
@@ -143,7 +151,7 @@
               </div>
             </div>
           </div>
-          <div class="panel panel-warning entityCard back">
+          <div class="panel panel-danger entityCard back">
             <div class="panel-heading">
               <h3 class="panel-title">Track</h3>
             </div>

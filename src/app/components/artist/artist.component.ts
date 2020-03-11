@@ -1,5 +1,6 @@
 import { Component, OnInit, HostListener } from "@angular/core";
 import { SpotifyService } from "../../services/spotify.service";
+import { UserMixService } from "../../services/userMix.service";
 import { ActivatedRoute } from "@angular/router";
 import { map } from "rxjs/operators";
 import { OwlOptions } from "ngx-owl-carousel-o";
@@ -54,10 +55,13 @@ export class ArtistComponent implements OnInit {
   };
   constructor(
     private SpotifyService: SpotifyService,
+    private UserMixService: UserMixService,
     private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
+    //Loads the user mix array so that it doesn't clear upon router change.
+    this.UserMixService.loadUserMix();
     //Get the artist.
     this.route.params.pipe(map(params => params["id"])).subscribe(id => {
       this.SpotifyService.getToken().subscribe(data => {
@@ -117,12 +121,16 @@ export class ArtistComponent implements OnInit {
     return filteredArray;
   }
   //Adds this artist to the user mix so it's displayed on the homepage.
-  addToUserMix() {
+  addArtistToUserMix() {
     var artistID = this.artist["id"];
     var artistName = this.artist["name"];
     var linkToImage = this.artist["images"][0]["url"];
-    console.log(artistID);
-    console.log(artistName);
-    console.log(linkToImage);
+    var artistObject = {
+      type: "artist",
+      id: artistID,
+      image: linkToImage,
+      name: artistName
+    };
+    this.UserMixService.addObjectToArray(artistObject);
   }
 }

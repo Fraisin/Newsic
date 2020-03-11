@@ -6,7 +6,12 @@
   margin-bottom: 5%;
   height: 20%;
   width: 100%;
+  position: relative;
   background-color: #009871;
+  z-index: 5;
+}
+.accordionExpansion {
+  z-index: -1;
 }
 #albumsContainer {
   margin-top: 2%;
