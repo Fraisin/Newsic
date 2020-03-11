@@ -133,7 +133,12 @@ export class ArtistComponent implements OnInit {
     };
     this.UserMixService.addObjectToArray(artistObject);
   }
+  //Determines if the user's mix is already at the cap of 5.
   arrayFull() {
     return this.UserMixService.arrayIsFull();
+  }
+  //Determines if the given artist is already in the user's mix
+  artistInMix(artistID: string) {
+    return this.UserMixService.objectInArray(artistID);
   }
 }

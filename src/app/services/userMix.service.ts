@@ -24,12 +24,21 @@ export class UserMixService {
   arrayIsFull() {
     return this.userMix.length >= 5;
   }
-  //Returns true if the track with the specified ID is already in the user mix.
-  trackInUserMix(trackID: string) {}
   //Adds an object to the UserMix array.
   addObjectToArray(objectToAdd: any) {
     this.userMix.push(objectToAdd);
     this.saveArrayInStorage();
+  }
+  // Takes in an ID from an artist or track and determines if they are already in the user mix.
+  objectInArray(id: string) {
+    for (var entity of this.userMix) {
+      if (entity["type"] == "artist" || entity["type"] == "track") {
+        if (entity["id"] == id) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
   //Takes an id, locates the corresponding object in the user mix array and deletes it
   deleteEntity(type: string, id: string) {
@@ -44,5 +53,6 @@ export class UserMixService {
   //Saves the user mix array in the local storage so it remains upon refresh.
   saveArrayInStorage() {
     this.storage.set("userMix", this.userMix).subscribe(() => {});
+    console.log(this.userMix);
   }
 }

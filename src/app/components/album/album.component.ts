@@ -138,6 +138,10 @@ export class AlbumComponent implements OnInit {
     };
     this.UserMixService.addObjectToArray(trackObject);
   }
+  //Determines if the given track is already in the user's mix
+  trackInMix(trackID: string) {
+    return this.UserMixService.objectInArray(trackID);
+  }
   //Convert the millisecond duration into the traditional mm:ss form.
   msToSongTime(ms: any) {
     var minutes = Math.floor(ms / 60000);

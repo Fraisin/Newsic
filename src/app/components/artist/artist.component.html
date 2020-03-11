@@ -6,20 +6,23 @@
   </div>
   <div class="artistContainer">
     <div class="btnPhotoWrapper">
-      <ng-container *ngIf="arrayFull(); then arrayIsFull; else arrayNotFull">
+      <ng-container *ngIf="arrayFull()">
+        <a class="btn btn-default btn-lg btn-block addBtn disabled fullMix"
+          ><h4>Mix Is Full!</h4></a
+        >
       </ng-container>
-      <ng-template #arrayNotFull>
+      <ng-container *ngIf="!arrayFull() && !artistInMix(artist.id)">
         <a
           class="btn btn-default btn-lg btn-block addBtn"
           (click)="addArtistToUserMix()"
           ><h4>Add to Mix</h4></a
         >
-      </ng-template>
-      <ng-template #arrayIsFull>
-        <a class="btn btn-default btn-lg btn-block addBtn disabled"
-          ><h4>Mix Is Full!</h4></a
+      </ng-container>
+      <ng-container *ngIf="!arrayFull() && artistInMix(artist.id)">
+        <a class="btn btn-default btn-lg btn-block addBtn disabled alreadyAdded"
+          ><h4>Artist Added</h4></a
         >
-      </ng-template>
+      </ng-container>
       <img
         class="artistPhoto"
         src="{{ artist.images[0].url }}"

@@ -43,6 +43,9 @@
   margin-right: auto;
   text-align: center;
 }
+.alreadyAdded {
+  background-color: #014a39;
+}
 .audioFeatureContainer {
   display: flex;
   flex-direction: row;
@@ -83,7 +86,7 @@
 .defaultPopularityColour {
   border: 0.1em solid #009871;
 }
-.disabled {
+.fullMix {
   background-color: #3e4f4b;
 }
 .infoBlock {
