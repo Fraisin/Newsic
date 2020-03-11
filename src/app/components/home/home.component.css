@@ -22,15 +22,11 @@
   justify-content: space-evenly;
   align-items: center;
 }
-.entityNameContainer,
-.entityNameContainerBack {
+.entityNameContainer {
   text-align: center;
   overflow: auto;
   overflow-wrap: break-word;
   background-color: #2a2a2a;
-}
-.entityNameContainerBack {
-  position: absolute;
 }
 .genreButton {
   background-color: #016148;
@@ -66,18 +62,13 @@
     width: 140px;
     height: 250px;
   }
-  .entityNameContainer,
-  .entityNameContainerBack {
+  .entityNameContainer {
     width: 125px;
     padding-left: 10px;
     padding-right: 10px;
   }
-  .entityNameContainer > h4,
-  .entityNameContainerBack > h4 {
+  .entityNameContainer > h4 {
     font-size: 1em;
-  }
-  .entityNameContainerBack {
-    bottom: 20%;
   }
   .instructionWell {
     margin-top: -5%;
@@ -107,10 +98,8 @@
     width: 75px;
     height: 75px;
   }
-  .deleteImage {
-    top: 30%;
-  }
-  .panelImage {
+  .panelImage,
+  .panelGenreImage {
     margin-bottom: 7.5%;
   }
 }
@@ -183,7 +172,7 @@
   top: 0;
   background: rgba(0, 0, 0, 0.8);
 }
-.vertical.flip-container #backContainer {
+.vertical.flip-container {
   position: relative;
 }
 .vertical .back {

@@ -129,9 +129,14 @@ export class AlbumComponent implements OnInit {
     return tracksString;
   }
   //Adds this track to the user mix so it's displayed on the homepage.
-  addTrackToUserMix() {
-    //console.log(trackID);
-    console.log("hello world");
+  addTrackToUserMix(trackID: string, trackName: string, trackImage: string) {
+    var trackObject = {
+      type: "track",
+      id: trackID,
+      image: trackImage,
+      name: trackName
+    };
+    this.UserMixService.addObjectToArray(trackObject);
   }
   //Convert the millisecond duration into the traditional mm:ss form.
   msToSongTime(ms: any) {
@@ -168,5 +173,8 @@ export class AlbumComponent implements OnInit {
     $(chartID + " .shadow").css("border-width", "0.1em");
     $(chartID + " .num").text(percent);
     $(chartID + " .left-side").css("transform", "rotate(" + deg + "deg)");
+  }
+  arrayFull() {
+    return this.UserMixService.arrayIsFull();
   }
 }

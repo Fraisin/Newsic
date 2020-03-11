@@ -167,11 +167,26 @@
                 </div>
               </div>
             </div>
-            <a
-              class="btn btn-default btn-lg btn-block addBtn"
-              (click)="addTrackToUserMix()"
-              ><h4>Add to Mix</h4></a
-            >
+            <div>
+              <ng-container
+                *ngIf="arrayFull(); then arrayIsFull; else arrayNotFull"
+              >
+              </ng-container>
+              <ng-template #arrayNotFull>
+                <a
+                  class="btn btn-default btn-lg btn-block addBtn"
+                  (click)="
+                    addTrackToUserMix(track.id, track.name, album.images[0].url)
+                  "
+                  ><h4>Add to Mix</h4></a
+                >
+              </ng-template>
+              <ng-template #arrayIsFull>
+                <a class="btn btn-default btn-lg btn-block addBtn disabled"
+                  ><h4>Mix is Full!</h4></a
+                >
+              </ng-template>
+            </div>
           </div>
         </li>
       </ul>

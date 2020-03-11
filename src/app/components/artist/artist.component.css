@@ -10,9 +10,6 @@
   background-color: #009871;
   z-index: 5;
 }
-.accordionExpansion {
-  z-index: -1;
-}
 #albumsContainer {
   margin-top: 2%;
   display: flex;
@@ -68,6 +65,9 @@
 #carouselArtists {
   margin-bottom: 5%;
   height: 100%;
+}
+.disabled {
+  background-color: #3e4f4b;
 }
 .followersLabel {
   color: #bff5e7;

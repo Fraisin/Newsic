@@ -133,4 +133,7 @@ export class ArtistComponent implements OnInit {
     };
     this.UserMixService.addObjectToArray(artistObject);
   }
+  arrayFull() {
+    return this.UserMixService.arrayIsFull();
+  }
 }

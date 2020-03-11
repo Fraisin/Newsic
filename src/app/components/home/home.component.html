@@ -7,11 +7,13 @@
     Endless songs fine-tuned to your musical palette.
   </h6>
 </div>
-<div class="well well-lg instructionWell">
-  <h6>
-    Simply begin by pressing one of the buttons below to add an artist, song or
-    genre to your music 'mixture'.
-  </h6>
+<div *ngIf="arrayEmpty()">
+  <div class="well well-lg instructionWell">
+    <h6>
+      Simply begin by pressing one of the buttons below to add an artist, song
+      or genre to your music 'mixture'.
+    </h6>
+  </div>
 </div>
 <ng-container *ngIf="arrayFull(); then showMax; else showButtons">
 </ng-container>
@@ -117,11 +119,6 @@
                 alt="Artist Image"
                 (click)="deleteEntity('artist', entity.id)"
               />
-              <div class="entityNameContainerBack">
-                <h4>
-                  {{ entity.name }}
-                </h4>
-              </div>
             </div>
           </div>
         </div>
@@ -141,7 +138,7 @@
             <div class="panel-body entityContainer">
               <img
                 class="panelImage"
-                src="../assets/genre.png"
+                src="{{ entity.image }}"
                 alt="Track Image"
               />
               <div class="entityNameContainer">
@@ -160,12 +157,8 @@
                 class="deleteImage"
                 src="../assets/delete.png"
                 alt="Track Image"
+                (click)="deleteEntity('artist', entity.id)"
               />
-              <div class="entityNameContainerBack">
-                <h4>
-                  {{ entity.name }}
-                </h4>
-              </div>
             </div>
           </div>
         </div>
@@ -206,11 +199,6 @@
                 alt="Flat Genre Image"
                 (click)="deleteEntity('genre', entity.id)"
               />
-              <div class="entityNameContainerBack">
-                <h4>
-                  {{ entity.name }}
-                </h4>
-              </div>
             </div>
           </div>
         </div>

@@ -4,21 +4,6 @@ import { UserMixService } from "../../services/userMix.service";
 import { ActivatedRoute } from "@angular/router";
 import { map } from "rxjs/operators";
 
-/*
-    {
-      type: "artist",
-      id: "3TVXtAsR1Inumwj472S9r4",
-      image: "test",
-      name: "Drake"
-    },
-    { type: "genre", name: "hip-hop", id: "231jjfl2k" },
-    {
-      type: "track",
-      id: "0V1PzAbvRjbsbY2WklR65c",
-      image: "blegh",
-      name: "Some Song"
-    }
-    */
 @Component({
   selector: "home",
   templateUrl: "home.component.html",
