@@ -24,9 +24,10 @@ export class UserMixService {
   arrayIsFull() {
     return this.userMix.length >= 5;
   }
+  //Returns true if the track with the specified ID is already in the user mix.
+  trackInUserMix(trackID: string) {}
   //Adds an object to the UserMix array.
   addObjectToArray(objectToAdd: any) {
-    console.log("Item added. The array is now ", this.userMix);
     this.userMix.push(objectToAdd);
     this.saveArrayInStorage();
   }
@@ -43,6 +44,5 @@ export class UserMixService {
   //Saves the user mix array in the local storage so it remains upon refresh.
   saveArrayInStorage() {
     this.storage.set("userMix", this.userMix).subscribe(() => {});
-    console.log("Item saved. The array is now ", this.userMix);
   }
 }

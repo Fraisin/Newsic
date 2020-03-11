@@ -1,14 +1,15 @@
 .artistSongButton {
   background-color: #009871;
 }
+.btnContainer {
+  margin-left: auto;
+  margin-right: auto;
+}
 .clearAll {
-  margin-top: 2.5%;
+  margin-top: 4%;
 }
 .deleteImage {
   position: absolute;
-}
-.emptyWell {
-  margin-top: 7.5%;
 }
 .entityCard {
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 0 10px 10px rgba(0, 0, 0, 0.5);
@@ -31,6 +32,18 @@
 .genreButton {
   background-color: #016148;
 }
+.genreWell {
+  margin-left: auto;
+  margin-right: auto;
+}
+.maxWell,
+.instructionWell,
+.emptyWell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
 .mixContainer {
   margin-top: 8%;
   display: flex;
@@ -45,6 +58,7 @@
 }
 .siteName {
   color: #fcfbe3;
+  font-size: 1em;
 }
 .jumbotron {
   text-align: center;
@@ -55,8 +69,15 @@
 }
 /* Mobile Styles */
 @media only screen and (max-width: 419px) {
+  .btnContainer {
+    margin-top: 2%;
+    width: 90%;
+  }
   .desc {
     font-size: 1.2em;
+  }
+  .emptyWell {
+    margin-top: 7.5%;
   }
   .entityCard {
     width: 140px;
@@ -76,15 +97,19 @@
   .genreBtns {
     margin-top: 5%;
   }
-  .generateButton {
-    margin-top: 2%;
-    margin-bottom: 7.5%;
+  .genreWell {
+    width: 90%;
   }
-  .genreSearch {
-    width: 60%;
+  .generateButton {
+    margin-top: 3%;
+    margin-bottom: 7.5%;
   }
   .genreWell {
     margin-top: 5%;
+  }
+  .maxWell > h6,
+  .instructionWell > h6 {
+    font-size: 1em;
   }
   .mobileWell {
     margin-top: 5%;
@@ -106,8 +131,59 @@
 
 /* Tablet Styles */
 @media only screen and (min-width: 420px) and (max-width: 960px) {
+  .btnContainer {
+    margin-top: 3%;
+    width: 80%;
+  }
   .siteName {
-    color: red;
+    font-size: 1.5em;
+  }
+  .desc {
+    font-size: 1.4em;
+  }
+  .emptyWell {
+    margin-top: 5%;
+    font-size: 1.1em;
+  }
+  .entityCard {
+    margin-top: -5%;
+    width: 175px;
+    height: 313px;
+  }
+  .entityNameContainer {
+    width: 150px;
+    padding-left: 13px;
+    padding-right: 13px;
+  }
+  .entityNameContainer > h4 {
+    font-size: 1.2em;
+  }
+  .instructionWell {
+    margin-top: 5%;
+  }
+  .genreBtns {
+    margin-top: 5%;
+  }
+  .generateButton {
+    margin-bottom: 7.5%;
+  }
+  .genreWell {
+    margin-top: 5%;
+    width: 75%;
+  }
+  .maxWell > h6,
+  .instructionWell > h6 {
+    font-size: 1.2em;
+  }
+  .panelGenreImage,
+  .panelImage,
+  .deleteImage {
+    width: 90px;
+    height: 90px;
+  }
+  .panelImage,
+  .panelGenreImage {
+    margin-bottom: 7.5%;
   }
   .mobileOnly {
     display: none;
@@ -117,7 +193,59 @@
 /* Desktop Styles */
 @media only screen and (min-width: 961px) {
   .siteName {
-    color: green;
+    font-size: 1.7em;
+  }
+  .btnContainer {
+    margin-top: 5%;
+    width: 70%;
+  }
+  .desc {
+    font-size: 1.6em;
+  }
+  .emptyWell {
+    margin-top: 5%;
+  }
+  .emptyWell > h6 {
+    font-size: 1.2em;
+  }
+  .entityCard {
+    width: 230px;
+    height: 400px;
+  }
+  .entityNameContainer {
+    width: 200px;
+    padding-left: 17px;
+    padding-right: 17px;
+  }
+  .entityNameContainer > h4 {
+    font-size: 1.3em;
+  }
+  .instructionWell {
+    margin-top: 3%;
+  }
+  .genreBtns {
+    margin-top: 5%;
+  }
+  .generateButton {
+    margin-bottom: 7.5%;
+  }
+  .genreWell {
+    margin-top: 5%;
+    width: 75%;
+  }
+  .maxWell > h6,
+  .instructionWell > h6 {
+    font-size: 1.6em;
+  }
+  .panelGenreImage,
+  .panelImage,
+  .deleteImage {
+    width: 125px;
+    height: 125px;
+  }
+  .panelImage,
+  .panelGenreImage {
+    margin-bottom: 7.5%;
   }
   .mobileOnly {
     display: none;
