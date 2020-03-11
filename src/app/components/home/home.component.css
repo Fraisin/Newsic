@@ -11,6 +11,10 @@
 .deleteImage {
   position: absolute;
 }
+.emptyImage {
+  margin-top: 5%;
+  width: 50%;
+}
 .entityCard {
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 0 10px 10px rgba(0, 0, 0, 0.5);
 }
@@ -43,6 +47,9 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+}
+.emptyWell {
+  flex-direction: column;
 }
 .mixContainer {
   margin-top: 8%;
