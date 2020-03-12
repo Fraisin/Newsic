@@ -17,7 +17,6 @@ import { SelectDropDownModule } from "ngx-select-dropdown";
 import * as $ from "jquery";
 import { StorageModule } from "@ngx-pwa/local-storage";
 import { UserMixService } from "./services/userMix.service";
-import { NgxAudioPlayerModule } from "ngx-audio-player";
 
 @NgModule({
   declarations: [
@@ -39,7 +38,6 @@ import { NgxAudioPlayerModule } from "ngx-audio-player";
     BrowserAnimationsModule,
     CarouselModule,
     SelectDropDownModule,
-    NgxAudioPlayerModule,
     StorageModule.forRoot({ IDBNoWrap: true })
   ],
   providers: [UserMixService],
