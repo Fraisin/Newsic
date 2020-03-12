@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, HostListener } from "@angular/core";
 import { SpotifyService } from "../../services/spotify.service";
 import { UserMixService } from "../../services/userMix.service";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { map } from "rxjs/operators";
 
 @Component({
@@ -27,7 +27,8 @@ export class HomeComponent {
   constructor(
     private SpotifyService: SpotifyService,
     private UserMixService: UserMixService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
   ngOnInit() {
     //Load the global array if it has existing data.
@@ -46,6 +47,37 @@ export class HomeComponent {
   //Gets the global usermix array
   getMixArray() {
     return this.UserMixService.userMix;
+  }
+  getParams() {
+    var artistString = "";
+    var genreString = "";
+    var trackString = "";
+    var mix = this.getMixArray();
+    for (var entity of mix) {
+      if (entity.type == "artist") {
+        artistString =
+          artistString === "" ? entity.id : artistString + "," + entity.id;
+      }
+      if (entity.type == "genre") {
+        genreString =
+          genreString === "" ? entity.name : genreString + "," + entity.name;
+      }
+      if (entity.type == "track") {
+        trackString =
+          trackString === "" ? entity.id : trackString + "," + entity.id;
+      }
+    }
+    var queryParams = [artistString, genreString, trackString];
+    return queryParams;
+  }
+  navToPlaylist() {
+    this.router.navigate(["/playlist"], {
+      queryParams: {
+        seed_artists: this.getParams()[0],
+        seed_genres: this.getParams()[1],
+        seed_tracks: this.getParams()[2]
+      }
+    });
   }
   //Takes in a genreName and adds a corresponding genre object to the array
   addGenre(genreName: string) {

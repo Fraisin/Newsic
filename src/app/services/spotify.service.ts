@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Headers, URLSearchParams } from "@angular/http";
+import { query } from "@angular/animations";
 
 @Injectable({
   providedIn: "root"
@@ -131,6 +132,7 @@ export class SpotifyService {
       })
     };
     this.searchUrl = "https://api.spotify.com/v1/tracks/?ids=" + tracksString;
+    console.log(this.searchUrl);
     https: return this.httpClient.get(this.searchUrl, httpSearch);
   }
   //gets all the audio features of a list of tracks
@@ -153,6 +155,17 @@ export class SpotifyService {
     };
     this.searchUrl =
       "https://api.spotify.com/v1/recommendations/available-genre-seeds";
+    https: return this.httpClient.get(this.searchUrl, httpSearch);
+  }
+  //gets the user's recommendation playlist object after they submit their mix
+  getUserMix(queryString: string, token: string) {
+    const httpSearch = {
+      headers: new HttpHeaders({
+        Authorization: "Bearer " + token
+      })
+    };
+    this.searchUrl =
+      "https://api.spotify.com/v1/recommendations?market=US" + queryString;
     https: return this.httpClient.get(this.searchUrl, httpSearch);
   }
 }

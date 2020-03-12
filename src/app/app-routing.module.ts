@@ -12,7 +12,8 @@ const routes: Routes = [
   { path: "search", component: SearchComponent },
   { path: "about", component: AboutComponent },
   { path: "artist/:id", component: ArtistComponent },
-  { path: "album/:id", component: AlbumComponent }
+  { path: "album/:id", component: AlbumComponent },
+  { path: "playlist", component: AlbumComponent }
 ];
 
 @NgModule({

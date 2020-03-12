@@ -19,10 +19,13 @@
   margin-left: auto;
   margin-right: auto;
 }
-.albumCover {
+.albumCover,
+.playlistCover {
   margin-top: 2%;
   width: 50%;
   object-fit: cover;
+}
+.albumCover {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.25);
 }
 .albumCoverInTrackBlock {

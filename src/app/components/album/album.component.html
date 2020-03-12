@@ -1,84 +1,22 @@
-<div *ngIf="album">
-  <div id="albumContainer">
+<!-- DISPLAYING A PLAYLIST -->
+<ng-container *ngIf="displayPlaylistTracks"
+  ><div id="albumContainer">
     <div class="albumHeadingContainer">
-      <h1>{{ album.name }}</h1>
+      <h1>Your Playlist</h1>
     </div>
     <br />
     <img
-      class="albumCover"
-      src="{{ album.images[0].url }}"
+      class="playlistCover"
+      src="../assets/happymusic.svg"
       alt="Album Cover Art"
     />
-    <a href="artist/{{ artistID }}"
-      ><h3 id="viewArtist">View Artist's Page</h3></a
-    >
   </div>
   <div class="labelWrapper">
-    <h2 class="labelHeading">Information</h2>
-    <img class="labelImage" src="../assets/info.svg" alt="Info Symbol" />
-  </div>
-  <div class="infoBlock well">
-    <div class="popularity hideMobile">
-      <p class="text-warning">Popularity</p>
-      <div id="popularityChart" class="donut-size">
-        <div class="pie-wrapper">
-          <span class="popularityLabel">
-            <span class="num">{{ album.popularity }}</span>
-          </span>
-          {{
-            updateDonutChart("#popularityChart", album.popularity, "popularity")
-          }}
-          <div class="pie">
-            <div class="left-side half-circle defaultPopularityColour"></div>
-            <div class="right-side half-circle defaultPopularityColour"></div>
-          </div>
-          <div class="shadow"></div>
-        </div>
-      </div>
-    </div>
-    <div class="tableWrapper">
-      <table>
-        <tbody>
-          <tr>
-            <td id="artistCell">
-              <span>Released By</span>
-              <h3>{{ album.artists[0].name }}</h3>
-            </td>
-            <td id="releasedOnCell">
-              <span>Released On</span>
-              <h3>{{ album.release_date }}</h3>
-            </td>
-            <td id="durationCell">
-              <span>Duration</span>
-              <h3>{{ albumDuration }}</h3>
-            </td>
-          </tr>
-          <tr>
-            <td id="numOfTracksCell">
-              <span># of Tracks</span>
-              <h3>{{ album.total_tracks }}</h3>
-            </td>
-            <td id="labelCell">
-              <span>Label</span>
-              <h5>
-                {{ album.label }}
-              </h5>
-            </td>
-            <td id="copyrightCell">
-              <span>Copyright</span>
-              <h5>{{ album.copyrights[0].text }}</h5>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  <div class="labelWrapper">
-    <h2 class="labelHeading">Tracks</h2>
+    <h2 class="labelHeading">Your Songs</h2>
     <img class="labelImage" src="../assets/note.svg" alt="Music Note" />
   </div>
   <div id="tracksContainer">
-    <div *ngFor="let track of tracks; let i = index">
+    <div *ngFor="let track of playlist; let i = index">
       <ul>
         <li>
           <input type="checkbox" checked />
@@ -87,7 +25,7 @@
             <div class="trackBlock well">
               <img
                 class="albumCoverInTrackBlock"
-                src="{{ album.images[0].url }}"
+                src="../assets/happymusic.svg"
                 alt="Album Cover Art"
               />
               <div class="trackInfoContainer">
@@ -104,13 +42,13 @@
                   <div class="pie-wrapper">
                     <span class="popularityLabel">
                       <span class="num">
-                        {{ allTracksInfo[i]?.popularity }}
+                        {{ allPlaylistTracksInfo[i]?.popularity }}
                       </span>
                     </span>
                     {{
                       updateDonutChart(
                         "#popularityChart" + i,
-                        allTracksInfo[i]?.popularity,
+                        allPlaylistTracksInfo[i]?.popularity,
                         "popularity"
                       )
                     }}
@@ -132,7 +70,7 @@
             <div class="audioFeatureContainer">
               <div
                 *ngFor="
-                  let audioInfo of allTracksAudioFeatures[i] | keyvalue;
+                  let audioInfo of allPlaylistTracksAudioFeatures[i] | keyvalue;
                   index as j
                 "
               >
@@ -168,31 +106,223 @@
               </div>
             </div>
             <div>
-              <ng-container *ngIf="arrayFull()">
-                <a
-                  class="btn btn-default btn-lg btn-block addBtn disabled fullMix"
-                  ><h4>Mix Is Full!</h4></a
-                >
-              </ng-container>
-              <ng-container *ngIf="!arrayFull() && !trackInMix(track.id)">
-                <a
-                  class="btn btn-default btn-lg btn-block addBtn"
-                  (click)="
-                    addTrackToUserMix(track.id, track.name, album.images[0].url)
-                  "
-                  ><h4>Add to Mix</h4></a
-                >
-              </ng-container>
-              <ng-container *ngIf="!arrayFull() && trackInMix(track.id)">
-                <a
-                  class="btn btn-default btn-lg btn-block addBtn disabled alreadyAdded"
-                  ><h4>Track Added</h4></a
-                >
-              </ng-container>
+              <a class="btn btn-default btn-lg btn-block addBtn"
+                ><h4>View Artist</h4></a
+              >
             </div>
           </div>
         </li>
       </ul>
     </div>
   </div>
-</div>
+</ng-container>
+
+<!-- DISPLAYING AN ALBUM -->
+<ng-container *ngIf="displayAlbumTracks">
+  <div *ngIf="album">
+    <div id="albumContainer">
+      <div class="albumHeadingContainer">
+        <h1>{{ album.name }}</h1>
+      </div>
+      <br />
+      <img
+        class="albumCover"
+        src="{{ album.images[0].url }}"
+        alt="Album Cover Art"
+      />
+      <a href="artist/{{ artistID }}"
+        ><h3 id="viewArtist">View Artist's Page</h3></a
+      >
+    </div>
+    <div class="labelWrapper">
+      <h2 class="labelHeading">Information</h2>
+      <img class="labelImage" src="../assets/info.svg" alt="Info Symbol" />
+    </div>
+    <div class="infoBlock well">
+      <div class="popularity hideMobile">
+        <p class="text-warning">Popularity</p>
+        <div id="popularityChart" class="donut-size">
+          <div class="pie-wrapper">
+            <span class="popularityLabel">
+              <span class="num">{{ album.popularity }}</span>
+            </span>
+            {{
+              updateDonutChart(
+                "#popularityChart",
+                album.popularity,
+                "popularity"
+              )
+            }}
+            <div class="pie">
+              <div class="left-side half-circle defaultPopularityColour"></div>
+              <div class="right-side half-circle defaultPopularityColour"></div>
+            </div>
+            <div class="shadow"></div>
+          </div>
+        </div>
+      </div>
+      <div class="tableWrapper">
+        <table>
+          <tbody>
+            <tr>
+              <td id="artistCell">
+                <span>Released By</span>
+                <h3>{{ album.artists[0].name }}</h3>
+              </td>
+              <td id="releasedOnCell">
+                <span>Released On</span>
+                <h3>{{ album.release_date }}</h3>
+              </td>
+              <td id="durationCell">
+                <span>Duration</span>
+                <h3>{{ albumDuration }}</h3>
+              </td>
+            </tr>
+            <tr>
+              <td id="numOfTracksCell">
+                <span># of Tracks</span>
+                <h3>{{ album.total_tracks }}</h3>
+              </td>
+              <td id="labelCell">
+                <span>Label</span>
+                <h5>
+                  {{ album.label }}
+                </h5>
+              </td>
+              <td id="copyrightCell">
+                <span>Copyright</span>
+                <h5>{{ album.copyrights[0].text }}</h5>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="labelWrapper">
+      <h2 class="labelHeading">Tracks</h2>
+      <img class="labelImage" src="../assets/note.svg" alt="Music Note" />
+    </div>
+    <div id="tracksContainer">
+      <div *ngFor="let track of tracks; let i = index">
+        <ul>
+          <li>
+            <input type="checkbox" checked />
+            <i></i>
+            <div>
+              <div class="trackBlock well">
+                <img
+                  class="albumCoverInTrackBlock"
+                  src="{{ album.images[0].url }}"
+                  alt="Album Cover Art"
+                />
+                <div class="trackInfoContainer">
+                  <div class="trackInfoWrapper">
+                    <h2 class="#trackName">{{ track.name }}</h2>
+                    <h3 class="trackDuration">
+                      {{ msToSongTime(track.duration_ms) }}
+                    </h3>
+                  </div>
+                </div>
+                <div class="popularity hideMobile">
+                  <p class="text-warning">Popularity</p>
+                  <div id="{{ 'popularityChart' + i }}" class="donut-size">
+                    <div class="pie-wrapper">
+                      <span class="popularityLabel">
+                        <span class="num">
+                          {{ allAlbumTracksInfo[i]?.popularity }}
+                        </span>
+                      </span>
+                      {{
+                        updateDonutChart(
+                          "#popularityChart" + i,
+                          allAlbumTracksInfo[i]?.popularity,
+                          "popularity"
+                        )
+                      }}
+                      <div class="pie">
+                        <div
+                          class="left-side half-circle defaultPopularityColour"
+                        ></div>
+                        <div
+                          class="right-side half-circle defaultPopularityColour"
+                        ></div>
+                      </div>
+                      <div class="shadow"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="accordionExpansion">
+              <div class="audioFeatureContainer">
+                <div
+                  *ngFor="
+                    let audioInfo of allAlbumTracksAudioFeatures[i] | keyvalue;
+                    index as j
+                  "
+                >
+                  <div class="audioFeatureCircle">
+                    <p class="featureHeading">
+                      {{ audioInfo.key }}
+                    </p>
+                    <div
+                      id="{{ 'audioFeatureChart' + i + j }}"
+                      class="donut-size"
+                    >
+                      <div class="pie-wrapper">
+                        <span class="popularityLabel">
+                          <span class="num">
+                            {{ audioInfo.value * 100 }}
+                          </span>
+                        </span>
+                        {{
+                          updateDonutChart(
+                            "#audioFeatureChart" + i + j,
+                            audioInfo.value * 100,
+                            "audioFeature"
+                          )
+                        }}
+                        <div class="pie">
+                          <div class="left-side half-circle"></div>
+                          <div class="right-side half-circle"></div>
+                        </div>
+                        <div class="shadow"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <ng-container *ngIf="arrayFull()">
+                  <a
+                    class="btn btn-default btn-lg btn-block addBtn disabled fullMix"
+                    ><h4>Mix Is Full!</h4></a
+                  >
+                </ng-container>
+                <ng-container *ngIf="!arrayFull() && !trackInMix(track.id)">
+                  <a
+                    class="btn btn-default btn-lg btn-block addBtn"
+                    (click)="
+                      addTrackToUserMix(
+                        track.id,
+                        track.name,
+                        album.images[0].url
+                      )
+                    "
+                    ><h4>Add to Mix</h4></a
+                  >
+                </ng-container>
+                <ng-container *ngIf="!arrayFull() && trackInMix(track.id)">
+                  <a
+                    class="btn btn-default btn-lg btn-block addBtn disabled alreadyAdded"
+                    ><h4>Track Added</h4></a
+                  >
+                </ng-container>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</ng-container>

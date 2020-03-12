@@ -20,8 +20,17 @@ export class AlbumComponent implements OnInit {
   albumDuration: string;
   tracks: any;
   trackIDs = new Array();
-  allTracksInfo: any[] = [];
-  allTracksAudioFeatures: any[] = [];
+  playlistTrackIDs = new Array();
+  allAlbumTracksInfo: any[] = [];
+  allAlbumTracksAudioFeatures: any[] = [];
+  allPlaylistTracksInfo: any[] = [];
+  allPlaylistTracksAudioFeatures: any[] = [];
+  seedArtists: any;
+  seedGenres: any;
+  seedTracks: any;
+  displayAlbumTracks: boolean = false;
+  displayPlaylistTracks: boolean = false;
+  playlist: any;
   featureHeadings = [
     "Danceability",
     "Energy",
@@ -53,31 +62,33 @@ export class AlbumComponent implements OnInit {
   ngOnInit() {
     //Loads the user mix array so that it doesn't clear upon router change.
     this.UserMixService.loadUserMix();
-    //Get the album.
-    this.route.params.pipe(map(params => params["id"])).subscribe(id => {
-      this.SpotifyService.getToken().subscribe(data => {
-        this.SpotifyService.getAlbum(id, data["access_token"]).subscribe(
-          album => {
-            this.album = album;
-            //Get the artist ID of this album's artist.
-            this.artistID = album["artists"][0]["id"];
-            {
-              this.SpotifyService.getArtist(
-                this.artistID,
-                data["access_token"]
-              ).subscribe(artist => {
-                this.artistPhoto = artist["images"][0]["url"];
-              });
+    this.route.params.subscribe(params => {
+      if (params["id"]) {
+        this.displayAlbumTracks = true;
+        this.displayPlaylistTracks = false;
+        this.id = params["id"];
+        this.SpotifyService.getToken().subscribe(data => {
+          this.SpotifyService.getAlbum(this.id, data["access_token"]).subscribe(
+            album => {
+              this.album = album;
+              //Get the artist ID of this album's artist.
+              this.artistID = album["artists"][0]["id"];
+              {
+                this.SpotifyService.getArtist(
+                  this.artistID,
+                  data["access_token"]
+                ).subscribe(artist => {
+                  this.artistPhoto = artist["images"][0]["url"];
+                });
+              }
             }
-          }
-        );
-      });
-    });
-    //Get the album's tracks.
-    this.route.params.pipe(map(params => params["id"])).subscribe(id => {
-      this.SpotifyService.getToken().subscribe(data => {
-        this.SpotifyService.getAlbumTracks(id, data["access_token"]).subscribe(
-          tracks => {
+          );
+        });
+        this.SpotifyService.getToken().subscribe(data => {
+          this.SpotifyService.getAlbumTracks(
+            this.id,
+            data["access_token"]
+          ).subscribe(tracks => {
             this.tracks = tracks["items"];
             //Push each track id into an array so we can use it to fetch multiple tracks at once.
             //At the same time, sum up the duration of each track to get the album duration.
@@ -87,6 +98,7 @@ export class AlbumComponent implements OnInit {
               albumDuration =
                 albumDuration + Number(this.tracks[i]["duration_ms"]);
             }
+            console.log(this.trackIDs);
             this.albumDuration = this.msToSongTime(
               albumDuration
             ).toLocaleString();
@@ -96,15 +108,17 @@ export class AlbumComponent implements OnInit {
                 this.getTracksString(this.trackIDs),
                 data["access_token"]
               ).subscribe(trackinfo => {
-                this.allTracksInfo = trackinfo["tracks"];
+                this.allAlbumTracksInfo = trackinfo["tracks"];
                 //Get audio features (danceability, energy, etc.)
                 this.SpotifyService.getTracksFeatures(
                   this.getTracksString(this.trackIDs),
                   data["access_token"]
                 ).subscribe(trackfeatures => {
-                  this.allTracksAudioFeatures = trackfeatures["audio_features"];
+                  this.allAlbumTracksAudioFeatures =
+                    trackfeatures["audio_features"];
                   //Delete unwanted properties of the object.
-                  for (var audioFeatureObject of this.allTracksAudioFeatures) {
+                  for (var audioFeatureObject of this
+                    .allAlbumTracksAudioFeatures) {
                     for (var keyToDelete of this.keysToDelete) {
                       delete audioFeatureObject[keyToDelete];
                     }
@@ -112,10 +126,88 @@ export class AlbumComponent implements OnInit {
                 });
               });
             }
-          }
-        );
-      });
+          });
+        });
+      }
     });
+    this.route.queryParams.subscribe(params => {
+      if (params["seed_artists"]) this.seedArtists = params["seed_artists"];
+      if (params["seed_genres"]) this.seedGenres = params["seed_genres"];
+      if (params["seed_tracks"]) this.seedTracks = params["seed_tracks"];
+      if (this.seedArtists || this.seedGenres || this.seedTracks) {
+        this.displayAlbumTracks = false;
+        this.displayPlaylistTracks = true;
+        var queryString = this.getQueryString(
+          this.seedArtists,
+          this.seedGenres,
+          this.seedTracks
+        );
+        this.SpotifyService.getToken().subscribe(data => {
+          this.SpotifyService.getUserMix(
+            queryString,
+            data["access_token"]
+          ).subscribe(playlistTracks => {
+            this.playlist = playlistTracks["tracks"];
+            console.log(this.playlist);
+            //Push each track id into an array so we can use it to fetch multiple tracks at once.
+            for (var i in this.playlist) {
+              this.playlistTrackIDs.push(this.playlist[i]["id"]);
+            }
+            {
+              //Get basic information about the tracks (artist, popularity, etc.)
+              this.SpotifyService.getTracks(
+                this.getTracksString(this.playlistTrackIDs),
+                data["access_token"]
+              ).subscribe(playlistTrackinfo => {
+                this.allPlaylistTracksInfo = playlistTrackinfo["tracks"];
+                //Get audio features (danceability, energy, etc.)
+                this.SpotifyService.getTracksFeatures(
+                  this.getTracksString(this.playlistTrackIDs),
+                  data["access_token"]
+                ).subscribe(playlistTrackfeatures => {
+                  this.allPlaylistTracksAudioFeatures =
+                    playlistTrackfeatures["audio_features"];
+                  //Delete unwanted properties of the object.
+                  for (var audioFeatureObject of this
+                    .allPlaylistTracksAudioFeatures) {
+                    for (var keyToDelete of this.keysToDelete) {
+                      delete audioFeatureObject[keyToDelete];
+                    }
+                  }
+                });
+              });
+            }
+          });
+        });
+      }
+    });
+    console.log(
+      "printing the value of seed_artists parameter " + this.seedArtists
+    );
+    console.log(
+      "printing the value of seed_genres parameter " + this.seedGenres
+    );
+    console.log(
+      "printing the value of seed_tracks parameter " + this.seedTracks
+    );
+    console.log(
+      "printing out value of DISPLAY ALBUM: " + this.displayAlbumTracks
+    );
+    console.log(
+      "printing out value of DISPLAY PLAYLIST: " + this.displayPlaylistTracks
+    );
+  }
+  getQueryString(artists: String, genres: String, tracks: String) {
+    console.log("printing the value of genres " + genres);
+    var seedArtists = "&seed_artists=" + artists;
+    var seedGenres = "&seed_genres=" + genres;
+    var seedTracks = "&seed_tracks=" + tracks;
+    var queryString = "";
+    if (typeof artists !== "undefined") queryString = queryString + seedArtists;
+    if (typeof genres !== "undefined") queryString = queryString + seedGenres;
+    if (typeof tracks !== "undefined") queryString = queryString + seedTracks;
+    console.log("NOW PRINTING THE QUERY STRING " + queryString);
+    return queryString;
   }
   //Takes in an array of trackIDs and appends them to a string to pass to the service method.
   getTracksString(trackIDs: any[]) {

@@ -29,7 +29,7 @@
 }
 .entityNameContainer {
   text-align: center;
-  overflow: auto;
+  overflow: hidden;
   overflow-wrap: break-word;
   background-color: #2a2a2a;
 }
