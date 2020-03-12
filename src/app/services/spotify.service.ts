@@ -165,7 +165,8 @@ export class SpotifyService {
       })
     };
     this.searchUrl =
-      "https://api.spotify.com/v1/recommendations?market=US" + queryString;
+      "https://api.spotify.com/v1/recommendations?limit=30&market=US" +
+      queryString;
     https: return this.httpClient.get(this.searchUrl, httpSearch);
   }
 }

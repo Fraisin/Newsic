@@ -1,6 +1,6 @@
 <!-- DISPLAYING A PLAYLIST -->
-<ng-container *ngIf="displayPlaylistTracks"
-  ><div id="albumContainer">
+<ng-container *ngIf="displayPlaylistTracks">
+  <div id="albumContainer">
     <div class="albumHeadingContainer">
       <h1>Your Playlist</h1>
     </div>
@@ -25,7 +25,7 @@
             <div class="trackBlock well">
               <img
                 class="albumCoverInTrackBlock"
-                src="../assets/happymusic.svg"
+                src="{{ track.album.images[0].url }}"
                 alt="Album Cover Art"
               />
               <div class="trackInfoContainer">

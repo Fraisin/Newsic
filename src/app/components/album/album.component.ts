@@ -238,7 +238,9 @@ export class AlbumComponent implements OnInit {
   msToSongTime(ms: any) {
     var minutes = Math.floor(ms / 60000);
     var seconds = ((ms % 60000) / 1000).toFixed(0);
-    return minutes + ":" + (Number(seconds) < 10 ? "0" : "") + seconds;
+    return Number(seconds) == 60
+      ? minutes + 1 + ":00"
+      : minutes + ":" + (Number(seconds) < 10 ? "0" : "") + seconds;
   }
   updateDonutChart(chartID: any, percent: number, type: string) {
     //Fix to the audio feature circles not displaying correctly in production
