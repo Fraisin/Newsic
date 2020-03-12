@@ -17,13 +17,15 @@
   </head>
   <body>
     <!-- Start of Jumbotron -->
-    <div class="jumbotron">
-      <h1 class="frontPageTitle">MusicDex</h1>
-      <p class="frontPageDesc">
-        Welcome to
-        <span class="titleInDesc">MusicDex!</span>
-        Simply begin by typing the name of an artist below.
-      </p>
+    <div class="jumbotron searchJumbo">
+      <div class="well searchWell">
+        <h1 class="frontPageTitle">Search For Music</h1>
+        <p class="frontPageDesc">
+          Simply begin by typing the name of
+          <span class="titleInDesc">an artist</span>
+          below.
+        </p>
+      </div>
       <hr class="jumboDivider" />
       <div class="searchbar">
         <!-- SEARCHBAR -->
@@ -38,11 +40,31 @@
     <!-- End of Jumbotron -->
     <!-- if the searchString is empty or just whitespace, display the front image -->
     <div *ngIf="emptySearch">
-      <img
-        class="frontPageImage"
-        src="../assets/music.svg"
-        alt="Illustration of Person Listening to Music"
-      />
+      <div class="well well-lg instructionWell">
+        <h6>
+          To add an artist, view their profile and click the big
+          <span class="titleInDesc">Add to Mix</span> button.
+        </h6>
+        <h6>
+          To add a track, view the album the track is on, click on the track to
+          open a dropdown and press the same
+          <span class="titleInDesc">Add to Mix</span> button!
+        </h6>
+      </div>
+      <div class="artistContainer">
+        <img
+          class="artistExample"
+          src="../assets/artistexample.png"
+          alt="Artist Example"
+        />
+      </div>
+      <div class="artistContainer">
+        <img
+          class="artistExample"
+          src="../assets/trackexample.png"
+          alt="Track Example"
+        />
+      </div>
     </div>
     <div *ngIf="!emptySearch">
       <h3 class="searchHeading">Search Results:</h3>
@@ -67,7 +89,7 @@
               </h4>
               <!-- GENRES -->
               <div class="artistGenres">
-                <p class="text-warning genresText">Genres:</p>
+                <p class="genresText">Genres:</p>
                 <span *ngIf="res.genres.length == 0" class="noGenreMessage"
                   >No genres were found for this artist.</span
                 >
@@ -80,14 +102,14 @@
               </div>
               <!-- FOLLOWERS -->
               <div class="followers">
-                <p class="text-warning followerLabel">Followers:</p>
+                <p class="followerLabel">Followers:</p>
                 <span>
                   {{ res.followers.total.toLocaleString() }}
                 </span>
               </div>
               <!-- POPULARITY -->
               <div class="popularity">
-                <p class="text-warning">Popularity</p>
+                <p class="popularityLabel">Popularity</p>
                 <div id="{{ 'popularityChart' + i }}" class="donut-size">
                   <div class="pie-wrapper">
                     <span class="label">

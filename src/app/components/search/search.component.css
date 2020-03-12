@@ -1,6 +1,13 @@
 .artistBlock {
   position: relative;
 }
+.artistContainer {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .artistGenres > p {
   display: inline;
 }
@@ -30,6 +37,7 @@
   display: inline;
 }
 .followerLabel {
+  color: #c6b3e3;
   margin-right: 10px;
 }
 .frontPageImage {
@@ -40,6 +48,21 @@
 .genreBadges {
   margin-left: 10px;
   overflow: auto;
+}
+.genreText {
+  background-color: #b1a0ca;
+}
+.instructionWell {
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-left: 10%;
+  padding-right: 10%;
 }
 .jumbotron {
   height: 50%;
@@ -67,15 +90,29 @@
   min-width: 10%;
   transform: translateY(-50%);
 }
+.popularityLabel {
+  color: #c6b3e3;
+}
 .searchbar {
   display: flex;
   flex-direction: row;
 }
 .searchHeading {
-  color: #f39c12;
+  color: #c9b2ed;
+}
+.searchJumbo {
+  background-color: #3a2e4a;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 10px 10px rgba(0, 0, 0, 0.5);
+}
+.searchWell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
 }
 .titleInDesc {
-  color: #f39c12;
+  color: #c9b2ed;
 }
 /* CSS for the donut status bar of an artist's popularity.
 Inspired from peavy's work @ https://codepen.io/peavy/pen/NzYVjw */
@@ -153,6 +190,9 @@ Inspired from peavy's work @ https://codepen.io/peavy/pen/NzYVjw */
   .artistGenres {
     width: 72%;
   }
+  .artistExample {
+    width: 105%;
+  }
   .frontPageDesc {
     font-size: 1em;
   }
@@ -161,6 +201,9 @@ Inspired from peavy's work @ https://codepen.io/peavy/pen/NzYVjw */
   }
   .frontPageImage {
     width: 50%;
+  }
+  .instructionWell > h6 {
+    font-size: 0.8em;
   }
   .popularity {
     right: 3%;
@@ -174,6 +217,9 @@ Inspired from peavy's work @ https://codepen.io/peavy/pen/NzYVjw */
   .artistGenres {
     width: 82%;
   }
+  .artistExample {
+    width: 105%;
+  }
   .frontPageDesc {
     font-size: 1.2em;
   }
@@ -182,6 +228,9 @@ Inspired from peavy's work @ https://codepen.io/peavy/pen/NzYVjw */
   }
   .frontPageTitle {
     font-size: 3em;
+  }
+  .instructionWell > h6 {
+    font-size: 1em;
   }
   .popularity {
     right: 2%;
@@ -195,6 +244,9 @@ Inspired from peavy's work @ https://codepen.io/peavy/pen/NzYVjw */
   .artistGenres {
     width: 85%;
   }
+  .artistExample {
+    width: 80%;
+  }
   .frontPageDesc {
     font-size: 1.4em;
   }
@@ -203,6 +255,9 @@ Inspired from peavy's work @ https://codepen.io/peavy/pen/NzYVjw */
   }
   .frontPageTitle {
     font-size: 4em;
+  }
+  .instructionWell > h6 {
+    font-size: 1.2em;
   }
   .popularity {
     right: 1%;

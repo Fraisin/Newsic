@@ -1,19 +1,26 @@
 .artistSongButton {
-  background-color: #009871;
+  background-color: #7871f0;
+}
+.bigJumbo {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 10px 10px rgba(0, 0, 0, 0.5);
 }
 .btnContainer {
   margin-left: auto;
   margin-right: auto;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5), 0 10px 10px rgba(0, 0, 0, 0.5);
 }
 .clearAll {
-  margin-top: 4%;
+  width: 100%;
+}
+.clearAllContainer {
+  margin-left: auto;
+  margin-right: auto;
 }
 .deleteImage {
   position: absolute;
 }
 .emptyImage {
   margin-top: 5%;
-  width: 50%;
 }
 .entityCard {
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 0 10px 10px rgba(0, 0, 0, 0.5);
@@ -34,7 +41,7 @@
   background-color: #2a2a2a;
 }
 .genreButton {
-  background-color: #016148;
+  background-color: #413d80;
 }
 .genreWell {
   margin-left: auto;
@@ -51,6 +58,9 @@
 .emptyWell {
   flex-direction: column;
 }
+.lightPurple {
+  color: #bdb8f2;
+}
 .mixContainer {
   margin-top: 8%;
   display: flex;
@@ -64,7 +74,7 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5), 0 10px 10px rgba(0, 0, 0, 0.5);
 }
 .siteName {
-  color: #fcfbe3;
+  font-color: #cac7eb;
   font-size: 1em;
 }
 .jumbotron {
@@ -76,12 +86,22 @@
 }
 /* Mobile Styles */
 @media only screen and (max-width: 419px) {
+  .addBtnText {
+    font-size: 1em;
+  }
   .btnContainer {
-    margin-top: 2%;
+    margin-bottom: 2%;
     width: 90%;
+  }
+  .clearAllContainer {
+    width: 60%;
+    margin-top: 5%;
   }
   .desc {
     font-size: 1.2em;
+  }
+  .emptyImage {
+    width: 50%;
   }
   .emptyWell {
     margin-top: 7.5%;
@@ -112,7 +132,7 @@
     margin-bottom: 7.5%;
   }
   .genreWell {
-    margin-top: 5%;
+    margin-top: 7.5%;
   }
   .maxWell > h6,
   .instructionWell > h6 {
@@ -138,15 +158,26 @@
 
 /* Tablet Styles */
 @media only screen and (min-width: 420px) and (max-width: 960px) {
+  .addBtnText {
+    font-size: 1.2em;
+  }
   .btnContainer {
     margin-top: 3%;
     width: 80%;
+    height: 60px;
   }
   .siteName {
     font-size: 1.5em;
   }
+  .clearAllContainer {
+    width: 45%;
+    margin-top: 5%;
+  }
   .desc {
     font-size: 1.4em;
+  }
+  .emptyImage {
+    width: 50%;
   }
   .emptyWell {
     margin-top: 5%;
@@ -205,9 +236,17 @@
   .btnContainer {
     margin-top: 5%;
     width: 70%;
+    height: 90px;
+  }
+  .clearAllContainer {
+    width: 30%;
+    margin-top: 5%;
   }
   .desc {
     font-size: 1.6em;
+  }
+  .emptyImage {
+    width: 40%;
   }
   .emptyWell {
     margin-top: 5%;
@@ -216,6 +255,7 @@
     font-size: 1.2em;
   }
   .entityCard {
+    margin-top: -2.5%;
     width: 230px;
     height: 400px;
   }

@@ -167,6 +167,9 @@
   cursor: default;
   z-index: 2;
 }
+.popularityText {
+  color: #f3e8ff;
+}
 table {
   border-collapse: collapse;
   text-align: center;
