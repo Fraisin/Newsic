@@ -12,6 +12,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~8.2.14",
+    "@angular/cdk": "^9.1.2",
     "@angular/common": "~8.2.14",
     "@angular/compiler": "~8.2.14",
     "@angular/core": "~8.2.14",
@@ -30,6 +31,7 @@
     "ng-select2-component": "^7.0.6",
     "ng2-owl-carousel": "^0.1.15",
     "ng2-select2": "^1.0.0-beta.16",
+    "ngx-audio-player": "^9.0.6",
     "ngx-mat-select-search": "^2.1.2",
     "ngx-owl-carousel-o": "^2.1.0",
     "ngx-select-dropdown": "^1.4.0",

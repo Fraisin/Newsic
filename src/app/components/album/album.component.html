@@ -31,6 +31,7 @@
               <div class="trackInfoContainer">
                 <div class="trackInfoWrapper">
                   <h2 id="trackName">{{ track.name }}</h2>
+                  <h3 class="artistName">{{ track.album.artists[0].name }}</h3>
                   <h3 class="trackDuration">
                     {{ msToSongTime(track.duration_ms) }}
                   </h3>
@@ -106,9 +107,21 @@
               </div>
             </div>
             <div>
-              <a class="btn btn-default btn-lg btn-block addBtn"
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="artist/{{ track.album.artists[0].id }}"
+                class="btn btn-default btn-lg btn-block addBtn viewArtistBtn"
                 ><h4>View Artist</h4></a
               >
+              <mat-basic-audio-player
+                [audioUrl]="msbapAudioUrl"
+                [title]="msbapTitle"
+                [autoPlay]="false"
+                muted="muted"
+                [displayTitle]="msbapDisplayTitle"
+                [displayVolumeControls]="msaapDisplayVolumeControls"
+              ></mat-basic-audio-player>
             </div>
           </div>
         </li>

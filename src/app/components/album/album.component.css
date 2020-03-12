@@ -49,6 +49,10 @@
 .alreadyAdded {
   background-color: #014a39;
 }
+.artistName {
+  color: #decbf2;
+  margin-top: -0.5%;
+}
 .audioFeatureContainer {
   display: flex;
   flex-direction: row;
@@ -151,6 +155,7 @@
   margin-left: 2%;
   margin-top: auto;
   margin-bottom: auto;
+  text-align: center;
 }
 .popularityLabel {
   position: absolute;
@@ -242,7 +247,7 @@ table thead {
   display: block;
 }
 .trackDuration {
-  margin-top: -0.5%;
+  margin-top: -0.25%;
 }
 .trackInfoContainer {
   display: flex;
@@ -290,6 +295,9 @@ Inspired from peavy's work @ https://codepen.io/peavy/pen/NzYVjw */
   height: 100%;
   border-radius: 50%;
   clip: rect(0em, 0.5em, 1em, 0em);
+}
+.viewArtistBtn {
+  background-color: #8368a1;
 }
 .right-side {
   transform: rotate(0deg);
