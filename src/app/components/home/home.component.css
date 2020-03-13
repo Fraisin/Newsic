@@ -61,6 +61,9 @@
 .lightPurple {
   color: #bdb8f2;
 }
+.jumbotron {
+  text-align: center;
+}
 .mixContainer {
   margin-top: 8%;
   display: flex;
@@ -74,11 +77,7 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5), 0 10px 10px rgba(0, 0, 0, 0.5);
 }
 .siteName {
-  color: #cac7eb;
   font-size: 1em;
-}
-.jumbotron {
-  text-align: center;
 }
 .welcomeWell {
   text-align: center;
@@ -118,9 +117,6 @@
   .entityNameContainer > h4 {
     font-size: 1em;
   }
-  .instructionWell {
-    margin-top: -5%;
-  }
   .genreBtns {
     margin-top: 5%;
   }
@@ -133,6 +129,9 @@
   }
   .genreWell {
     margin-top: 7.5%;
+  }
+  .instructionWell {
+    margin-top: -5%;
   }
   .maxWell > h6,
   .instructionWell > h6 {
@@ -166,9 +165,6 @@
     width: 80%;
     height: 60px;
   }
-  .siteName {
-    font-size: 1.5em;
-  }
   .clearAllContainer {
     width: 45%;
     margin-top: 5%;
@@ -196,9 +192,6 @@
   .entityNameContainer > h4 {
     font-size: 1.2em;
   }
-  .instructionWell {
-    margin-top: 5%;
-  }
   .genreBtns {
     margin-top: 5%;
   }
@@ -209,9 +202,15 @@
     margin-top: 5%;
     width: 75%;
   }
+  .instructionWell {
+    margin-top: 5%;
+  }
   .maxWell > h6,
   .instructionWell > h6 {
     font-size: 1.2em;
+  }
+  .mobileOnly {
+    display: none;
   }
   .panelGenreImage,
   .panelImage,
@@ -223,16 +222,13 @@
   .panelGenreImage {
     margin-bottom: 7.5%;
   }
-  .mobileOnly {
-    display: none;
+  .siteName {
+    font-size: 1.5em;
   }
 }
 
 /* Desktop Styles */
 @media only screen and (min-width: 961px) {
-  .siteName {
-    font-size: 1.7em;
-  }
   .btnContainer {
     margin-top: 5%;
     width: 70%;
@@ -284,6 +280,9 @@
   .instructionWell > h6 {
     font-size: 1.6em;
   }
+  .mobileOnly {
+    display: none;
+  }
   .moveDown {
     margin-top: 3%;
   }
@@ -297,8 +296,8 @@
   .panelGenreImage {
     margin-bottom: 7.5%;
   }
-  .mobileOnly {
-    display: none;
+  .siteName {
+    font-size: 1.7em;
   }
 }
 

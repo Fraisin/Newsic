@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, HostListener } from "@angular/core";
+import { Component } from "@angular/core";
 import { SpotifyService } from "../../services/spotify.service";
 import { UserMixService } from "../../services/userMix.service";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -13,7 +13,7 @@ import { map } from "rxjs/operators";
 export class HomeComponent {
   showGenreSearch: boolean = false;
   singleSelect: any;
-  //config for the dropdown select search
+  //Configuration for the genre dropdown search.
   config = {
     search: true,
     limitTo: 150,
@@ -22,7 +22,7 @@ export class HomeComponent {
     noResultsFound: "No genres found.",
     clearOnSelection: true
   };
-  //options for the select search
+  //All the options for the genre dropdown search, populated in ngOnInit().
   options: any = [];
   constructor(
     private SpotifyService: SpotifyService,
@@ -31,7 +31,7 @@ export class HomeComponent {
     private router: Router
   ) {}
   ngOnInit() {
-    //Load the global array if it has existing data.
+    //Load the global array from local storage if it has existing data.
     this.UserMixService.loadUserMix();
     //Get the artist's top 5 tracks.
     this.route.params.pipe(map(params => params["id"])).subscribe(id => {
@@ -44,10 +44,8 @@ export class HomeComponent {
       });
     });
   }
-  //Gets the global usermix array
-  getMixArray() {
-    return this.UserMixService.userMix;
-  }
+  //Returns an array of 3 elements, with each one representing a comma-separated string
+  //of id values for artists, genres and tracks the user puts in their user mix.
   getParams() {
     var artistString = "";
     var genreString = "";
@@ -70,6 +68,7 @@ export class HomeComponent {
     var queryParams = [artistString, genreString, trackString];
     return queryParams;
   }
+  //Routes to the album component with the seeds as get parameters.
   navToPlaylist() {
     this.router.navigate(["/playlist"], {
       queryParams: {
@@ -79,9 +78,11 @@ export class HomeComponent {
       }
     });
   }
-  //Takes in a genreName and adds a corresponding genre object to the array
+  //Takes in the name of a genre and adds a corresponding genre object to the array.
   addGenre(genreName: string) {
     if (genreName) {
+      //If a user adds multiple genres of the same type, we want to delete the one that's in
+      //the right location. Hence, also add a random ID string to this genre object.
       var randomID = Math.random()
         .toString(36)
         .slice(2);
@@ -94,7 +95,11 @@ export class HomeComponent {
       this.UserMixService.addObjectToArray(genreObject);
     }
   }
-  //Takes an id, locates the corresponding object in the user mix array and deletes it
+  //Returns the global user mix array from UserMixService.
+  getMixArray() {
+    return this.UserMixService.userMix;
+  }
+  //Takes an id, locates the corresponding object in the user mix array and deletes it.
   deleteEntity(type: string, id: string) {
     this.UserMixService.deleteEntity(type, id);
   }
@@ -102,15 +107,19 @@ export class HomeComponent {
   deleteAllEntities() {
     this.UserMixService.deleteAllEntities();
   }
+  //Returns true if the user's mix is empty.
   arrayEmpty() {
     return this.UserMixService.arrayIsEmpty();
   }
+  //Returns true if the user's mix is full.
   arrayFull() {
     return this.UserMixService.arrayIsFull();
   }
+  //Called when the user presses cancel or 'Genre' with the search select open.
   hideGenreSearchbar() {
     this.showGenreSearch = false;
   }
+  //Toggles the value of showGenreSearch boolean.
   toggleGenreSearchbar() {
     this.showGenreSearch = this.showGenreSearch ? false : true;
   }

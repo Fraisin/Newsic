@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
+    <!-- Meta Tags-->
     <meta charset="utf-8" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
     />
-    <!-- Bootstrap CSS -->
+    <!-- Bootswatch Theme [Darkly] -->
     <link
       rel="stylesheet"
       href="https://bootswatch.com/3/darkly/bootstrap.min.css"
@@ -34,6 +34,7 @@
         </h6>
       </div>
     </div>
+    <!-- If user's mix is full, display warning message.  -->
     <ng-container *ngIf="arrayFull(); then showMax; else showButtons">
     </ng-container>
     <ng-template #showMax>
@@ -44,6 +45,7 @@
         </h6>
       </div>
     </ng-template>
+    <!-- Else, display the buttons allowing them to add to mix.  -->
     <ng-template #showButtons>
       <div class="btn-group btn-group-justified btnContainer">
         <a href="search" class="btn btn-default artistSongButton"
@@ -54,7 +56,7 @@
         >
       </div>
     </ng-template>
-    <!-- DISPLAYING GENRE SEARCHBAR -->
+    <!-- Display the genre search select dropdown. -->
     <div *ngIf="showGenreSearch">
       <div class="well genreWell">
         <h6>Please select a genre below.</h6>
@@ -80,6 +82,7 @@
         </div>
       </div>
     </div>
+    <!-- If user's mix is empty, inform them of the maximum number of items.  -->
     <div *ngIf="arrayEmpty()">
       <div class="well emptyWell">
         <h6>
@@ -96,10 +99,10 @@
         >
       </div>
     </div>
-    <!-- Container that holds the items the user adds to their 'mix' -->
+    <!-- Container that holds the items the user adds to their mix. -->
     <div class="mixContainer">
       <div *ngFor="let entity of getMixArray()">
-        <!-- IF USER ADDS AN ARTIST -->
+        <!-- Artist Card -->
         <div *ngIf="entity.type == 'artist'">
           <div
             class="flip-container"
@@ -140,7 +143,7 @@
             </div>
           </div>
         </div>
-        <!-- IF USER ADDS A TRACK -->
+        <!-- Track Card -->
         <div *ngIf="entity.type == 'track'">
           <div
             class="flip-container"
@@ -180,7 +183,7 @@
             </div>
           </div>
         </div>
-        <!-- IF USER ADDS A GENRE -->
+        <!-- Genre Card -->
         <div *ngIf="entity.type == 'genre'">
           <div
             class="flip-container"
@@ -222,7 +225,7 @@
         </div>
       </div>
     </div>
-    <!-- BIG BUTTON AT THE BOTTOM THAT CREATES PLAYLIST -->
+    <!-- Large button at the bottom of the page. If mix is empty, don't do anything. -->
     <div *ngIf="arrayEmpty()">
       <a class="btn btn-success btn-lg btn-block generateButton"
         >MAKE ME A MIX!</a
@@ -235,8 +238,7 @@
         >MAKE ME A MIX!</a
       >
     </div>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- JavaScript -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
     <script
