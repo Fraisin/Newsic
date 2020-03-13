@@ -1,4 +1,4 @@
-<!-- DISPLAYING A PLAYLIST -->
+<!-- Displaying the tracks from a user-created playlist.  -->
 <ng-container *ngIf="displayPlaylistTracks">
   <div id="albumContainer">
     <div class="albumHeadingContainer">
@@ -17,6 +17,7 @@
   </div>
   <div id="tracksContainer">
     <div *ngFor="let track of playlist; let i = index">
+      <!-- Loop through each of the tracks and place in an accordion. -->
       <ul>
         <li>
           <input type="checkbox" checked />
@@ -28,6 +29,7 @@
                 src="{{ track.album.images[0].url }}"
                 alt="Album Cover Art"
               />
+              <!-- Top half of the accordion. -->
               <div class="trackInfoContainer">
                 <div class="trackInfoWrapper">
                   <h2 id="trackName">{{ track.name }}</h2>
@@ -39,6 +41,7 @@
                   </h3>
                 </div>
               </div>
+              <!-- Popularity circle (not displayed on mobile). -->
               <div class="popularity hideMobile">
                 <p class="popularityText">Popularity</p>
                 <div id="{{ 'popularityChart' + i }}" class="donut-size">
@@ -69,8 +72,11 @@
               </div>
             </div>
           </div>
+          <!-- Bottom half of the accordion. -->
           <div id="accordionExpansion">
             <div class="audioFeatureContainer">
+              <!-- Loop through each 'AudioFeatures' object and print out the key (feature name). -->
+              <!-- Also place the value (feature value) in a donut circle.  -->
               <div
                 *ngFor="
                   let audioInfo of allPlaylistTracksAudioFeatures[i] | keyvalue;
@@ -109,6 +115,7 @@
               </div>
             </div>
             <div>
+              <!-- View artist link that takes user to that artist's profile.  -->
               <a
                 target="_blank"
                 rel="noopener noreferrer"
@@ -124,7 +131,7 @@
   </div>
 </ng-container>
 
-<!-- DISPLAYING AN ALBUM -->
+<!-- Displaying the tracks from an album. -->
 <ng-container *ngIf="displayAlbumTracks">
   <div *ngIf="album">
     <div id="albumContainer">
@@ -168,6 +175,7 @@
           </div>
         </div>
       </div>
+      <!-- Table that containss information about the selected album. -->
       <div class="tableWrapper">
         <table>
           <tbody>
@@ -210,6 +218,7 @@
       <img class="labelImage" src="../assets/note.svg" alt="Music Note" />
     </div>
     <div id="tracksContainer">
+      <!-- Loop through each of the tracks and place in an accordion. -->
       <div *ngFor="let track of tracks; let i = index">
         <ul>
           <li>
@@ -222,6 +231,7 @@
                   src="{{ album.images[0].url }}"
                   alt="Album Cover Art"
                 />
+                <!-- Top half of the accordion. -->
                 <div class="trackInfoContainer">
                   <div class="trackInfoWrapper">
                     <h2 class="#trackName">{{ track.name }}</h2>
@@ -260,6 +270,7 @@
                 </div>
               </div>
             </div>
+            <!-- Bottom half of the accordion. -->
             <div id="accordionExpansion">
               <div class="audioFeatureContainer">
                 <div
@@ -300,12 +311,14 @@
                 </div>
               </div>
               <div>
+                <!-- If user's mix is full, disable the add to mix button. -->
                 <ng-container *ngIf="arrayFull()">
                   <a
                     class="btn btn-default btn-lg btn-block addBtn disabled fullMix"
                     ><h4>Mix Is Full!</h4></a
                   >
                 </ng-container>
+                <!-- If user's mix is not full and track is not in mix already, enable button. -->
                 <ng-container *ngIf="!arrayFull() && !trackInMix(track.id)">
                   <a
                     class="btn btn-default btn-lg btn-block addBtn"
@@ -319,6 +332,7 @@
                     ><h4>Add to Mix</h4></a
                   >
                 </ng-container>
+                <!-- If user's mix is not full but track is already in mix, disable. -->
                 <ng-container *ngIf="!arrayFull() && trackInMix(track.id)">
                   <a
                     class="btn btn-default btn-lg btn-block addBtn disabled alreadyAdded"

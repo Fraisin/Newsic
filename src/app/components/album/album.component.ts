@@ -2,9 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { SpotifyService } from "../../services/spotify.service";
 import { UserMixService } from "../../services/userMix.service";
 import { ActivatedRoute } from "@angular/router";
-import { map } from "rxjs/operators";
 import * as $ from "jquery";
-import * as _ from "lodash";
 
 @Component({
   selector: "album",
@@ -12,25 +10,35 @@ import * as _ from "lodash";
   styleUrls: ["./album.component.css"],
   providers: [SpotifyService]
 })
+
+/*This component can be loaded in two different ways. One way is from
+clicking on an album on an artist page and the other is by generating
+a playlist from a mix. To differentiate the two, the album component
+uses a route parameter while the playlist version of the component uses
+query parameters in the search URL.*/
 export class AlbumComponent implements OnInit {
+  //Variables for album, artist and tracks.
   id: string;
-  artistID: string;
-  artistPhoto: string;
   album: any;
   albumDuration: string;
-  tracks: any;
-  trackIDs = new Array();
-  playlistTrackIDs = new Array();
   allAlbumTracksInfo: any[] = [];
   allAlbumTracksAudioFeatures: any[] = [];
+  displayAlbumTracks: boolean = false;
+  artistID: string;
+  artistPhoto: string;
+  tracks: any;
+  trackIDs = new Array();
+  //Variables for playlist.
+  playlist: any;
+  playlistTrackIDs = new Array();
   allPlaylistTracksInfo: any[] = [];
   allPlaylistTracksAudioFeatures: any[] = [];
   seedArtists: any;
   seedGenres: any;
   seedTracks: any;
-  displayAlbumTracks: boolean = false;
   displayPlaylistTracks: boolean = false;
-  playlist: any;
+
+  //The desired audio feature headings.
   featureHeadings = [
     "Danceability",
     "Energy",
@@ -39,6 +47,7 @@ export class AlbumComponent implements OnInit {
     "Liveness",
     "Valence"
   ];
+  //The keys to delete from the audio feature response object.
   keysToDelete = [
     "key",
     "loudness",
@@ -62,6 +71,7 @@ export class AlbumComponent implements OnInit {
   ngOnInit() {
     //Loads the user mix array so that it doesn't clear upon router change.
     this.UserMixService.loadUserMix();
+    //"Album" version of the component that uses route parameters.
     this.route.params.subscribe(params => {
       if (params["id"]) {
         this.displayAlbumTracks = true;
@@ -84,6 +94,7 @@ export class AlbumComponent implements OnInit {
             }
           );
         });
+        //Get the individual tracks of the this album.
         this.SpotifyService.getToken().subscribe(data => {
           this.SpotifyService.getAlbumTracks(
             this.id,
@@ -102,13 +113,13 @@ export class AlbumComponent implements OnInit {
               albumDuration
             ).toLocaleString();
             {
-              //Get basic information about the tracks (artist, popularity, etc.)
+              //Get basic information about the tracks (artist, popularity, etc.).
               this.SpotifyService.getTracks(
                 this.getTracksString(this.trackIDs),
                 data["access_token"]
               ).subscribe(trackinfo => {
                 this.allAlbumTracksInfo = trackinfo["tracks"];
-                //Get audio features (danceability, energy, etc.)
+                //Get more advanced audio features (danceability, energy, etc.).
                 this.SpotifyService.getTracksFeatures(
                   this.getTracksString(this.trackIDs),
                   data["access_token"]
@@ -129,36 +140,40 @@ export class AlbumComponent implements OnInit {
         });
       }
     });
+    //"Playlist" version of the component that uses query parameters.
     this.route.queryParams.subscribe(params => {
+      //Retrieve the query parameters from the search URL.
       if (params["seed_artists"]) this.seedArtists = params["seed_artists"];
       if (params["seed_genres"]) this.seedGenres = params["seed_genres"];
       if (params["seed_tracks"]) this.seedTracks = params["seed_tracks"];
       if (this.seedArtists || this.seedGenres || this.seedTracks) {
         this.displayAlbumTracks = false;
         this.displayPlaylistTracks = true;
+        //Constructs the query string to send to Spotify API.
         var queryString = this.getQueryString(
           this.seedArtists,
           this.seedGenres,
           this.seedTracks
         );
+        //Get the user's mix based off of their query string.
         this.SpotifyService.getToken().subscribe(data => {
           this.SpotifyService.getUserMix(
             queryString,
             data["access_token"]
           ).subscribe(playlistTracks => {
             this.playlist = playlistTracks["tracks"];
-            //Push each track id into an array so we can use it to fetch multiple tracks at once.
+            //Push each playlist rack ID into an array so we can use it to fetch multiple tracks at once.
             for (var i in this.playlist) {
               this.playlistTrackIDs.push(this.playlist[i]["id"]);
             }
             {
-              //Get basic information about the tracks (artist, popularity, etc.)
+              //Get basic information about the tracks (artist, popularity, etc.).
               this.SpotifyService.getTracks(
                 this.getTracksString(this.playlistTrackIDs),
                 data["access_token"]
               ).subscribe(playlistTrackinfo => {
                 this.allPlaylistTracksInfo = playlistTrackinfo["tracks"];
-                //Get audio features (danceability, energy, etc.)
+                //Get more advanced audio features (danceability, energy, etc.).
                 this.SpotifyService.getTracksFeatures(
                   this.getTracksString(this.playlistTrackIDs),
                   data["access_token"]
@@ -180,17 +195,19 @@ export class AlbumComponent implements OnInit {
       }
     });
   }
+  //Constructs the query string to pass to Spotify API based off the URL.
   getQueryString(artists: String, genres: String, tracks: String) {
     var seedArtists = "&seed_artists=" + artists;
     var seedGenres = "&seed_genres=" + genres;
     var seedTracks = "&seed_tracks=" + tracks;
     var queryString = "";
+    //If any of the seeds are undefined, don't include them in the query string.
     if (typeof artists !== "undefined") queryString = queryString + seedArtists;
     if (typeof genres !== "undefined") queryString = queryString + seedGenres;
     if (typeof tracks !== "undefined") queryString = queryString + seedTracks;
     return queryString;
   }
-  //Takes in an array of trackIDs and appends them to a string to pass to the service method.
+  //Takes in an array of trackIDs and appends them to a comma-separated string.
   getTracksString(trackIDs: any[]) {
     var tracksString = ""; //comma separated list of all the trackIDs
     var numOfTracks = trackIDs.length;
@@ -211,7 +228,7 @@ export class AlbumComponent implements OnInit {
     };
     this.UserMixService.addObjectToArray(trackObject);
   }
-  //Determines if the given track is already in the user's mix
+  //Determines if the given track is already in the user's mix.
   trackInMix(trackID: string) {
     return this.UserMixService.objectInArray(trackID);
   }
@@ -224,7 +241,7 @@ export class AlbumComponent implements OnInit {
       : minutes + ":" + (Number(seconds) < 10 ? "0" : "") + seconds;
   }
   updateDonutChart(chartID: any, percent: number, type: string) {
-    //Fix to the audio feature circles not displaying correctly in production
+    //Fix to the audio feature circles not displaying correctly in production.
     if (type === "audioFeature") {
       $(chartID + " .right-side").addClass(
         "circle" + chartID.slice(chartID.length - 1)
