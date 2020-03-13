@@ -25,6 +25,7 @@ export class SearchComponent {
           return;
         }
         this.emptySearch = false;
+        //Search is not empty, so make request with user's search string.
         this.SpotifyService.searchForArtists(
           searchString,
           data["access_token"]
