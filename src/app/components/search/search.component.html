@@ -1,150 +1,114 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+<!-- Start of Jumbotron -->
+<div class="jumbotron searchJumbo">
+  <div class="well searchWell">
+    <h1 class="frontPageTitle">Search For Music</h1>
+    <p class="frontPageDesc">
+      Simply begin by typing the name of
+      <span class="titleInDesc">an artist</span>
+      below.
+    </p>
+  </div>
+  <hr class="jumboDivider" />
+  <div class="searchbar">
+    <!-- SEARCHBAR -->
+    <input
+      class="form-control"
+      type="text"
+      [formControl]="searchString"
+      placeholder="Search for an artist"
     />
-    <!-- Bootstrap CSS -->
-    <link
-      rel="stylesheet"
-      href="https://bootswatch.com/3/darkly/bootstrap.min.css"
-      crossorigin="anonymous"
+  </div>
+</div>
+<!-- End of Jumbotron -->
+<!-- if the searchString is empty or just whitespace, display the front image -->
+<div *ngIf="emptySearch">
+  <div class="well well-lg instructionWell">
+    <h6>
+      To add an artist, view their profile and click the big
+      <span class="titleInDesc">Add to Mix</span> button.
+    </h6>
+    <h6>
+      To add a track, view the album the track is on, click on the track to open
+      a dropdown and press the same
+      <span class="titleInDesc">Add to Mix</span> button!
+    </h6>
+  </div>
+  <div class="artistContainer">
+    <img
+      class="artistExample"
+      src="../assets/artistexample.png"
+      alt="Artist Example"
     />
-    <title>MusicDex</title>
-  </head>
-  <body>
-    <!-- Start of Jumbotron -->
-    <div class="jumbotron searchJumbo">
-      <div class="well searchWell">
-        <h1 class="frontPageTitle">Search For Music</h1>
-        <p class="frontPageDesc">
-          Simply begin by typing the name of
-          <span class="titleInDesc">an artist</span>
-          below.
-        </p>
-      </div>
-      <hr class="jumboDivider" />
-      <div class="searchbar">
-        <!-- SEARCHBAR -->
-        <input
-          class="form-control"
-          type="text"
-          [formControl]="searchString"
-          placeholder="Search for an artist"
-        />
-      </div>
-    </div>
-    <!-- End of Jumbotron -->
-    <!-- if the searchString is empty or just whitespace, display the front image -->
-    <div *ngIf="emptySearch">
-      <div class="well well-lg instructionWell">
-        <h6>
-          To add an artist, view their profile and click the big
-          <span class="titleInDesc">Add to Mix</span> button.
-        </h6>
-        <h6>
-          To add a track, view the album the track is on, click on the track to
-          open a dropdown and press the same
-          <span class="titleInDesc">Add to Mix</span> button!
-        </h6>
-      </div>
-      <div class="artistContainer">
-        <img
-          class="artistExample"
-          src="../assets/artistexample.png"
-          alt="Artist Example"
-        />
-      </div>
-      <div class="artistContainer">
-        <img
-          class="artistExample"
-          src="../assets/trackexample.png"
-          alt="Track Example"
-        />
-      </div>
-    </div>
-    <div *ngIf="!emptySearch">
-      <h3 class="searchHeading">Search Results:</h3>
-      <br />
-      <!-- if no artists over 1000 followers with the search result, display no search results -->
-      <div *ngIf="noSearchResults(searchResults)">
-        Sorry, we couldn't find an artist with that name.
-        <img
-          class="noResultImage"
-          src="../assets/search.svg"
-          alt="Illustration of Person Searching for Something"
-        />
-      </div>
-      <!-- loop through each artist and display their information in a well -->
-      <div *ngFor="let res of searchResults; index as i">
-        <div *ngIf="res.followers.total > minFollowerCount" class="row">
-          <div class="col-md-12">
-            <!-- START OF ARTIST BLOCK -->
-            <div class="artistBlock well">
-              <h4>
-                <a href="/artist/{{ res.id }}">{{ res.name }}</a>
-              </h4>
-              <!-- GENRES -->
-              <div class="artistGenres">
-                <p class="genresText">Genres:</p>
-                <span *ngIf="res.genres.length == 0" class="noGenreMessage"
-                  >No genres were found for this artist.</span
-                >
-                <span
-                  class="genreBadges"
-                  *ngFor="let genre of cutGenres(res.genres); index as i"
-                >
-                  <span class="{{ 'badge badge' + i }}">{{ genre }}</span>
+  </div>
+  <div class="artistContainer">
+    <img
+      class="artistExample"
+      src="../assets/trackexample.png"
+      alt="Track Example"
+    />
+  </div>
+</div>
+<div *ngIf="!emptySearch">
+  <h3 class="searchHeading">Search Results:</h3>
+  <br />
+  <!-- if no artists over 1000 followers with the search result, display no search results -->
+  <div *ngIf="noSearchResults(searchResults)">
+    Sorry, we couldn't find an artist with that name.
+    <img
+      class="noResultImage"
+      src="../assets/search.svg"
+      alt="Illustration of Person Searching for Something"
+    />
+  </div>
+  <!-- loop through each artist and display their information in a well -->
+  <div *ngFor="let res of searchResults; index as i">
+    <div *ngIf="res.followers.total > minFollowerCount" class="row">
+      <div class="col-md-12">
+        <!-- START OF ARTIST BLOCK -->
+        <div class="artistBlock well">
+          <h4>
+            <a href="/artist/{{ res.id }}">{{ res.name }}</a>
+          </h4>
+          <!-- GENRES -->
+          <div class="artistGenres">
+            <p class="genresText">Genres:</p>
+            <span *ngIf="res.genres.length == 0" class="noGenreMessage"
+              >No genres were found for this artist.</span
+            >
+            <span
+              class="genreBadges"
+              *ngFor="let genre of cutGenres(res.genres); index as i"
+            >
+              <span class="{{ 'badge badge' + i }}">{{ genre }}</span>
+            </span>
+          </div>
+          <!-- FOLLOWERS -->
+          <div class="followers">
+            <p class="followerLabel">Followers:</p>
+            <span>
+              {{ res.followers.total.toLocaleString() }}
+            </span>
+          </div>
+          <!-- POPULARITY -->
+          <div class="popularity">
+            <p class="popularityLabel">Popularity</p>
+            <div id="{{ 'popularityChart' + i }}" class="donut-size">
+              <div class="pie-wrapper">
+                <span class="label">
+                  <span class="num">{{ res.popularity }}</span>
                 </span>
-              </div>
-              <!-- FOLLOWERS -->
-              <div class="followers">
-                <p class="followerLabel">Followers:</p>
-                <span>
-                  {{ res.followers.total.toLocaleString() }}
-                </span>
-              </div>
-              <!-- POPULARITY -->
-              <div class="popularity">
-                <p class="popularityLabel">Popularity</p>
-                <div id="{{ 'popularityChart' + i }}" class="donut-size">
-                  <div class="pie-wrapper">
-                    <span class="label">
-                      <span class="num">{{ res.popularity }}</span>
-                    </span>
-                    {{
-                      updateDonutChart("#popularityChart" + i, res.popularity)
-                    }}
-                    <div class="pie">
-                      <div class="left-side half-circle"></div>
-                      <div class="right-side half-circle"></div>
-                    </div>
-                    <div class="shadow"></div>
-                  </div>
+                {{ updateDonutChart("#popularityChart" + i, res.popularity) }}
+                <div class="pie">
+                  <div class="left-side half-circle"></div>
+                  <div class="right-side half-circle"></div>
                 </div>
+                <div class="shadow"></div>
               </div>
             </div>
-            <!-- END OF ARTIST BLOCK -->
           </div>
         </div>
+        <!-- END OF ARTIST BLOCK -->
       </div>
     </div>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-      crossorigin="anonymous"
-    ></script>
-  </body>
-</html>
+  </div>
+</div>

@@ -23,9 +23,8 @@ export class SearchComponent {
         if (searchString === "" || !/\S/.test(searchString)) {
           this.emptySearch = true;
           return;
-        } else {
-          this.emptySearch = false;
         }
+        this.emptySearch = false;
         this.SpotifyService.searchForArtists(
           searchString,
           data["access_token"]

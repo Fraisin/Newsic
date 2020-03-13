@@ -1,217 +1,253 @@
-<div class="jumbotron bigJumbo">
-  <div class="well well-lg welcomeWell zoomOnHover">
-    <h1><span class="siteName">MusicDex</span></h1>
-  </div>
-  <hr />
-  <h6 class="desc">
-    Endless songs <span class="lightPurple"> fine-tuned </span> to your musical
-    palette.
-  </h6>
-</div>
-<div *ngIf="arrayEmpty()">
-  <div class="well well-lg instructionWell">
-    <h6>
-      Simply begin by pressing one of the buttons below to add an artist, song
-      or genre to your music 'mixture'.
-    </h6>
-  </div>
-</div>
-<ng-container *ngIf="arrayFull(); then showMax; else showButtons">
-</ng-container>
-<ng-template #showMax>
-  <div class="well maxWell">
-    <h6>
-      You have added the maximum number of elements. Clear your mix or delete
-      some items if you'd like to re-add!
-    </h6>
-  </div>
-</ng-template>
-<ng-template #showButtons>
-  <div class="btn-group btn-group-justified btnContainer">
-    <a href="search" class="btn btn-default artistSongButton"
-      ><h3 class="addBtnText">Artist/Song</h3></a
-    >
-    <a class="btn btn-default genreButton" (click)="toggleGenreSearchbar()"
-      ><h3 class="addBtnText">Genre</h3></a
-    >
-  </div>
-</ng-template>
-<!-- DISPLAYING GENRE SEARCHBAR -->
-<div *ngIf="showGenreSearch">
-  <div class="well genreWell">
-    <h6>Please select a genre below.</h6>
-    <ngx-select-dropdown
-      tabindex="0"
-      [multiple]="false"
-      [(ngModel)]="singleSelect"
-      [config]="config"
-      [options]="options"
-    ></ngx-select-dropdown>
-    <div class="btn-group genreBtns">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    />
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://bootswatch.com/3/darkly/bootstrap.min.css"
+      crossorigin="anonymous"
+    />
+    <title>MusicDex</title>
+  </head>
+  <body>
+    <div class="jumbotron bigJumbo">
+      <div class="well well-lg welcomeWell zoomOnHover">
+        <h1><span class="siteName">MusicDex</span></h1>
+      </div>
+      <hr />
+      <h6 class="desc">
+        Endless songs <span class="lightPurple"> fine-tuned </span> to your
+        musical palette.
+      </h6>
+    </div>
+    <div *ngIf="arrayEmpty()">
+      <div class="well well-lg instructionWell">
+        <h6>
+          Simply begin by pressing one of the buttons below to add an artist,
+          song or genre to your music 'mixture'.
+        </h6>
+      </div>
+    </div>
+    <ng-container *ngIf="arrayFull(); then showMax; else showButtons">
+    </ng-container>
+    <ng-template #showMax>
+      <div class="well maxWell">
+        <h6>
+          You have added the maximum number of elements. Clear your mix or
+          delete some items if you'd like to re-add!
+        </h6>
+      </div>
+    </ng-template>
+    <ng-template #showButtons>
+      <div class="btn-group btn-group-justified btnContainer">
+        <a href="search" class="btn btn-default artistSongButton"
+          ><h3 class="addBtnText">Artist/Song</h3></a
+        >
+        <a class="btn btn-default genreButton" (click)="toggleGenreSearchbar()"
+          ><h3 class="addBtnText">Genre</h3></a
+        >
+      </div>
+    </ng-template>
+    <!-- DISPLAYING GENRE SEARCHBAR -->
+    <div *ngIf="showGenreSearch">
+      <div class="well genreWell">
+        <h6>Please select a genre below.</h6>
+        <ngx-select-dropdown
+          tabindex="0"
+          [multiple]="false"
+          [(ngModel)]="singleSelect"
+          [config]="config"
+          [options]="options"
+        ></ngx-select-dropdown>
+        <div class="btn-group genreBtns">
+          <a
+            class="btn btn-primary btn-sm addGenreBtn"
+            (click)="addGenre(singleSelect)"
+            >Add Genre</a
+          >
+          <a
+            class="btn btn-default btn-sm"
+            id="cancel"
+            (click)="hideGenreSearchbar()"
+            >Cancel</a
+          >
+        </div>
+      </div>
+    </div>
+    <div *ngIf="arrayEmpty()">
+      <div class="well emptyWell">
+        <h6>
+          Your mix is currently empty. Add up to a maximum of 5 items and get
+          mixing!
+        </h6>
+        <img class="emptyImage" src="../assets/emptymix.svg" alt="Empty Mix" />
+      </div>
+    </div>
+    <div *ngIf="!arrayEmpty()">
+      <div class="clearAllContainer">
+        <a class="btn btn-danger btn-sm clearAll" (click)="deleteAllEntities()"
+          >Clear All</a
+        >
+      </div>
+    </div>
+    <!-- Container that holds the items the user adds to their 'mix' -->
+    <div class="mixContainer">
+      <div *ngFor="let entity of getMixArray()">
+        <!-- IF USER ADDS AN ARTIST -->
+        <div *ngIf="entity.type == 'artist'">
+          <div
+            class="flip-container"
+            ontouchstart="this.classList.toggle('hover');"
+          >
+            <div class="flipper">
+              <div class="panel panel-warning entityCard front">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Artist</h3>
+                </div>
+                <div class="panel-body entityContainer">
+                  <img
+                    class="panelImage"
+                    src="{{ entity.image }}"
+                    alt="Artist Image"
+                  />
+                  <div class="entityNameContainer">
+                    <h4>
+                      {{ entity.name }}
+                    </h4>
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-warning entityCard back">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Artist</h3>
+                </div>
+                <div class="panel-body entityContainer">
+                  <input
+                    type="image"
+                    class="deleteImage"
+                    src="../assets/delete.png"
+                    alt="Artist Image"
+                    (click)="deleteEntity('artist', entity.id)"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- IF USER ADDS A TRACK -->
+        <div *ngIf="entity.type == 'track'">
+          <div
+            class="flip-container"
+            ontouchstart="this.classList.toggle('hover');"
+          >
+            <div class="flipper">
+              <div class="panel panel-success entityCard front">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Track</h3>
+                </div>
+                <div class="panel-body entityContainer">
+                  <img
+                    class="panelImage"
+                    src="{{ entity.image }}"
+                    alt="Track Image"
+                  />
+                  <div class="entityNameContainer">
+                    <h4>
+                      {{ entity.name }}
+                    </h4>
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-success entityCard back">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Track</h3>
+                </div>
+                <div class="panel-body entityContainer">
+                  <img
+                    class="deleteImage"
+                    src="../assets/delete.png"
+                    alt="Track Image"
+                    (click)="deleteEntity('artist', entity.id)"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- IF USER ADDS A GENRE -->
+        <div *ngIf="entity.type == 'genre'">
+          <div
+            class="flip-container"
+            ontouchstart="this.classList.toggle('hover');"
+          >
+            <div class="flipper">
+              <div class="panel panel-info entityCard front">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Genre</h3>
+                </div>
+                <div class="panel-body entityContainer">
+                  <img
+                    class="panelGenreImage"
+                    src="../assets/genre.png"
+                    alt="Flat Genre Image"
+                  />
+                  <div class="entityNameContainer">
+                    <h4>
+                      {{ entity.name }}
+                    </h4>
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-info entityCard back">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Genre</h3>
+                </div>
+                <div class="panel-body entityContainer">
+                  <img
+                    class="deleteImage"
+                    src="../assets/delete.png"
+                    alt="Flat Genre Image"
+                    (click)="deleteEntity('genre', entity.id)"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- BIG BUTTON AT THE BOTTOM THAT CREATES PLAYLIST -->
+    <div *ngIf="arrayEmpty()">
+      <a class="btn btn-success btn-lg btn-block generateButton"
+        >MAKE ME A MIX!</a
+      >
+    </div>
+    <div *ngIf="!arrayEmpty()">
       <a
-        class="btn btn-primary btn-sm addGenreBtn"
-        (click)="addGenre(singleSelect)"
-        >Add Genre</a
-      >
-      <a
-        class="btn btn-default btn-sm"
-        id="cancel"
-        (click)="hideGenreSearchbar()"
-        >Cancel</a
+        class="btn btn-success btn-lg btn-block generateButton moveDown"
+        (click)="navToPlaylist()"
+        >MAKE ME A MIX!</a
       >
     </div>
-  </div>
-</div>
-<div *ngIf="arrayEmpty()">
-  <div class="well emptyWell">
-    <h6>
-      Your mix is currently empty. Add up to a maximum of 5 items and get
-      mixing!
-    </h6>
-    <img class="emptyImage" src="../assets/emptymix.svg" alt="Empty Mix" />
-  </div>
-</div>
-<div *ngIf="!arrayEmpty()">
-  <div class="clearAllContainer">
-    <a class="btn btn-danger btn-sm clearAll" (click)="deleteAllEntities()"
-      >Clear All</a
-    >
-  </div>
-</div>
-<!-- Container that holds the items the user adds to their 'mix' -->
-<div class="mixContainer">
-  <div *ngFor="let entity of getMixArray()">
-    <!-- IF USER ADDS AN ARTIST -->
-    <div *ngIf="entity.type == 'artist'">
-      <div
-        class="flip-container"
-        ontouchstart="this.classList.toggle('hover');"
-      >
-        <div class="flipper">
-          <div class="panel panel-warning entityCard front">
-            <div class="panel-heading">
-              <h3 class="panel-title">Artist</h3>
-            </div>
-            <div class="panel-body entityContainer">
-              <img
-                class="panelImage"
-                src="{{ entity.image }}"
-                alt="Artist Image"
-              />
-              <div class="entityNameContainer">
-                <h4>
-                  {{ entity.name }}
-                </h4>
-              </div>
-            </div>
-          </div>
-          <div class="panel panel-warning entityCard back">
-            <div class="panel-heading">
-              <h3 class="panel-title">Artist</h3>
-            </div>
-            <div class="panel-body entityContainer">
-              <input
-                type="image"
-                class="deleteImage"
-                src="../assets/delete.png"
-                alt="Artist Image"
-                (click)="deleteEntity('artist', entity.id)"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- IF USER ADDS A TRACK -->
-    <div *ngIf="entity.type == 'track'">
-      <div
-        class="flip-container"
-        ontouchstart="this.classList.toggle('hover');"
-      >
-        <div class="flipper">
-          <div class="panel panel-success entityCard front">
-            <div class="panel-heading">
-              <h3 class="panel-title">Track</h3>
-            </div>
-            <div class="panel-body entityContainer">
-              <img
-                class="panelImage"
-                src="{{ entity.image }}"
-                alt="Track Image"
-              />
-              <div class="entityNameContainer">
-                <h4>
-                  {{ entity.name }}
-                </h4>
-              </div>
-            </div>
-          </div>
-          <div class="panel panel-success entityCard back">
-            <div class="panel-heading">
-              <h3 class="panel-title">Track</h3>
-            </div>
-            <div class="panel-body entityContainer">
-              <img
-                class="deleteImage"
-                src="../assets/delete.png"
-                alt="Track Image"
-                (click)="deleteEntity('artist', entity.id)"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- IF USER ADDS A GENRE -->
-    <div *ngIf="entity.type == 'genre'">
-      <div
-        class="flip-container"
-        ontouchstart="this.classList.toggle('hover');"
-      >
-        <div class="flipper">
-          <div class="panel panel-info entityCard front">
-            <div class="panel-heading">
-              <h3 class="panel-title">Genre</h3>
-            </div>
-            <div class="panel-body entityContainer">
-              <img
-                class="panelGenreImage"
-                src="../assets/genre.png"
-                alt="Flat Genre Image"
-              />
-              <div class="entityNameContainer">
-                <h4>
-                  {{ entity.name }}
-                </h4>
-              </div>
-            </div>
-          </div>
-          <div class="panel panel-info entityCard back">
-            <div class="panel-heading">
-              <h3 class="panel-title">Genre</h3>
-            </div>
-            <div class="panel-body entityContainer">
-              <img
-                class="deleteImage"
-                src="../assets/delete.png"
-                alt="Flat Genre Image"
-                (click)="deleteEntity('genre', entity.id)"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- BIG BUTTON AT THE BOTTOM THAT CREATES PLAYLIST -->
-<div *ngIf="arrayEmpty()">
-  <a class="btn btn-success btn-lg btn-block generateButton">MAKE ME A MIX!</a>
-</div>
-<div *ngIf="!arrayEmpty()">
-  <a
-    class="btn btn-success btn-lg btn-block generateButton moveDown"
-    (click)="navToPlaylist()"
-    >MAKE ME A MIX!</a
-  >
-</div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

@@ -31,7 +31,9 @@
               <div class="trackInfoContainer">
                 <div class="trackInfoWrapper">
                   <h2 id="trackName">{{ track.name }}</h2>
-                  <h3 class="artistName">{{ track.album.artists[0].name }}</h3>
+                  <h3 class="artistName">
+                    {{ track.album.artists[0].name }}
+                  </h3>
                   <h3 class="trackDuration">
                     {{ msToSongTime(track.duration_ms) }}
                   </h3>

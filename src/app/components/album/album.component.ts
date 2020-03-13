@@ -98,7 +98,6 @@ export class AlbumComponent implements OnInit {
               albumDuration =
                 albumDuration + Number(this.tracks[i]["duration_ms"]);
             }
-            console.log(this.trackIDs);
             this.albumDuration = this.msToSongTime(
               albumDuration
             ).toLocaleString();
@@ -148,7 +147,6 @@ export class AlbumComponent implements OnInit {
             data["access_token"]
           ).subscribe(playlistTracks => {
             this.playlist = playlistTracks["tracks"];
-            console.log(this.playlist);
             //Push each track id into an array so we can use it to fetch multiple tracks at once.
             for (var i in this.playlist) {
               this.playlistTrackIDs.push(this.playlist[i]["id"]);
@@ -181,24 +179,8 @@ export class AlbumComponent implements OnInit {
         });
       }
     });
-    console.log(
-      "printing the value of seed_artists parameter " + this.seedArtists
-    );
-    console.log(
-      "printing the value of seed_genres parameter " + this.seedGenres
-    );
-    console.log(
-      "printing the value of seed_tracks parameter " + this.seedTracks
-    );
-    console.log(
-      "printing out value of DISPLAY ALBUM: " + this.displayAlbumTracks
-    );
-    console.log(
-      "printing out value of DISPLAY PLAYLIST: " + this.displayPlaylistTracks
-    );
   }
   getQueryString(artists: String, genres: String, tracks: String) {
-    console.log("printing the value of genres " + genres);
     var seedArtists = "&seed_artists=" + artists;
     var seedGenres = "&seed_genres=" + genres;
     var seedTracks = "&seed_tracks=" + tracks;
@@ -206,7 +188,6 @@ export class AlbumComponent implements OnInit {
     if (typeof artists !== "undefined") queryString = queryString + seedArtists;
     if (typeof genres !== "undefined") queryString = queryString + seedGenres;
     if (typeof tracks !== "undefined") queryString = queryString + seedTracks;
-    console.log("NOW PRINTING THE QUERY STRING " + queryString);
     return queryString;
   }
   //Takes in an array of trackIDs and appends them to a string to pass to the service method.
