@@ -20,7 +20,7 @@ export class ArtistComponent implements OnInit {
   albums: any;
   topTracks: any;
   relatedArtists: any;
-  //settings for the owl carousel for similar artists
+  //Options for the owl carousel for similar artists.
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
@@ -34,6 +34,7 @@ export class ArtistComponent implements OnInit {
     margin: 10,
     navSpeed: 700,
     navText: [
+      //Buttons for left and right navigation.
       '<img src="../assets/leftArrow.png" height="42" width="42"/>',
       '<img src="../assets/rightArrow.png" height="42" width="42"/>'
     ],
@@ -137,7 +138,7 @@ export class ArtistComponent implements OnInit {
   arrayFull() {
     return this.UserMixService.arrayIsFull();
   }
-  //Determines if the given artist is already in the user's mix
+  //Determines if the given artist is already in the user's mix.
   artistInMix(artistID: string) {
     return this.UserMixService.objectInArray(artistID);
   }

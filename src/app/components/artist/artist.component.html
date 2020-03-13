@@ -6,11 +6,13 @@
   </div>
   <div class="artistContainer">
     <div class="btnPhotoWrapper">
+      <!-- Disable add button if user mix is full. -->
       <ng-container *ngIf="arrayFull()">
         <a class="btn btn-default btn-lg btn-block addBtn disabled fullMix"
           ><h4>Mix Is Full!</h4></a
         >
       </ng-container>
+      <!-- Enable button if user mix is not full and artist isn't already in the mix. -->
       <ng-container *ngIf="!arrayFull() && !artistInMix(artist.id)">
         <a
           class="btn btn-default btn-lg btn-block addBtn"
@@ -18,6 +20,7 @@
           ><h4>Add to Mix</h4></a
         >
       </ng-container>
+      <!-- Disable add button if artist is already in the mix. -->
       <ng-container *ngIf="!arrayFull() && artistInMix(artist.id)">
         <a class="btn btn-default btn-lg btn-block addBtn disabled alreadyAdded"
           ><h4>Artist Added</h4></a
@@ -29,7 +32,7 @@
         alt="Illustration of Artist"
       />
     </div>
-    <!-- POPULAR SONGS -->
+    <!-- Jumbotron that contains the progress bars and popular songs. -->
     <div class="jumbotron popularSongJumbo">
       <div class="popularHeadingWrapper">
         <h5>Popular Songs</h5>
@@ -46,7 +49,7 @@
       </div>
     </div>
   </div>
-  <!-- ALBUMS -->
+  <!-- Beginning of albums. -->
   <div class="labelWrapper">
     <h2 class="labelHeading">Albums</h2>
     <img
@@ -56,12 +59,14 @@
     />
   </div>
   <div id="albumsContainer">
+    <!-- Loop through each album. -->
     <div *ngFor="let album of albums">
       <a href="album/{{ album.id }}">
         <div
           class="flip-container"
           ontouchstart="this.classList.toggle('hover');"
         >
+          <!-- Flipper, front and back classes used for hover on effect. -->
           <div class="flipper">
             <div class="front">
               <img
@@ -85,7 +90,7 @@
       </a>
     </div>
   </div>
-  <!-- SIMILAR ARTISTS -->
+  <!-- Similar artist carousel. -->
   <div class="labelWrapper">
     <h2 class="labelHeading">Similar Artists</h2>
     <img
