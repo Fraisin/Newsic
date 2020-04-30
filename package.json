@@ -24,7 +24,7 @@
     "@ngx-pwa/local-storage": "^8.2.4",
     "bootstrap-select": "^1.13.12",
     "bootswatch": "^4.4.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "jquery-ui-bundle": "^1.12.1-migrate",
     "lodash": "^4.17.15",
     "ng-select2-component": "^7.0.6",
