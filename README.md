@@ -1,10 +1,10 @@
 <h1 align="center">
-  MusicDex
+  Newsic
 </h1>
 
-MusicDex is a web application designed to provide users with an endless stream of new music based on their own tastes. Through a set of endpoints provided by [Spotify's Web API](https://developer.spotify.com/documentation/web-api/), users can add a combination of artists, tracks and genres to their mixture to generate a playlist of tracks that they'd find enjoyable. 
+Newsic is a web application designed to provide users with an endless stream of new music based on their own tastes. Through a set of endpoints provided by [Spotify's Web API](https://developer.spotify.com/documentation/web-api/), users can add a combination of artists, tracks and genres to their mixture to generate a playlist of tracks that they'd find enjoyable. 
 
-Built with Angular 8 and Bootstrap, MusicDex is designed to be modernized, beautiful, and quick.
+Built with Angular 8 and Bootstrap, Newsic is designed to be modernized, beautiful, and quick.
 
 
 <h4 align="center">Start mixing now! Visit the project at https://newsic.netlify.com/</h4>
