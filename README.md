@@ -1,27 +1,43 @@
-# MusicDex
+<h1 align="center">
+  Newsic
+</h1>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.23.
+Newsic is a web application designed to provide users with an endless stream of new music based on their own tastes. Through a set of endpoints provided by [Spotify's Web API](https://developer.spotify.com/documentation/web-api/), users can add a combination of artists, tracks and genres to their mixture to generate a playlist of tracks that they'd find enjoyable. 
 
-## Development server
+Built with Angular 8 and Bootstrap, Newsic is designed to be modernized, beautiful, and quick.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+<h4 align="center">Start mixing now! Visit the project at https://newsic.netlify.com/</h4>
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+<h2>Features</h2>
 
-## Build
+| **Add endless permutations of artists, tracks and genres to your musical mixture to create a playlist of tracks fine-tuned to your unique musical palette.** |
+|:--:| 
+| <img src="src/assets/userMix.png"/> | 
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+| **View audio features about your favourite tracks, such as energy, valence, and even danceability.** |
+|:--:| 
+| <img src="src/assets/trackFeatures.png"/> | 
 
-## Running unit tests
+| **Discover up to 20 new artists for each of the musicians you love and listen to daily** |
+|:--:| 
+| <img src="src/assets/similarArtists.png"/> | 
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+<h2>Development</h2>
 
-## Running end-to-end tests
+* Follow the [Angular Tutorial](https://angular.io/guide/setup-local) to get your work environment set up
+* Clone the repository ```https://github.com/Fraisin/MusicDex.git```
+* Run ```npm install``` to install the required dependencies
+* Run ```ng serve``` to start a dev server 
+* Navigate to ```http://localhost:4200/``` in a brower to view your changes in real-time
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+<h2>Built With</h2>
 
-## Further help
+* [Angular 8.3.23](https://github.com/angular/angular-cli)
+* HTML, CSS, Typescript, Bootstrap
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+<h2>Plugins</h2>
+
+* [Owl Carousel 2.3.4](https://owlcarousel2.github.io/OwlCarousel2/)
+* [Local Storage for Angular](https://github.com/cyrilletuzi/angular-async-local-storage)
+* [ngx-select-dropdown](https://github.com/manishjanky/ngx-select-dropdown)
