@@ -5,5 +5,5 @@ import { Component } from "@angular/core";
   templateUrl: "navbar.component.html"
 })
 export class NavbarComponent {
-  title = "MusicDex";
+  title = "Newsic";
 }
