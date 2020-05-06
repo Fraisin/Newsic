@@ -19,7 +19,7 @@ Built with Angular 8 and Bootstrap, Newsic is designed to be modernized, beautif
 |:--:| 
 | <img src="src/assets/trackFeatures.png"/> | 
 
-| **Discover up to 20 new artists for each of the musicians you love and listen to daily** |
+| **Discover up to 20 new artists for each of the musicians you love and listen to daily.** |
 |:--:| 
 | <img src="src/assets/similarArtists.png"/> | 
 
