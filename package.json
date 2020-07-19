@@ -26,7 +26,7 @@
     "bootswatch": "^4.4.1",
     "jquery": "^3.5.0",
     "jquery-ui-bundle": "^1.12.1-migrate",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "ng-select2-component": "^7.0.6",
     "ng2-owl-carousel": "^0.1.15",
     "ng2-select2": "^1.0.0-beta.16",
